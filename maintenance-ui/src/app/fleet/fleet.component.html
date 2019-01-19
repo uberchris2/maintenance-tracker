@@ -1,0 +1,19 @@
+<div class="page-header" id="banner">
+  <div class="row">
+    <div class="col">
+      <h1>Fleet</h1>
+    </div>
+  </div>
+</div>
+
+<div class="card-columns">
+  <app-vehicle-card *ngFor="let vehicle of vehicles" [vehicle]="vehicle"></app-vehicle-card>
+  <a routerLink="/addVehicle">
+    <div class="card text-white bg-primary mb-3">
+      <div class="card-body">
+        <h5 class="card-title"><i class="fa fa-plus"></i></h5>
+        <p class="card-text">Add a new vehicle.</p>
+      </div>
+    </div>
+  </a>
+</div>
