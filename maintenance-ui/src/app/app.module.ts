@@ -8,13 +8,17 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FleetComponent } from './fleet/fleet.component';
 import { VehicleCardComponent } from './vehicle-card/vehicle-card.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+import { VehicleComponent } from './vehicle/vehicle.component';
+import { RecordMaintenanceComponent } from './record-maintenance/record-maintenance.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FleetComponent,
     VehicleCardComponent,
-    AddVehicleComponent
+    AddVehicleComponent,
+    VehicleComponent,
+    RecordMaintenanceComponent
   ],
   imports: [
     BrowserModule,
