@@ -10,7 +10,18 @@ import { VehicleCardComponent } from './vehicle-card/vehicle-card.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { RecordMaintenanceComponent } from './record-maintenance/record-maintenance.component';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
+import { MsAdalAngular6Module } from 'microsoft-adal-angular6';
+import { AuthenticationGuard } from 'microsoft-adal-angular6';
+import { AuthInterceptor } from './auth.interceptor';
+
+export function getAdalConfig() {
+  return {
+      tenant: '1afbc838-c2c9-44f9-a3e1-b327d260aacd',
+      clientId: 'bbefd485-0e5c-4546-b433-7130344b9e21',
+      navigateToLoginRequestUrl: false,
+    };
+}
 
 @NgModule({
   declarations: [
@@ -25,9 +36,17 @@ import { HttpClientModule }    from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    MsAdalAngular6Module.forRoot(getAdalConfig)
   ],
-  providers: [],
+  providers: [
+    AuthenticationGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
