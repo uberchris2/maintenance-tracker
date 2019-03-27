@@ -10,6 +10,7 @@ import { VehicleCardComponent } from './vehicle-card/vehicle-card.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { RecordMaintenanceComponent } from './record-maintenance/record-maintenance.component';
+import { HttpClientModule }    from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RecordMaintenanceComponent } from './record-maintenance/record-maintena
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

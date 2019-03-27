@@ -1,6 +1,6 @@
 export class Vehicle {
-    id: number;
-    year: number;
+    id: string;
+    year: string;
     make: string;
     model: string;
     name: string;
