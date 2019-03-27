@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { YearMakeModelService } from '../year-make-model.service';
 
 @Component({
   selector: 'app-add-vehicle',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddVehicleComponent implements OnInit {
 
-  constructor() { }
+  years: number[];
+
+  constructor(private yearMakeModelService: YearMakeModelService) { }
 
   ngOnInit() {
+    this.yearMakeModelService.getYears().subscribe(years => this.years = years);
   }
 
 }
