@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'fleet', component: FleetComponent, canActivate: [AuthenticationGuard] },
   { path: 'addVehicle', component: AddVehicleComponent, canActivate: [AuthenticationGuard] },
   { path: 'vehicle/:id', component: VehicleComponent, canActivate: [AuthenticationGuard] },
-  { path: 'recordMaintenance', component: RecordMaintenanceComponent, canActivate: [AuthenticationGuard] },
+  { path: 'recordMaintenance/:vehicleId', component: RecordMaintenanceComponent, canActivate: [AuthenticationGuard] },
 ];
 
 @NgModule({

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VehicleService } from '../vehicle.service';
 import { Vehicle } from '../vehicle';
 import { ActivatedRoute } from '@angular/router';
+import { Maintenance } from '../Maintenance';
 
 @Component({
   selector: 'app-vehicle',

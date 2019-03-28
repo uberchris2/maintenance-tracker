@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Vehicle } from './vehicle';
 import { Observable } from 'rxjs';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { DefaultHttpOptions } from './default-http-options';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +20,6 @@ export class VehicleService {
   }
 
   post(vehicle: Vehicle) {
-    return this.http.post<Vehicle>('api/vehicles', vehicle, httpOptions);
+    return this.http.post<Vehicle>('api/vehicles', vehicle, DefaultHttpOptions);
   }
 }

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Maintenance } from '../Maintenance';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Vehicle } from '../vehicle';
+import { VehicleService } from '../vehicle.service';
+import { MaintenanceService } from '../maintenance.service';
 
 @Component({
   selector: 'app-record-maintenance',
@@ -7,9 +12,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecordMaintenanceComponent implements OnInit {
 
-  constructor() { }
+  vehicle: Vehicle;
+  maintenance = new Maintenance();
+
+  constructor(private route: ActivatedRoute, private vehicleService: VehicleService, private maintenanceService: MaintenanceService, private router: Router) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.vehicleService.get(params['vehicleId']).subscribe(vehicle => this.vehicle = vehicle);
+    });
+  }
+
+  add() {
+    this.maintenanceService.post(this.maintenance)
+      .subscribe(response => {
+        this.router.navigateByUrl(`/vehicle/${this.vehicle.id}`);
+      });
+  }
+
+  addAndContinue() {
+
   }
 
 }
