@@ -15,10 +15,10 @@ export class VehicleService {
   constructor(private http: HttpClient) { }
 
   get(): Observable<Vehicle[]> {
-    return this.http.get<Vehicle[]>('https://maintenance-tracker-api.azurewebsites.net/api/vehicles');
+    return this.http.get<Vehicle[]>('api/vehicles');
   }
 
   post(vehicle: Vehicle) {
-    return this.http.post<Vehicle>('https://maintenance-tracker-api.azurewebsites.net/api/vehicles', vehicle, httpOptions);
+    return this.http.post<Vehicle>('api/vehicles', vehicle, httpOptions);
   }
 }

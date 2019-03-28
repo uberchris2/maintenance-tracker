@@ -13,7 +13,7 @@ import { RecordMaintenanceComponent } from './record-maintenance/record-maintena
 import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { MsAdalAngular6Module } from 'microsoft-adal-angular6';
 import { AuthenticationGuard } from 'microsoft-adal-angular6';
-import { AuthInterceptor } from './auth.interceptor';
+import { Interceptor } from './interceptor';
 import { FormsModule } from '@angular/forms';
 
 export function getAdalConfig() {
@@ -45,7 +45,7 @@ export function getAdalConfig() {
     AuthenticationGuard,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
+      useClass: Interceptor,
       multi: true
     }
   ],

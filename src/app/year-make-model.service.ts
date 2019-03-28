@@ -11,7 +11,7 @@ export class YearMakeModelService {
   constructor(private http: HttpClient) { }
 
   getYears(): Observable<number[]> {
-    return this.http.get('https://maintenance-tracker-api.azurewebsites.net/yearmakemodel/year')
+    return this.http.get('yearmakemodel/year')
       .pipe(map(
         (response: any) => {
           var list = [];
@@ -23,7 +23,7 @@ export class YearMakeModelService {
   }
 
   getMakes(year: number): Observable<Make[]> {
-    return this.http.get(`https://maintenance-tracker-api.azurewebsites.net/yearmakemodel/make?year=${year}`)
+    return this.http.get(`yearmakemodel/make?year=${year}`)
       .pipe(map(
         (response: any) => {
           return response.Makes;
@@ -31,7 +31,7 @@ export class YearMakeModelService {
   }
 
   getModels(year: number, make_id: string): Observable<string[]> {
-    return this.http.get(`https://maintenance-tracker-api.azurewebsites.net/yearmakemodel/model?year=${year}&make=${make_id}`)
+    return this.http.get(`yearmakemodel/model?year=${year}&make=${make_id}`)
       .pipe(map(
         (response: any) => {
           return response.Models.map(model => model.model_name);
