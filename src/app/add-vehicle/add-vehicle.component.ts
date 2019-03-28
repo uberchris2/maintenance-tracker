@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { YearMakeModelService, Make } from '../year-make-model.service';
 import { VehicleService } from '../vehicle.service';
 import { Vehicle } from '../vehicle';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-vehicle',
@@ -19,7 +20,7 @@ export class AddVehicleComponent implements OnInit {
   model: string;
   name = '';
 
-  constructor(private yearMakeModelService: YearMakeModelService, private vehicleService: VehicleService) { }
+  constructor(private yearMakeModelService: YearMakeModelService, private vehicleService: VehicleService, private router: Router) { }
 
   ngOnInit() {
     this.yearMakeModelService.getYears().subscribe(years => this.years = years);
@@ -59,7 +60,10 @@ export class AddVehicleComponent implements OnInit {
     newVehicle.make = this.make.make_display;
     newVehicle.model = this.model;
     newVehicle.name = this.name;
-    this.vehicleService.post(newVehicle).subscribe(console.log);
+    this.vehicleService.post(newVehicle)
+      .subscribe(response => {
+        this.router.navigateByUrl('/fleet');
+      });
   }
 
 }
