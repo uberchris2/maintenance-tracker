@@ -3,6 +3,7 @@ import { VehicleService } from '../vehicle.service';
 import { Vehicle } from '../vehicle';
 import { ActivatedRoute } from '@angular/router';
 import { Maintenance } from '../Maintenance';
+import { MaintenanceService } from '../maintenance.service';
 
 @Component({
   selector: 'app-vehicle',
@@ -12,12 +13,14 @@ import { Maintenance } from '../Maintenance';
 export class VehicleComponent implements OnInit {
 
   vehicle: Vehicle;
+  allMaintenance: Maintenance[];
 
-  constructor(private vehicleService: VehicleService, private route: ActivatedRoute) { }
+  constructor(private vehicleService: VehicleService, private route: ActivatedRoute, private maintenanceService: MaintenanceService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.vehicleService.get(params['id']).subscribe(vehicle => this.vehicle = vehicle);
+      this.maintenanceService.getAll(params['id']).subscribe(allMaintenance => this.allMaintenance = allMaintenance);
     });
   }
 }

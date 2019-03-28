@@ -19,7 +19,10 @@ export class RecordMaintenanceComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.vehicleService.get(params['vehicleId']).subscribe(vehicle => this.vehicle = vehicle);
+      this.vehicleService.get(params['vehicleId']).subscribe(vehicle => {
+        this.vehicle = vehicle;
+        this.maintenance.vehicle = vehicle.id;
+      });
     });
   }
 
@@ -31,7 +34,11 @@ export class RecordMaintenanceComponent implements OnInit {
   }
 
   addAndContinue() {
-
+    this.maintenanceService.post(this.maintenance)
+      .subscribe(response => {
+        this.maintenance.item = "";
+        this.maintenance.notes = "";
+      });
   }
 
 }

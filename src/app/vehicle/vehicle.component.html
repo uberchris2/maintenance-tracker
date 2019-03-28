@@ -23,25 +23,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>106,111</td>
-      <td>2/4/18</td>
-      <td>Oil + filter</td>
-      <td class="fit">
-        <div class="btn-group">
-          <button class="btn btn-secondary">
-            <i class="fa fa-edit"></i>   
-          </button>
-          <button class="btn btn-secondary">
-            <i class="fa fa-trash"></i>   
-          </button>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>105,111</td>
-      <td>2/3/18</td>
-      <td>Transmission fluid</td>
+    <tr *ngFor="let maintenance of allMaintenance">
+      <td>{{maintenance.mileage}}</td>
+      <td>{{maintenance.date}}</td>
+      <td>{{maintenance.item}}</td>
       <td class="fit">
         <div class="btn-group">
           <button class="btn btn-secondary">
