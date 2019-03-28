@@ -13,7 +13,7 @@ export class FleetComponent implements OnInit {
   constructor(private vehicleService: VehicleService) {  }
 
   ngOnInit() {
-    this.vehicleService.get().subscribe(vehicles => this.vehicles = vehicles);
+    this.vehicleService.getAll().subscribe(vehicles => this.vehicles = vehicles);
   }
 
 }

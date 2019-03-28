@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { VehicleService } from '../vehicle.service';
+import { Vehicle } from '../vehicle';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vehicle',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehicleComponent implements OnInit {
 
-  constructor() { }
+  vehicle: Vehicle;
+
+  constructor(private vehicleService: VehicleService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.vehicleService.get(params['id']).subscribe(vehicle => this.vehicle = vehicle);
+    });
   }
-
 }

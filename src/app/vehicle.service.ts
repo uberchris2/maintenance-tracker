@@ -14,8 +14,12 @@ export class VehicleService {
 
   constructor(private http: HttpClient) { }
 
-  get(): Observable<Vehicle[]> {
+  getAll(): Observable<Vehicle[]> {
     return this.http.get<Vehicle[]>('api/vehicles');
+  }
+
+  get(id: string): Observable<Vehicle> {
+    return this.http.get<Vehicle>(`api/vehicles/${id}`);
   }
 
   post(vehicle: Vehicle) {
