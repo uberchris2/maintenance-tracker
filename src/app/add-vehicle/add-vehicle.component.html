@@ -8,33 +8,29 @@
 
 <form>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Year</label>
-    <select class="form-control form-control-lg" id="exampleFormControlSelect1">
-      <option></option>
-      <option *ngFor="let year of years">{{year}}</option>
+    <label for="yearSelect">Year</label>
+    <select class="form-control form-control-lg" id="yearSelect" name="yearSelect" (change)="yearSelected()" [(ngModel)]="year">
+      <option value=""></option>
+      <option *ngFor="let year of years" [value]="year">{{year}}</option>
     </select>
   </div>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Make</label>
-    <select class="form-control form-control-lg" id="exampleFormControlSelect1" disabled>
-      <option></option>
-      <option>Chevrolet</option>
-      <option>Ford</option>
-      <option>Mitsubishi</option>
+    <label for="makeSelect">Make</label>
+    <select class="form-control form-control-lg" id="makeSelect" name="makeSelect" (change)="makeSelected()" [(ngModel)]="make" [disabled]="!makes">
+      <option value=""></option>
+      <option *ngFor="let make of makes" [ngValue]="make">{{make.make_display}}</option>
     </select>
   </div>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Model</label>
-    <select class="form-control form-control-lg" id="exampleFormControlSelect1" disabled>
-      <option></option>
-      <option>Thingy</option>
-      <option>Thingy SS</option>
-      <option>Other Thingy</option>
+    <label for="modelSelect">Model</label>
+    <select class="form-control form-control-lg" id="modelSelect" name="modelSelect" (change)="modelSelected()" [(ngModel)]="model" [disabled]="!models">
+      <option value=""></option>
+      <option *ngFor="let model of models" [value]="model">{{model}}</option>
     </select>
   </div>
   <div class="form-group">
-    <label for="exampleFormControlInput1">Name</label>
-    <input type="email" class="form-control form-control-lg" id="exampleFormControlInput1" placeholder="..." disabled>
+    <label for="nameSelect">Name</label>
+    <input type="text" class="form-control form-control-lg" id="nameSelect" name="nameSelect" placeholder="..." [(ngModel)]="name" [disabled]="!model" >
   </div>
-  <button class="btn btn-primary">Submit</button>
+  <button class="btn btn-primary" (click)="add()">Submit</button>
 </form>

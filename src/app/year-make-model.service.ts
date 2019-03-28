@@ -21,4 +21,25 @@ export class YearMakeModelService {
           return list;
         }));
   }
+
+  getMakes(year: number): Observable<Make[]> {
+    return this.http.get(`https://maintenance-tracker-api.azurewebsites.net/yearmakemodel/make?year=${year}`)
+      .pipe(map(
+        (response: any) => {
+          return response.Makes;
+        }));
+  }
+
+  getModels(year: number, make_id: string): Observable<string[]> {
+    return this.http.get(`https://maintenance-tracker-api.azurewebsites.net/yearmakemodel/model?year=${year}&make=${make_id}`)
+      .pipe(map(
+        (response: any) => {
+          return response.Models.map(model => model.model_name);
+        }));
+  }
+}
+
+export class Make {
+  make_id: string;
+  make_display: string;
 }

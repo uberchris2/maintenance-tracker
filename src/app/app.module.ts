@@ -14,6 +14,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { MsAdalAngular6Module } from 'microsoft-adal-angular6';
 import { AuthenticationGuard } from 'microsoft-adal-angular6';
 import { AuthInterceptor } from './auth.interceptor';
+import { FormsModule } from '@angular/forms';
 
 export function getAdalConfig() {
   return {
@@ -37,7 +38,8 @@ export function getAdalConfig() {
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    MsAdalAngular6Module.forRoot(getAdalConfig)
+    MsAdalAngular6Module.forRoot(getAdalConfig),
+    FormsModule
   ],
   providers: [
     AuthenticationGuard,
