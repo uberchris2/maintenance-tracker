@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Maintenance } from './Maintenance';
+import { Maintenance } from './maintenance';
 import { DefaultHttpOptions } from './default-http-options';
 import { Observable } from 'rxjs';
 
