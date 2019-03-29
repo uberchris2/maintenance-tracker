@@ -21,7 +21,7 @@ export class RecordMaintenanceComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.vehicleService.get(params['vehicleId']).subscribe(vehicle => {
         this.vehicle = vehicle;
-        this.maintenance.vehicle = vehicle.id;
+        this.maintenance.vehicleId = vehicle.id;
       });
     });
   }
