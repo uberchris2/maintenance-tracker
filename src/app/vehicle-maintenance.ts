@@ -1,4 +1,4 @@
-import { Maintenance } from './Maintenance';
+import { Maintenance } from './maintenance';
 
 export class VehicleMaintenance {
     id: string;
