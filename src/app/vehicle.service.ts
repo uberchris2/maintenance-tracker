@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Vehicle } from './vehicle';
 import { Observable } from 'rxjs';
 import { DefaultHttpOptions } from './default-http-options';
+import { VehicleMaintenance } from './vehicle-maintenance';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class VehicleService {
 
   get(id: string): Observable<Vehicle> {
     return this.http.get<Vehicle>(`api/vehicles/${id}`);
+  }
+
+  getWithMaintenance(id: string): Observable<VehicleMaintenance> {
+    return this.http.get<VehicleMaintenance>(`api/vehiclemaintenance/${id}`);
   }
 
   post(vehicle: Vehicle) {

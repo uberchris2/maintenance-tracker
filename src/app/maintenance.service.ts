@@ -14,8 +14,4 @@ export class MaintenanceService {
   post(maintenance: Maintenance) {
     return this.http.post<Maintenance>('api/maintenance', maintenance, DefaultHttpOptions);
   }
-
-  getAll(vehicleId: string): Observable<Maintenance[]> {
-    return this.http.get<Maintenance[]>(`api/maintenance?vehicleId=${vehicleId}`);
-  }
 }

@@ -1,12 +1,12 @@
 <div class="page-header" id="banner">
   <div class="row">
     <div class="col">
-      <h1><a routerLink="/fleet">Fleet</a> > {{vehicle?.name}}</h1>
+      <h1><a routerLink="/fleet">Fleet</a> > {{vehicleMaintenance?.name}}</h1>
     </div>
   </div>
 </div>
 
-<a routerLink="/recordMaintenance/{{vehicle?.id}}">
+<a routerLink="/recordMaintenance/{{vehicleMaintenance?.id}}">
     <button class="btn btn-primary">
       <i class="fa fa-plus"></i>
     </button>
@@ -23,7 +23,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let maintenance of allMaintenance">
+    <tr *ngFor="let maintenance of vehicleMaintenance?.maintenance">
       <td>{{maintenance.mileage}}</td>
       <td>{{maintenance.date}}</td>
       <td>{{maintenance.item}}</td>
@@ -41,7 +41,7 @@
   </tbody>
 </table>
 
-<a routerLink="/recordMaintenance">
+<a routerLink="/recordMaintenance/{{vehicleMaintenance?.id}}">
   <button class="btn btn-primary">
     <i class="fa fa-plus"></i>
   </button>
