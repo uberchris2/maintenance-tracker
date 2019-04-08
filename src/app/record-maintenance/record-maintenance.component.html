@@ -8,22 +8,34 @@
   
   <form>
     <div class="form-group">
-      <label for="itemInput">Item</label>
-      <input type="text" class="form-control form-control-lg" id="itemInput" name="itemInput" [(ngModel)]="maintenance.item" placeholder="Oil + filter">
+      <label for="item">Item</label>
+      <input type="text" class="form-control form-control-lg" [class.is-invalid]="item.invalid && (item.dirty || item.touched)" 
+        id="item" name="item" [(ngModel)]="maintenance.item" required #item="ngModel" placeholder="Oil + filter">
+      <div *ngIf="item.invalid && (item.dirty || item.touched)" class="invalid-feedback">
+        <div *ngIf="item.errors.required">Please enter a maintenance item, for example "Replaced retro-encabulator".</div>
+      </div>
     </div>
     <div class="form-group">
-      <label for="mileageInput">Mileage</label>
-      <input type="text" class="form-control form-control-lg" id="mileageInput" name="mileageInput" [(ngModel)]="maintenance.mileage" placeholder="102114">
+      <label for="mileage">Mileage</label>
+      <input type="number" class="form-control form-control-lg" [class.is-invalid]="mileage.invalid && (mileage.dirty || mileage.touched)" 
+        id="mileage" name="mileage" [(ngModel)]="maintenance.mileage" required min="0" #mileage="ngModel" placeholder="102114">
+      <div *ngIf="mileage.invalid && (mileage.dirty || mileage.touched)" class="invalid-feedback">
+        <div *ngIf="mileage.errors.required">Please enter the vehicle's mileage when the maintenance was performed.</div>
+      </div>
     </div>
     <div class="form-group">
-      <label for="dateInput">Date</label>
-      <input type="text" class="form-control form-control-lg" id="dateInput" name="dateInput" [(ngModel)]="maintenance.date" placeholder="2/4/92">
+      <label for="date">Date</label>
+      <input type="date" class="form-control form-control-lg" [class.is-invalid]="date.invalid && (date.dirty || date.touched)" 
+        id="date" name="date" [(ngModel)]="maintenance.date" required #date="ngModel" placeholder="2/4/92">
+      <div *ngIf="date.invalid && (date.dirty || date.touched)" class="invalid-feedback">
+        <div *ngIf="date.errors.required">Please enter the date when the maintenance was performed.</div>
+      </div>
     </div>
     <div class="form-group">
-      <label for="notesInput">Notes</label>
-      <textarea class="form-control form-control-lg" id="notesInput" name="notesInput" [(ngModel)]="maintenance.notes" rows="3"></textarea>
+      <label for="notes">Notes</label>
+      <textarea class="form-control form-control-lg" id="notes" name="notes" [(ngModel)]="maintenance.notes" rows="3"></textarea>
     </div>
-    <button (click)="add()" class="btn btn-primary">Submit</button>
-    <button (click)="addAndContinue()" class="btn ">Submit, and record more</button>
+    <button (click)="add()" class="btn btn-primary" [disabled]="item.invalid || mileage.invalid || date.invalid">Submit</button>
+    <button (click)="addAndContinue()" class="btn" [disabled]="item.invalid || mileage.invalid || date.invalid">Submit, and record more</button>
     <a routerLink="/vehicle/{{vehicle?.id}}" class="btn">Cancel</a>
   </form>
