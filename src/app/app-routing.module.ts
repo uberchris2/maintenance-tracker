@@ -4,14 +4,14 @@ import { FleetComponent } from './fleet/fleet.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { RecordMaintenanceComponent } from './record-maintenance/record-maintenance.component';
-import { AuthenticationGuard } from 'microsoft-adal-angular6';
+import { MsalGuard } from '@azure/msal-angular';
 
 const routes: Routes = [
   { path: '', redirectTo: '/fleet', pathMatch: 'full' },
-  { path: 'fleet', component: FleetComponent, canActivate: [AuthenticationGuard] },
-  { path: 'addVehicle', component: AddVehicleComponent, canActivate: [AuthenticationGuard] },
-  { path: 'vehicle/:id', component: VehicleComponent, canActivate: [AuthenticationGuard] },
-  { path: 'recordMaintenance/:vehicleId', component: RecordMaintenanceComponent, canActivate: [AuthenticationGuard] },
+  { path: 'fleet', component: FleetComponent, canActivate: [MsalGuard] },
+  { path: 'addVehicle', component: AddVehicleComponent, canActivate: [MsalGuard] },
+  { path: 'vehicle/:id', component: VehicleComponent, canActivate: [MsalGuard] },
+  { path: 'recordMaintenance/:vehicleId', component: RecordMaintenanceComponent, canActivate: [MsalGuard] },
 ];
 
 @NgModule({
