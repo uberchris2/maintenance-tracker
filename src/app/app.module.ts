@@ -22,7 +22,7 @@ export function getMsalConfig() {
     clientID: '4a74cf5a-08f1-43a6-be67-b30dbe68e4ff',
     authority: "https://maintenancetracker.b2clogin.com/tfp/maintenancetracker.onmicrosoft.com/B2C_1_sign_up_sign_in/",
     validateAuthority: false,
-    redirectUri: environment.origin,
+    // redirectUri: environment.origin,
     cacheLocation: 'localStorage',
     postLogoutRedirectUri: environment.origin,
     navigateToLoginRequestUrl: false,
