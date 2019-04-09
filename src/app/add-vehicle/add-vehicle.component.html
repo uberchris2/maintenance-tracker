@@ -8,30 +8,34 @@
 
 <form>
   <div class="form-group">
-    <label for="yearSelect">Year</label>
-    <select class="form-control form-control-lg" id="yearSelect" name="yearSelect" (change)="yearSelected()" [(ngModel)]="year">
+    <label for="year">Year</label>
+    <select class="form-control form-control-lg" id="year" name="year" (change)="yearSelected()" [(ngModel)]="year">
       <option value=""></option>
       <option *ngFor="let year of years" [value]="year">{{year}}</option>
     </select>
   </div>
   <div class="form-group">
-    <label for="makeSelect">Make</label>
-    <select class="form-control form-control-lg" id="makeSelect" name="makeSelect" (change)="makeSelected()" [(ngModel)]="make" [disabled]="!makes">
+    <label for="make">Make</label>
+    <select class="form-control form-control-lg" id="make" name="make" (change)="makeSelected()" [(ngModel)]="make" [disabled]="!makes">
       <option value=""></option>
       <option *ngFor="let make of makes" [ngValue]="make">{{make.make_display}}</option>
     </select>
   </div>
   <div class="form-group">
-    <label for="modelSelect">Model</label>
-    <select class="form-control form-control-lg" id="modelSelect" name="modelSelect" (change)="modelSelected()" [(ngModel)]="model" [disabled]="!models">
+    <label for="model">Model</label>
+    <select class="form-control form-control-lg" id="model" name="model" (change)="modelSelected()" [(ngModel)]="model" [disabled]="!models">
       <option value=""></option>
       <option *ngFor="let model of models" [value]="model">{{model}}</option>
     </select>
   </div>
   <div class="form-group">
-    <label for="nameSelect">Name</label>
-    <input type="text" class="form-control form-control-lg" id="nameSelect" name="nameSelect" [(ngModel)]="name" [disabled]="!model" >
+    <label for="name">Name</label>
+    <input type="text" class="form-control form-control-lg" [class.is-invalid]="nameField.invalid && (nameField.dirty || nameField.touched)" 
+    id="name" name="name" [(ngModel)]="name" [disabled]="!model" required #nameField="ngModel">
+    <div *ngIf="nameField.invalid && (nameField.dirty || nameField.touched)" class="invalid-feedback">
+      <div *ngIf="nameField.errors.required">Please enter a name for the vehicle.</div>
+    </div>
   </div>
-  <button class="btn btn-primary" (click)="add()">Submit</button>
+  <button class="btn btn-primary" (click)="add()" [disabled]="name == ''">Submit</button>
   <a class="btn" routerLink="/fleet">Cancel</a>
 </form>
