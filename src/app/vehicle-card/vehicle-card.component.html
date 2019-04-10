@@ -1,22 +1,20 @@
-<a routerLink="/vehicle/{{vehicle.id}}">
-  <div class="card text-white bg-primary mb-3">
-    <div class="card-body">
-      <h5 class="card-title">{{vehicle.name}}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <div class="btn-group">
-        <button class="btn btn-secondary" disabled>
-          <i class="fa fa-plus"></i>   
-        </button>
-        <button class="btn btn-secondary" disabled>
-          <i class="fa fa-edit"></i>   
-        </button>
-        <button class="btn btn-secondary" disabled>
-          <i class="fa fa-trash"></i>   
-        </button>
-        <button class="btn btn-secondary" disabled>
-          <i class="fa fa-share"></i>   
-        </button>
-      </div>
+<div class="card text-white bg-primary mb-3 vehicle-card" routerLink="/vehicle/{{vehicle.id}}">
+  <div class="card-body">
+    <h5 class="card-title">{{vehicle.name}}</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.    </p>
+    <div class="btn-group">
+      <button class="btn btn-secondary" routerLink="/recordMaintenance/{{vehicle.id}}">
+        <i class="fa fa-plus"></i>
+      </button>
+      <button class="btn btn-secondary" disabled>
+        <i class="fa fa-edit"></i>
+      </button>
+      <button class="btn btn-secondary" disabled>
+        <i class="fa fa-trash"></i>
+      </button>
+      <button class="btn btn-secondary" disabled>
+        <i class="fa fa-share"></i>
+      </button>
     </div>
   </div>
-</a>
+</div>
