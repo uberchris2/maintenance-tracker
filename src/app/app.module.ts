@@ -15,6 +15,7 @@ import { MsalModule } from "@azure/msal-angular";
 import { MsalInterceptor } from "@azure/msal-angular";
 import { Interceptor } from './interceptor';
 import { FormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { LogLevel } from 'msal';
@@ -23,6 +24,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 // export function loggerCallback(logLevel, message, piiEnabled) {
 //   console.log("client logging" + message);
 // }
+
 
 export function getMsalConfig() {
   return {
@@ -57,7 +59,8 @@ export function getMsalConfig() {
     NgbModule,
     HttpClientModule,
     MsalModule.forRoot(getMsalConfig()),
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
