@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'addVehicle', component: AddVehicleComponent, canActivate: [MsalGuard] },
   { path: 'vehicle/:id', component: VehicleComponent, canActivate: [MsalGuard] },
   { path: 'recordMaintenance/:vehicleId', component: RecordMaintenanceComponent, canActivate: [MsalGuard] },
-  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'privacyPolicy', component: PrivacyPolicyComponent },
   { path: 'error', component: ErrorComponent },
   { path: '**', redirectTo: '/error' },
 ];
