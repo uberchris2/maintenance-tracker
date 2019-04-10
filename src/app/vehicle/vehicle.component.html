@@ -29,7 +29,7 @@
       <td>{{maintenance.item}}</td>
       <td class="fit">
         <div class="btn-group">
-          <button class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" [attr.data-content]="maintenance.notes" data-original-title="Notes" [disabled]="maintenance.notes">
+          <button class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" [attr.data-content]="maintenance.notes" data-original-title="Notes" [disabled]="!maintenance.notes">
             <i class="fa fa-sticky-note"></i>   
           </button>
           <button class="btn btn-secondary" disabled>
