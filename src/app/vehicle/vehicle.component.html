@@ -25,7 +25,7 @@
   <tbody>
     <tr *ngFor="let maintenance of vehicleMaintenance?.maintenance">
       <td>{{maintenance.mileage}}</td>
-      <td>{{maintenance.date}}</td>
+      <td>{{maintenance.date | date}}</td>
       <td>{{maintenance.item}}</td>
       <td class="fit">
         <div class="btn-group">
