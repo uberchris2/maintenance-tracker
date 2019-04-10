@@ -1,25 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">Maintenance Tracker</a>
+  <a class="navbar-brand" routerLink="/home">Maintenance Tracker</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item" [class.active]="currentUrl == '/home'">
+        <a class="nav-link" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item" [class.active]="currentUrl == '/fleet'">
         <a class="nav-link" routerLink="/fleet">Fleet</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Profile</a>
-      </li>
     </ul>
-    <button class="btn btn-secondary" type="submit">
+    <button class="btn btn-secondary" type="submit" *ngIf="loggedIn" (click)="logout()">
       <i class="fa fa-sign-out"></i>
     </button>
   </div>
 </nav>
 
 <div class="container">
-  <router-outlet></router-outlet>
+  <router-outlet *ngIf="!isIframe"></router-outlet>
 
   <footer id="footer">
     <div class="row">

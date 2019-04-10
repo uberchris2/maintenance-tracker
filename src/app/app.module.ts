@@ -16,6 +16,12 @@ import { MsalInterceptor } from "@azure/msal-angular";
 import { Interceptor } from './interceptor';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
+import { HomeComponent } from './home/home.component';
+// import { LogLevel } from 'msal';
+
+// export function loggerCallback(logLevel, message, piiEnabled) {
+//   console.log("client logging" + message);
+// }
 
 export function getMsalConfig() {
   return {
@@ -27,6 +33,9 @@ export function getMsalConfig() {
     postLogoutRedirectUri: environment.origin,
     navigateToLoginRequestUrl: false,
     popUp: false,
+    // logger: loggerCallback,
+    // level: LogLevel.Info,
+    // piiLoggingEnabled: true
   };
 }
 
@@ -37,7 +46,8 @@ export function getMsalConfig() {
     VehicleCardComponent,
     AddVehicleComponent,
     VehicleComponent,
-    RecordMaintenanceComponent
+    RecordMaintenanceComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
