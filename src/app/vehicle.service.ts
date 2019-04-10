@@ -27,4 +27,8 @@ export class VehicleService {
   post(vehicle: Vehicle) {
     return this.http.post<Vehicle>('api/vehicles', vehicle, DefaultHttpOptions);
   }
+
+  delete(id: string) {
+    return this.http.delete(`api/vehicleMaintenance/${id}`);
+  }
 }

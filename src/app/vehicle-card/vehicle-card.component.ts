@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Vehicle } from '../vehicle';
+import { VehicleService } from '../vehicle.service';
 
 @Component({
   selector: 'app-vehicle-card',
@@ -9,10 +10,16 @@ import { Vehicle } from '../vehicle';
 export class VehicleCardComponent implements OnInit {
 
   @Input() vehicle: Vehicle;
+  deleted = false;
 
-  constructor() { }
+  constructor(private vehicleService: VehicleService) { }
 
   ngOnInit() {
+  }
+
+  delete(event) {
+    event.stopPropagation();
+    this.vehicleService.delete(this.vehicle.id).subscribe(() => this.deleted = true);
   }
 
 }

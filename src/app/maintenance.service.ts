@@ -13,4 +13,8 @@ export class MaintenanceService {
   post(maintenance: Maintenance) {
     return this.http.post<Maintenance>('api/maintenance', maintenance, DefaultHttpOptions);
   }
+
+  delete(id: string) {
+    return this.http.delete(`api/vehicleMaintenance/${id}`);
+  }
 }
