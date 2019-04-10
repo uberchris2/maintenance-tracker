@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'maintenance-ui';
   loggedIn: boolean;
   isIframe: boolean;
-  currentUrl= '';
+  currentUrl: string;
 
   constructor(private authService: MsalService, private router: Router) {
     //  This is to avoid reload during acquireTokenSilent() because of hidden iframe

@@ -17,7 +17,7 @@ import { Interceptor } from './interceptor';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
-// import { LogLevel } from 'msal';
+import { LogLevel } from 'msal';
 
 // export function loggerCallback(logLevel, message, piiEnabled) {
 //   console.log("client logging" + message);
@@ -31,7 +31,7 @@ export function getMsalConfig() {
     redirectUri: environment.origin,
     cacheLocation: 'localStorage',
     postLogoutRedirectUri: environment.origin,
-    navigateToLoginRequestUrl: false,
+    navigateToLoginRequestUrl: true,
     popUp: false,
     // logger: loggerCallback,
     // level: LogLevel.Info,
