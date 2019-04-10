@@ -10,9 +10,10 @@
     <div class="form-group">
       <label for="item">Item</label>
       <input type="text" class="form-control form-control-lg" [class.is-invalid]="item.invalid && (item.dirty || item.touched)" 
-        id="item" name="item" [(ngModel)]="maintenance.item" required #item="ngModel" placeholder="Oil + filter">
+        id="item" name="item" [(ngModel)]="maintenance.item" required maxlength="200" #item="ngModel" placeholder="Oil + filter">
       <div *ngIf="item.invalid && (item.dirty || item.touched)" class="invalid-feedback">
         <div *ngIf="item.errors.required">Please enter a maintenance item, for example "Replaced retro-encabulator".</div>
+        <div *ngIf="item.errors.maxlength">Please keep the item name brief. The Notes section below can hold more detail.</div>
       </div>
     </div>
     <div class="form-group">
