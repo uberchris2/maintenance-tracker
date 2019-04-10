@@ -7,6 +7,7 @@ import { RecordMaintenanceComponent } from './record-maintenance/record-maintena
 import { MsalGuard } from '@azure/msal-angular';
 import { HomeComponent } from './home/home.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: 'vehicle/:id', component: VehicleComponent, canActivate: [MsalGuard] },
   { path: 'recordMaintenance/:vehicleId', component: RecordMaintenanceComponent, canActivate: [MsalGuard] },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'error', component: ErrorComponent },
+  { path: '**', redirectTo: '/error' },
 ];
 
 @NgModule({

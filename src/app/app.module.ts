@@ -20,6 +20,7 @@ import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { LogLevel } from 'msal';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { ErrorComponent } from './error/error.component';
 
 // export function loggerCallback(logLevel, message, piiEnabled) {
 //   console.log("client logging" + message);
@@ -51,7 +52,8 @@ export function getMsalConfig() {
     VehicleComponent,
     RecordMaintenanceComponent,
     HomeComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
