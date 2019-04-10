@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FleetComponent } from './fleet/fleet.component';
 import { VehicleCardComponent } from './vehicle-card/vehicle-card.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
@@ -62,7 +62,8 @@ export function getMsalConfig() {
     HttpClientModule,
     MsalModule.forRoot(getMsalConfig()),
     FormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgbPopoverModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
