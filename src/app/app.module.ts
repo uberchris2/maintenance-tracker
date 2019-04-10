@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { LogLevel } from 'msal';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 // export function loggerCallback(logLevel, message, piiEnabled) {
 //   console.log("client logging" + message);
@@ -47,7 +48,8 @@ export function getMsalConfig() {
     AddVehicleComponent,
     VehicleComponent,
     RecordMaintenanceComponent,
-    HomeComponent
+    HomeComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,
