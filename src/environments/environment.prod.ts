@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiEndpoint: 'https://maintenance-tracker-api.azurewebsites.net/',
+  apiEndpoint: 'https://wrench.cafe/',
   origin: 'https://maintenancetrackersa.z19.web.core.windows.net/'
 };
