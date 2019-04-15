@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Maintenance } from './maintenance';
 import { DefaultHttpOptions } from './default-http-options';
-import { StorageURL, BlockBlobURL, Aborter, uploadBrowserDataToBlockBlob, AnonymousCredential } from "@azure/storage-blob";
+import { StorageURL, BlockBlobURL, Aborter, uploadBrowserDataToBlockBlob, AnonymousCredential, IUploadToBlockBlobOptions } from "@azure/storage-blob";
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { UploadAuthorization } from './upload-authorization';
@@ -32,12 +32,18 @@ export class MaintenanceService {
           const status = new UploadStatus(UploadStatusType.Progress, e.loadedBytes / (file.size + 1) * 100);
           observer.next(status);
         };
-        const options = { blobHTTPHeaders: { blobContentType: file.type }, progress: progressCallback };
+        const options: IUploadToBlockBlobOptions = { blobHTTPHeaders: { blobContentType: file.type }, progress: progressCallback };
         const promise = uploadBrowserDataToBlockBlob(Aborter.none, file, blockBlobURL, options);
         promise.then(() => observer.next(new UploadStatus(UploadStatusType.Completion, 100)))
           .catch(e => observer.error(e))
           .finally(() => observer.complete());
       });
     }));
+  }
+
+  downloadReceipt(name: string) {
+    return this.http.get<UploadAuthorization>(`api/uploadReceipt?name=${name}`).subscribe(authorization => {
+      window.open(authorization.url, "_blank");
+    });
   }
 }

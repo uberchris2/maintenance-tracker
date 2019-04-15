@@ -29,7 +29,7 @@
       <td>{{maintenance.item}}</td>
       <td class="fit">
         <div class="btn-group">
-          <button class="btn btn-secondary" [disabled]="!maintenance.receipt">
+          <button class="btn btn-secondary" [disabled]="!maintenance.receipt" (click)="downloadReceipt(maintenance.receipt)">
             <fa-icon icon="receipt"></fa-icon>
           </button>
           <button class="btn btn-secondary" placement="bottom" [ngbPopover]="maintenance.notes" popoverTitle="Notes" [autoClose]="'outside'" [disabled]="!maintenance.notes">
