@@ -21,7 +21,9 @@ import { HomeComponent } from './home/home.component';
 import { LogLevel } from 'msal';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ErrorComponent } from './error/error.component';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faReceipt, faEdit, faTrash, faPlus, faStickyNote, faSignOutAlt, faShare } from '@fortawesome/free-solid-svg-icons'
 // export function loggerCallback(logLevel, message, piiEnabled) {
 //   console.log("client logging" + message);
 // }
@@ -64,7 +66,8 @@ export function getMsalConfig() {
     FormsModule,
     NgxSpinnerModule,
     NgbPopoverModule,
-    NgbProgressbarModule
+    NgbProgressbarModule,
+    FontAwesomeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
@@ -72,4 +75,8 @@ export function getMsalConfig() {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    library.add(faReceipt, faStickyNote, faEdit, faTrash, faPlus, faSignOutAlt, faShare);
+  }
+}

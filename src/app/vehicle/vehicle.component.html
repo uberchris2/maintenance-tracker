@@ -8,7 +8,7 @@
 
 <a routerLink="/recordMaintenance/{{vehicleMaintenance?.id}}">
     <button class="btn btn-primary">
-      <i class="fa fa-plus"></i>
+      <fa-icon icon="plus"></fa-icon>
     </button>
   </a>
 
@@ -29,14 +29,17 @@
       <td>{{maintenance.item}}</td>
       <td class="fit">
         <div class="btn-group">
+          <button class="btn btn-secondary" [disabled]="!maintenance.receipt">
+            <fa-icon icon="receipt"></fa-icon>
+          </button>
           <button class="btn btn-secondary" placement="bottom" [ngbPopover]="maintenance.notes" popoverTitle="Notes" [autoClose]="'outside'" [disabled]="!maintenance.notes">
-              <i class="fa fa-sticky-note"></i>
+            <fa-icon icon="sticky-note"></fa-icon>
           </button>
           <button class="btn btn-secondary" disabled>
-            <i class="fa fa-edit"></i>
+            <fa-icon icon="edit"></fa-icon>
           </button>
           <button class="btn btn-secondary" (click)="delete(maintenance.id)">
-            <i class="fa fa-trash"></i>
+            <fa-icon icon="trash"></fa-icon>
           </button>
         </div>
       </td>
@@ -47,6 +50,6 @@
 
 <a routerLink="/recordMaintenance/{{vehicleMaintenance?.id}}">
   <button class="btn btn-primary">
-    <i class="fa fa-plus"></i>
+    <fa-icon icon="plus"></fa-icon>
   </button>
 </a>
