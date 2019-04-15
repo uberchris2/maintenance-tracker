@@ -6,4 +6,5 @@ export class Maintenance {
   mileage: string;
   date: Date;
   notes: string;
+  receipt: string;
 }

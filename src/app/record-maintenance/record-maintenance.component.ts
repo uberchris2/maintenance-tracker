@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Maintenance } from '../maintenance';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vehicle } from '../vehicle';
@@ -11,9 +11,11 @@ import { MaintenanceService } from '../maintenance.service';
   styleUrls: ['./record-maintenance.component.css']
 })
 export class RecordMaintenanceComponent implements OnInit {
+  @ViewChild('receiptInput') receiptInput;
 
   vehicle: Vehicle;
   maintenance = new Maintenance();
+  uploading = false;
 
   constructor(private route: ActivatedRoute, private vehicleService: VehicleService, private maintenanceService: MaintenanceService, private router: Router) { }
 
@@ -41,4 +43,23 @@ export class RecordMaintenanceComponent implements OnInit {
       });
   }
 
+  openReceiptDialog() {
+    this.receiptInput.nativeElement.click();
+  }
+
+  onReceiptChange(event) {
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      this.uploading = true;
+      this.maintenanceService.uploadReceipt(file).subscribe(() => {
+        this.uploading = false;
+        this.maintenance.receipt = file.name;
+      });
+    }
+  }
+
+  removeReceipt() {
+    this.maintenance.receipt = null;
+  }
 }

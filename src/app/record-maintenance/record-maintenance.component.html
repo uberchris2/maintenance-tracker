@@ -33,6 +33,12 @@
       </div>
     </div>
     <div class="form-group">
+      <label for="receipt">Receipt</label><br />
+      <input type="file" id="receipt" name="receipt" (change)="onReceiptChange($event)" #receiptInput style="display: none"/>
+      <button class="btn btn-primary" (click)="openReceiptDialog()" *ngIf="!maintenance.receipt">Attach receipt</button>
+      <p *ngIf="maintenance.receipt">{{maintenance.receipt}} attached! <button class="btn btn-warning" (click)="removeReceipt()">Remove it</button></p>
+    </div>
+    <div class="form-group">
       <label for="notes">Notes</label>
       <textarea class="form-control form-control-lg" id="notes" name="notes" [(ngModel)]="maintenance.notes" rows="3"></textarea>
     </div>
