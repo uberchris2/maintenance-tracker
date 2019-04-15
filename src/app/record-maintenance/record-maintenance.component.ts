@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Vehicle } from '../vehicle';
 import { VehicleService } from '../vehicle.service';
 import { MaintenanceService } from '../maintenance.service';
+import { UploadStatus, UploadStatusType } from '../upload-status';
 
 @Component({
   selector: 'app-record-maintenance',
@@ -16,6 +17,7 @@ export class RecordMaintenanceComponent implements OnInit {
   vehicle: Vehicle;
   maintenance = new Maintenance();
   uploading = false;
+  uploadProgress = 0;
 
   constructor(private route: ActivatedRoute, private vehicleService: VehicleService, private maintenanceService: MaintenanceService, private router: Router) { }
 
@@ -52,9 +54,13 @@ export class RecordMaintenanceComponent implements OnInit {
     if (fileList.length > 0) {
       let file: File = fileList[0];
       this.uploading = true;
-      this.maintenanceService.uploadReceipt(file).subscribe(() => {
-        this.uploading = false;
-        this.maintenance.receipt = file.name;
+      this.uploadProgress = 0;
+      this.maintenanceService.uploadReceipt(file).subscribe((x: UploadStatus) => {
+        this.uploadProgress = x.percentComplete;
+        if (x.type === UploadStatusType.Completion) {
+          this.uploading = false;
+          this.maintenance.receipt = file.name;
+        }
       });
     }
   }

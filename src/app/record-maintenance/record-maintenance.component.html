@@ -35,14 +35,20 @@
     <div class="form-group">
       <label for="receipt">Receipt</label><br />
       <input type="file" id="receipt" name="receipt" (change)="onReceiptChange($event)" #receiptInput style="display: none"/>
-      <button class="btn btn-primary" (click)="openReceiptDialog()" *ngIf="!maintenance.receipt">Attach receipt</button>
-      <p *ngIf="maintenance.receipt">{{maintenance.receipt}} attached! <button class="btn btn-warning" (click)="removeReceipt()">Remove it</button></p>
+      <div *ngIf="!maintenance.receipt">
+        <button class="btn btn-info" (click)="openReceiptDialog()" *ngIf="!uploading">Attach receipt</button>
+        <ngb-progressbar type="info" [value]="uploadProgress" height="2rem" *ngIf="uploading">Uploading receipt...</ngb-progressbar>
+      </div>
+      <div class="alert alert-dismissible alert-info" *ngIf="maintenance.receipt">
+        <button type="button" class="close" (click)="removeReceipt()">&times;</button>
+        <strong>{{maintenance.receipt}}</strong> has been attached.
+      </div>
     </div>
     <div class="form-group">
       <label for="notes">Notes</label>
       <textarea class="form-control form-control-lg" id="notes" name="notes" [(ngModel)]="maintenance.notes" rows="3"></textarea>
     </div>
-    <button (click)="add()" class="btn btn-primary" [disabled]="item.invalid || mileage.invalid || date.invalid">Submit</button>
-    <button (click)="addAndContinue()" class="btn" [disabled]="item.invalid || mileage.invalid || date.invalid">Submit, and record more</button>
+    <button (click)="add()" class="btn btn-primary" [disabled]="item.invalid || mileage.invalid || date.invalid || uploading">Submit</button>
+    <button (click)="addAndContinue()" class="btn" [disabled]="item.invalid || mileage.invalid || date.invalid || uploading">Submit, and record more</button>
     <a routerLink="/vehicle/{{vehicle?.id}}" class="btn">Cancel</a>
   </form>
