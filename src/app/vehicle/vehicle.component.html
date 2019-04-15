@@ -7,7 +7,7 @@
 </div>
 
 <a routerLink="/recordMaintenance/{{vehicleMaintenance?.id}}">
-    <button class="btn btn-primary">
+    <button class="btn btn-primary" title="Add a new maintenance record for this vehicle">
       <fa-icon icon="plus"></fa-icon>
     </button>
   </a>
@@ -29,16 +29,16 @@
       <td>{{maintenance.item}}</td>
       <td class="fit">
         <div class="btn-group">
-          <button class="btn btn-secondary" [disabled]="!maintenance.receipt" (click)="downloadReceipt(maintenance.receipt)">
+          <button class="btn btn-secondary" [disabled]="!maintenance.receipt" (click)="downloadReceipt(maintenance.receipt)" title="Download receipt">
             <fa-icon icon="receipt"></fa-icon>
           </button>
-          <button class="btn btn-secondary" placement="bottom" [ngbPopover]="maintenance.notes" popoverTitle="Notes" [autoClose]="'outside'" [disabled]="!maintenance.notes">
+          <button class="btn btn-secondary" placement="bottom" [ngbPopover]="maintenance.notes" popoverTitle="Notes" [autoClose]="'outside'" [disabled]="!maintenance.notes" title="View notes">
             <fa-icon icon="sticky-note"></fa-icon>
           </button>
-          <button class="btn btn-secondary" disabled>
+          <button class="btn btn-secondary" disabled title="Edit this maintenance record">
             <fa-icon icon="edit"></fa-icon>
           </button>
-          <button class="btn btn-secondary" (click)="delete(maintenance.id)">
+          <button class="btn btn-secondary" (click)="delete(maintenance.id)" title="Delete this maintenance record">
             <fa-icon icon="trash"></fa-icon>
           </button>
         </div>
@@ -49,7 +49,7 @@
 </table>
 
 <a routerLink="/recordMaintenance/{{vehicleMaintenance?.id}}">
-  <button class="btn btn-primary">
+  <button class="btn btn-primary" title="Add a new maintenance record for this vehicle">
     <fa-icon icon="plus"></fa-icon>
   </button>
 </a>

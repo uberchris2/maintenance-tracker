@@ -49,6 +49,8 @@
       <textarea class="form-control form-control-lg" id="notes" name="notes" [(ngModel)]="maintenance.notes" rows="3"></textarea>
     </div>
     <button (click)="add()" class="btn btn-primary" [disabled]="item.invalid || mileage.invalid || date.invalid || uploading">Submit</button>
-    <button (click)="addAndContinue()" class="btn" [disabled]="item.invalid || mileage.invalid || date.invalid || uploading">Submit, and record more</button>
+    <button (click)="addAndContinue()" class="btn" [disabled]="item.invalid || mileage.invalid || date.invalid || uploading" title="Submit, then stay on this page to record more maintenance for this vehicle">
+      Submit, and record more
+    </button>
     <a routerLink="/vehicle/{{vehicle?.id}}" class="btn">Cancel</a>
   </form>

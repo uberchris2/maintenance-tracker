@@ -3,16 +3,16 @@
     <h5 class="card-title">{{vehicle.name}}</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.    </p>
     <div class="btn-group">
-      <button class="btn btn-secondary" routerLink="/recordMaintenance/{{vehicle.id}}">
+      <button class="btn btn-secondary" routerLink="/recordMaintenance/{{vehicle.id}}" title="Record maintenance for this vehicle">
         <fa-icon icon="plus"></fa-icon>
       </button>
-      <button class="btn btn-secondary" disabled>
+      <button class="btn btn-secondary" disabled title="Edit this vehicle">
         <fa-icon icon="edit"></fa-icon>
       </button>
-      <button class="btn btn-secondary" (click)="delete($event)">
+      <button class="btn btn-secondary" (click)="delete($event)" title="Delete this vehicle">
         <fa-icon icon="trash"></fa-icon>
       </button>
-      <button class="btn btn-secondary" disabled>
+      <button class="btn btn-secondary" disabled  title="Share maintenance for this vehicle">
         <fa-icon icon="share"></fa-icon>
       </button>
     </div>
