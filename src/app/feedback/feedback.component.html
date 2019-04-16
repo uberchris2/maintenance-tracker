@@ -1,0 +1,25 @@
+<div class="page-header" id="banner">
+  <div class="row">
+    <div class="col">
+      <h1><a routerLink="/home">Home</a> > Feedback</h1>
+    </div>
+  </div>
+</div>
+
+<form *ngIf="!submitted">
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea class="form-control form-control-lg" [class.is-invalid]="messageArea.invalid && (messageArea.dirty || messageArea.touched)" 
+    id="message" name="message" [(ngModel)]="feedback.message" required maxlength="500" #messageArea="ngModel" rows="6" placeholder="Make it better"></textarea>
+    <div *ngIf="messageArea.invalid && (messageArea.dirty || messageArea.touched)" class="invalid-feedback">
+        <div *ngIf="messageArea.errors.required">Please enter our feedback for the site.</div>
+        <div *ngIf="messageArea.errors.maxlength">Please keep your feedback somewhat brief.</div>
+      </div>
+  </div>
+  <button (click)="submit()" class="btn btn-primary" [disabled]="messageArea.invalid">Submit</button>
+  <a routerLink="/home" class="btn">Cancel</a>
+</form>
+
+<div class="alert alert-info" *ngIf="submitted">
+    Your message has been submitted. Thank you for your feedback! It is the fastest way for me to improve the site. <a routerLink="/home">Click here</a> to return home.
+  </div>

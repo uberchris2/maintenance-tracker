@@ -8,6 +8,7 @@ import { MsalGuard } from '@azure/msal-angular';
 import { HomeComponent } from './home/home.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ErrorComponent } from './error/error.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'recordMaintenance/:vehicleId', component: RecordMaintenanceComponent, canActivate: [MsalGuard] },
   { path: 'privacyPolicy', component: PrivacyPolicyComponent },
   { path: 'error', component: ErrorComponent },
+  { path: 'feedback', component: FeedbackComponent, canActivate: [MsalGuard] },
   { path: '**', redirectTo: '/error' },
 ];
 
