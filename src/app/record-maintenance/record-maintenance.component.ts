@@ -19,7 +19,8 @@ export class RecordMaintenanceComponent implements OnInit {
   uploading = false;
   uploadProgress = 0;
 
-  constructor(private route: ActivatedRoute, private vehicleService: VehicleService, private maintenanceService: MaintenanceService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private vehicleService: VehicleService, 
+    private maintenanceService: MaintenanceService, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -40,8 +41,8 @@ export class RecordMaintenanceComponent implements OnInit {
   addAndContinue() {
     this.maintenanceService.post(this.maintenance)
       .subscribe(response => {
-        this.maintenance.item = "";
-        this.maintenance.notes = "";
+        this.maintenance.item = '';
+        this.maintenance.notes = '';
       });
   }
 
@@ -50,9 +51,9 @@ export class RecordMaintenanceComponent implements OnInit {
   }
 
   onReceiptChange(event) {
-    let fileList: FileList = event.target.files;
+    const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
-      let file: File = fileList[0];
+      const file: File = fileList[0];
       this.uploading = true;
       this.uploadProgress = 0;
       this.maintenanceService.uploadReceipt(file).subscribe((x: UploadStatus) => {

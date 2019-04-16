@@ -55,7 +55,7 @@ export class AddVehicleComponent implements OnInit {
   }
 
   add() {
-    var newVehicle = new Vehicle();
+    const newVehicle = new Vehicle();
     newVehicle.year = this.year;
     newVehicle.make = this.make.make_display;
     newVehicle.model = this.model;

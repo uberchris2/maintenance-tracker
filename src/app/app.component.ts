@@ -18,8 +18,7 @@ export class AppComponent {
     this.isIframe = window !== window.parent && !window.opener;
     if (this.authService.getUser()) {
       this.loggedIn = true;
-    }
-    else {
+    } else {
       this.loggedIn = false;
     }
 
@@ -27,7 +26,7 @@ export class AppComponent {
       if (event instanceof NavigationEnd) {
         this.currentUrl = event.url;
       }
-    })
+    });
   }
 
   logout() {

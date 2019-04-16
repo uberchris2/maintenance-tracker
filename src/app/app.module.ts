@@ -11,8 +11,8 @@ import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { RecordMaintenanceComponent } from './record-maintenance/record-maintenance.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MsalModule } from "@azure/msal-angular";
-import { MsalInterceptor } from "@azure/msal-angular";
+import { MsalModule } from '@azure/msal-angular';
+import { MsalInterceptor } from '@azure/msal-angular';
 import { Interceptor } from './interceptor';
 import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -21,10 +21,10 @@ import { HomeComponent } from './home/home.component';
 import { LogLevel } from 'msal';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ErrorComponent } from './error/error.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { faReceipt, faEdit, faTrash, faPlus, faStickyNote, faSignOutAlt, faShare } from '@fortawesome/free-solid-svg-icons';
-import { FeedbackComponent } from './feedback/feedback.component'
+import { FeedbackComponent } from './feedback/feedback.component';
 // export function loggerCallback(logLevel, message, piiEnabled) {
 //   console.log("client logging" + message);
 // }
@@ -33,7 +33,7 @@ import { FeedbackComponent } from './feedback/feedback.component'
 export function getMsalConfig() {
   return {
     clientID: '4a74cf5a-08f1-43a6-be67-b30dbe68e4ff',
-    authority: "https://maintenancetracker.b2clogin.com/tfp/maintenancetracker.onmicrosoft.com/B2C_1_sign_up_sign_in/",
+    authority: 'https://maintenancetracker.b2clogin.com/tfp/maintenancetracker.onmicrosoft.com/B2C_1_sign_up_sign_in/',
     validateAuthority: false,
     redirectUri: environment.origin,
     cacheLocation: 'localStorage',

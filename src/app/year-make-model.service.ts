@@ -14,8 +14,8 @@ export class YearMakeModelService {
     return this.http.get('yearmakemodel/year')
       .pipe(map(
         (response: any) => {
-          var list = [];
-          for (var i = response.Years.max_year; i >= response.Years.min_year; i--) {
+          const list = [];
+          for (let i = response.Years.max_year; i >= response.Years.min_year; i--) {
             list.push(i);
           }
           return list;

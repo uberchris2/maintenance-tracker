@@ -9,7 +9,7 @@ import { VehicleService } from '../vehicle.service';
 })
 export class FleetComponent implements OnInit {
   vehicles: Vehicle[];
-  
+
   constructor(private vehicleService: VehicleService) {  }
 
   ngOnInit() {

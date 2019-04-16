@@ -22,7 +22,9 @@ export class VehicleComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.maintenanceService.delete(id).subscribe(() => this.vehicleMaintenance.maintenance = this.vehicleMaintenance.maintenance.filter(m => m.id !== id));
+    this.maintenanceService.delete(id).subscribe(() => {
+      this.vehicleMaintenance.maintenance = this.vehicleMaintenance.maintenance.filter(m => m.id !== id);
+    });
   }
 
   downloadReceipt(name: string) {

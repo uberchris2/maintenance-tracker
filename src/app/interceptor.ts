@@ -1,6 +1,6 @@
 import { HttpRequest, HttpInterceptor, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, empty } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
 import { environment } from '../environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize, catchError } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class Interceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             catchError(() => {
                 this.router.navigateByUrl('/error');
-                return empty();
+                return EMPTY;
             }),
             finalize(() => this.spinner.hide()));
     }
