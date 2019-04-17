@@ -12,6 +12,7 @@ export class AppComponent {
   loggedIn: boolean;
   isIframe: boolean;
   currentUrl: string;
+  navbarCollapsed = true;
 
   constructor(private authService: MsalService, private router: Router) {
     //  This is to avoid reload during acquireTokenSilent() because of hidden iframe
@@ -25,6 +26,7 @@ export class AppComponent {
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = event.url;
+        this.navbarCollapsed = true;
       }
     });
   }

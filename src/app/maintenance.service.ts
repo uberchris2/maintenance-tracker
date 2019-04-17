@@ -20,7 +20,7 @@ export class MaintenanceService {
   }
 
   delete(id: string) {
-    return this.http.delete(`api/vehicleMaintenance/${id}`);
+    return this.http.delete(`api/maintenance/${id}`);
   }
 
   uploadReceipt(file: File) {

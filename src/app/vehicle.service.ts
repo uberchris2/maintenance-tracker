@@ -29,6 +29,6 @@ export class VehicleService {
   }
 
   delete(id: string) {
-    return this.http.delete(`api/vehicleMaintenance/${id}`);
+    return this.http.delete(`api/vehicle/${id}`);
   }
 }
