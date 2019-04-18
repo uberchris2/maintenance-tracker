@@ -8,7 +8,7 @@
   
   <form>
     <div class="form-group">
-      <label for="item">Item</label>
+      <label for="item">Item*</label>
       <input type="text" class="form-control form-control-lg" [class.is-invalid]="item.invalid && (item.dirty || item.touched)" 
         id="item" name="item" [(ngModel)]="maintenance.item" required maxlength="200" #item="ngModel" placeholder="Oil + filter">
       <div *ngIf="item.invalid && (item.dirty || item.touched)" class="invalid-feedback">
@@ -17,15 +17,20 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="mileage">Mileage</label>
-      <input type="number" class="form-control form-control-lg" [class.is-invalid]="mileage.invalid && (mileage.dirty || mileage.touched)" 
-        id="mileage" name="mileage" [(ngModel)]="maintenance.mileage" required min="0" #mileage="ngModel" placeholder="102114">
-      <div *ngIf="mileage.invalid && (mileage.dirty || mileage.touched)" class="invalid-feedback">
-        <div *ngIf="mileage.errors.required">Please enter the vehicle's mileage when the maintenance was performed.</div>
+      <label for="mileage">Mileage*</label>
+      <div class="input-group">
+        <input type="number" class="form-control form-control-lg" [class.is-invalid]="mileage.invalid && (mileage.dirty || mileage.touched)" 
+          id="mileage" name="mileage" [(ngModel)]="maintenance.mileage" required min="0" #mileage="ngModel" placeholder="102114">
+        <div class="input-group-append">
+          <div class="input-group-text">miles</div>
+        </div>
+        <div *ngIf="mileage.invalid && (mileage.dirty || mileage.touched)" class="invalid-feedback">
+          <div *ngIf="mileage.errors.required">Please enter the vehicle's mileage when the maintenance was performed as a number (ex. 98645).</div>
+        </div>
       </div>
     </div>
     <div class="form-group">
-      <label for="date">Date</label>
+      <label for="date">Date*</label>
       <input type="date" class="form-control form-control-lg" [class.is-invalid]="date.invalid && (date.dirty || date.touched)" 
         id="date" name="date" [(ngModel)]="maintenance.date" required #date="ngModel" placeholder="2/4/92">
       <div *ngIf="date.invalid && (date.dirty || date.touched)" class="invalid-feedback">
@@ -42,6 +47,28 @@
       <div class="alert alert-dismissible alert-info" *ngIf="maintenance.receipt">
         <button type="button" class="close" (click)="removeReceipt()">&times;</button>
         <strong>{{maintenance.receipt}}</strong> has been attached.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="interval">Interval</label>
+      <div class="input-group">
+          <select class="form-control form-control-lg" id="intervalMonths" name="intervalMonths" [(ngModel)]="maintenance.intervalMonths">
+            <option value="undefined">Select time...</option>
+            <option [value]="1">1 month</option>
+            <option [value]="3">3 months</option>
+            <option [value]="6">6 months</option>
+            <option [value]="9">9 months</option>
+            <option [value]="12">1 year</option>
+            <option [value]="24">2 years</option>
+          </select>
+        <div class="input-group-prepend input-group-append">
+          <div class="input-group-text">or</div>
+        </div>
+        <input type="number" class="form-control form-control-lg" [class.is-invalid]="intervalMileage.invalid && (intervalMileage.dirty || intervalMileage.touched)" 
+        id="intervalMileage" name="intervalMileage" [(ngModel)]="maintenance.intervalMileage" #intervalMileage="ngModel" placeholder="10000">
+        <div class="input-group-append">
+          <div class="input-group-text">miles</div>
+        </div>
       </div>
     </div>
     <div class="form-group">

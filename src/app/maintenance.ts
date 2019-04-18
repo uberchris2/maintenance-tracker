@@ -7,4 +7,6 @@ export class Maintenance {
   date: Date;
   notes: string;
   receipt: string;
+  intervalMonths: number;
+  intervalMileage: number;
 }
