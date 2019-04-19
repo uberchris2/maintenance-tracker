@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Maintenance } from '../maintenance';
+import { Maintenance } from '../models/maintenance';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Vehicle } from '../vehicle';
-import { VehicleService } from '../vehicle.service';
-import { MaintenanceService } from '../maintenance.service';
-import { UploadStatus, UploadStatusType } from '../upload-status';
+import { Vehicle } from '../models/vehicle';
+import { VehicleService } from '../services/vehicle.service';
+import { MaintenanceService } from '../services/maintenance.service';
+import { UploadStatus, UploadStatusType } from '../models/upload-status';
 
 @Component({
   selector: 'app-record-maintenance',

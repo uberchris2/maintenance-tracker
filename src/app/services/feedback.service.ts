@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Feedback } from './feedback';
-import { DefaultHttpOptions } from './default-http-options';
+import { Feedback } from '../models/feedback';
+import { DefaultHttpOptions } from '../default-http-options';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Maintenance } from './maintenance';
-import { DefaultHttpOptions } from './default-http-options';
+import { Maintenance } from '../models/maintenance';
+import { DefaultHttpOptions } from '../default-http-options';
 import { StorageURL, BlockBlobURL, Aborter, uploadBrowserDataToBlockBlob, AnonymousCredential, IUploadToBlockBlobOptions } from '@azure/storage-blob';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { UploadAuthorization } from './upload-authorization';
-import { UploadStatus, UploadStatusType } from './upload-status';
+import { UploadAuthorization } from '../models/upload-authorization';
+import { UploadStatus, UploadStatusType } from '../models/upload-status';
 
 @Injectable({
   providedIn: 'root'

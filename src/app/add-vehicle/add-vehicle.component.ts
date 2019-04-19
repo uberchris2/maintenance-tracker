@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { YearMakeModelService, Make } from '../year-make-model.service';
-import { VehicleService } from '../vehicle.service';
-import { Vehicle } from '../vehicle';
+import { YearMakeModelService, Make } from '../services/year-make-model.service';
+import { VehicleService } from '../services/vehicle.service';
+import { Vehicle } from '../models/vehicle';
 import { Router } from '@angular/router';
 
 @Component({

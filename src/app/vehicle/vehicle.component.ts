@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VehicleService } from '../vehicle.service';
+import { VehicleService } from '../services/vehicle.service';
 import { ActivatedRoute } from '@angular/router';
-import { MaintenanceService } from '../maintenance.service';
-import { VehicleMaintenance } from '../vehicle-maintenance';
+import { MaintenanceService } from '../services/maintenance.service';
+import { VehicleMaintenance } from '../models/vehicle-maintenance';
 
 @Component({
   selector: 'app-vehicle',

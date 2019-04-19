@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Vehicle } from './vehicle';
+import { Vehicle } from '../models/vehicle';
 import { Observable } from 'rxjs';
-import { DefaultHttpOptions } from './default-http-options';
-import { VehicleMaintenance } from './vehicle-maintenance';
+import { DefaultHttpOptions } from '../default-http-options';
+import { VehicleMaintenance } from '../models/vehicle-maintenance';
 
 @Injectable({
   providedIn: 'root'
