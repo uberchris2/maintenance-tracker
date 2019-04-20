@@ -36,7 +36,7 @@ export function getMsalConfig() {
     authority: 'https://maintenancetracker.b2clogin.com/tfp/maintenancetracker.onmicrosoft.com/B2C_1_sign_up_sign_in/',
     validateAuthority: false,
     redirectUri: environment.origin,
-    cacheLocation: 'localStorage',
+    // cacheLocation: 'localStorage',
     postLogoutRedirectUri: environment.origin,
     navigateToLoginRequestUrl: true,
     popUp: false,

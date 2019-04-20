@@ -3,6 +3,7 @@ import { VehicleService } from '../services/vehicle.service';
 import { ActivatedRoute } from '@angular/router';
 import { MaintenanceService } from '../services/maintenance.service';
 import { VehicleMaintenance } from '../models/vehicle-maintenance';
+import { addMonths } from 'date-fns';
 
 @Component({
   selector: 'app-vehicle',
@@ -17,7 +18,10 @@ export class VehicleComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.vehicleService.getWithMaintenance(params['id']).subscribe(vehicleMaintenance => this.vehicleMaintenance = vehicleMaintenance);
+      this.vehicleService.getWithMaintenance(params['id']).subscribe(vehicleMaintenance => {
+        this.prepareMaintenance(vehicleMaintenance);
+        this.vehicleMaintenance = vehicleMaintenance;
+      });
     });
   }
 
@@ -29,5 +33,21 @@ export class VehicleComponent implements OnInit {
 
   downloadReceipt(name: string) {
     this.maintenanceService.downloadReceipt(name);
+  }
+
+  private prepareMaintenance(vehicleMaintenance: VehicleMaintenance) {
+    //this function relies on the server sorting by most recent
+    var completedItems = [];
+    for (let m of vehicleMaintenance.maintenance) {
+      if (!completedItems.includes(m.item)) {
+        completedItems.push(m.item);
+        if (m.intervalMonths) {
+          m.dueDate = addMonths(m.date, m.intervalMonths);
+        }
+        if (m.intervalMileage) {
+          m.dueMileage = m.mileage + m.intervalMileage;
+        }
+      }
+    }
   }
 }

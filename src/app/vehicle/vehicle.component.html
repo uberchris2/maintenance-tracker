@@ -15,18 +15,22 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Mileage</th>
       <th>Date</th>
+      <th>Mileage</th>
       <th>Maintenance</th>
+      <th>Due Date</th>
+      <th>Due Mileage</th>
       <th class="fit">
       </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let maintenance of vehicleMaintenance?.maintenance">
-      <td>{{maintenance.mileage | number}}</td>
       <td>{{maintenance.date | date}}</td>
+      <td>{{maintenance.mileage | number}}</td>
       <td>{{maintenance.item}}</td>
+      <td>{{maintenance.dueDate | date}}</td>
+      <td>{{maintenance.dueMileage | number}}</td>
       <td class="fit">
         <div class="btn-group">
           <button class="btn btn-secondary" [disabled]="!maintenance.receipt" (click)="downloadReceipt(maintenance.receipt)" title="Download receipt">
@@ -44,7 +48,7 @@
         </div>
       </td>
     </tr>
-    <td *ngIf="vehicleMaintenance?.maintenance.length == 0" colspan="4">There is currently no recorded maintenance for this vehicle. Click one of the plus (+) buttons to add some!</td>
+    <td *ngIf="vehicleMaintenance?.maintenance.length == 0" colspan="6">There is currently no recorded maintenance for this vehicle. Click one of the plus (+) buttons to add some!</td>
   </tbody>
 </table>
 
