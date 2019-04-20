@@ -19,6 +19,7 @@ export class AddVehicleComponent implements OnInit {
   make: Make;
   model: string;
   name = '';
+  mileage: number;
 
   constructor(private yearMakeModelService: YearMakeModelService, private vehicleService: VehicleService, private router: Router) { }
 
@@ -60,6 +61,7 @@ export class AddVehicleComponent implements OnInit {
     newVehicle.make = this.make.make_display;
     newVehicle.model = this.model;
     newVehicle.name = this.name;
+    newVehicle.mileage = this.mileage;
     this.vehicleService.post(newVehicle)
       .subscribe(response => {
         this.router.navigateByUrl('/fleet');

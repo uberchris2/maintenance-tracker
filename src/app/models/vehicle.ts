@@ -4,4 +4,5 @@ export class Vehicle {
     make: string;
     model: string;
     name: string;
+    mileage: number;
   }
