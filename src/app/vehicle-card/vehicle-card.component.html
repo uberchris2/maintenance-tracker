@@ -1,12 +1,12 @@
 <div class="card text-white bg-primary mb-3 vehicle-card" routerLink="/vehicle/{{vehicle.id}}" *ngIf="!deleted">
   <div class="card-body">
     <h5 class="card-title">{{vehicle.name}}</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.    </p>
+    <p class="card-text">Last reported mileage is <a routerLink="/updateVehicle/{{vehicle.id}}">{{vehicle.mileage}}</a>.</p>
     <div class="btn-group">
       <button class="btn btn-secondary" routerLink="/recordMaintenance/{{vehicle.id}}" title="Record maintenance for this vehicle">
         <fa-icon icon="plus"></fa-icon>
       </button>
-      <button class="btn btn-secondary" disabled title="Edit this vehicle">
+      <button class="btn btn-secondary" routerLink="/updateVehicle/{{vehicle.id}}" title="Edit this vehicle">
         <fa-icon icon="edit"></fa-icon>
       </button>
       <button class="btn btn-secondary" (click)="delete($event)" title="Delete this vehicle">

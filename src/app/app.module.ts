@@ -23,8 +23,9 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { ErrorComponent } from './error/error.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faReceipt, faEdit, faTrash, faPlus, faStickyNote, faSignOutAlt, faShare } from '@fortawesome/free-solid-svg-icons';
+import { faReceipt, faEdit, faTrash, faPlus, faStickyNote, faSignOutAlt, faShare, faPen } from '@fortawesome/free-solid-svg-icons';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { UpdateVehicleComponent } from './update-vehicle/update-vehicle.component';
 // export function loggerCallback(logLevel, message, piiEnabled) {
 //   console.log("client logging" + message);
 // }
@@ -57,7 +58,8 @@ export function getMsalConfig() {
     HomeComponent,
     PrivacyPolicyComponent,
     ErrorComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    UpdateVehicleComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +82,6 @@ export function getMsalConfig() {
 })
 export class AppModule {
   constructor() {
-    library.add(faReceipt, faStickyNote, faEdit, faTrash, faPlus, faSignOutAlt, faShare);
+    library.add(faReceipt, faStickyNote, faEdit, faTrash, faPlus, faSignOutAlt, faShare, faPen);
   }
 }

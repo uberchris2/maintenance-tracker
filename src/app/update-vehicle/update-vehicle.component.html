@@ -1,0 +1,37 @@
+<div class="page-header" id="banner">
+  <div class="row">
+    <div class="col">
+      <h1><a routerLink="/fleet">Fleet</a> > {{vehicle?.name}}</h1>
+    </div>
+  </div>
+</div>
+
+<form *ngIf="vehicle">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control form-control-lg" [class.is-invalid]="nameField.invalid && (nameField.dirty || nameField.touched)" 
+    id="name" name="name" [(ngModel)]="vehicle.name" required #nameField="ngModel">
+    <div *ngIf="nameField.invalid && (nameField.dirty || nameField.touched)" class="invalid-feedback">
+      <div *ngIf="nameField.errors.required">Please enter a name for the vehicle.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="mileage">Mileage</label>
+    <input type="number" class="form-control form-control-lg" id="mileage" name="mileage" [(ngModel)]="vehicle.mileage" placeholder="123456">
+  </div>
+  <button class="btn btn-primary" (click)="submit()" [disabled]="nameField.invalid">Submit</button>
+  <a class="btn" routerLink="/vehicle/{{vehicle.id}}">Cancel</a>
+</form>
+
+<form *ngIf="!vehicle">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control form-control-lg" id="name" name="name">
+  </div>
+  <div class="form-group">
+    <label for="mileage">Mileage</label>
+    <input type="number" class="form-control form-control-lg" id="mileage" name="mileage" placeholder="123456">
+  </div>
+  <button class="btn btn-primary">Submit</button>
+  <a class="btn">Cancel</a>
+</form>

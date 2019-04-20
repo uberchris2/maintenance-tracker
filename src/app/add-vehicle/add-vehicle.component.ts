@@ -62,7 +62,7 @@ export class AddVehicleComponent implements OnInit {
     newVehicle.model = this.model;
     newVehicle.name = this.name;
     newVehicle.mileage = this.mileage;
-    this.vehicleService.post(newVehicle)
+    this.vehicleService.put(newVehicle)
       .subscribe(response => {
         this.router.navigateByUrl('/fleet');
       });

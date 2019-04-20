@@ -1,3 +1,8 @@
 .vehicle-card {
     cursor: pointer;
 }
+
+a {
+    color: #fff;
+    text-decoration: underline;
+}

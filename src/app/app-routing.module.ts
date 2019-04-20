@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ErrorComponent } from './error/error.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { UpdateVehicleComponent } from './update-vehicle/update-vehicle.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'addVehicle', component: AddVehicleComponent, canActivate: [MsalGuard] },
   { path: 'vehicle/:id', component: VehicleComponent, canActivate: [MsalGuard] },
   { path: 'recordMaintenance/:vehicleId', component: RecordMaintenanceComponent, canActivate: [MsalGuard] },
+  { path: 'updateVehicle/:vehicleId', component: UpdateVehicleComponent, canActivate: [MsalGuard] },
   { path: 'privacyPolicy', component: PrivacyPolicyComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'feedback', component: FeedbackComponent, canActivate: [MsalGuard] },
