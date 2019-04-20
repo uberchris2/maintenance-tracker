@@ -29,8 +29,8 @@
       <td>{{maintenance.date | date}}</td>
       <td>{{maintenance.mileage | number}}</td>
       <td>{{maintenance.item}}</td>
-      <td>{{maintenance.dueDate | date}}</td>
-      <td>{{maintenance.dueMileage | number}}</td>
+      <td>{{maintenance.dueDate | date}} <span class="badge badge-warning" *ngIf="today > maintenance.dueDate">Due</span></td>
+      <td>{{maintenance.dueMileage | number}} <span class="badge badge-warning" *ngIf="vehicleMaintenance.mileage > maintenance.dueMileage">Due</span></td>
       <td class="fit">
         <div class="btn-group">
           <button class="btn btn-secondary" [disabled]="!maintenance.receipt" (click)="downloadReceipt(maintenance.receipt)" title="Download receipt">

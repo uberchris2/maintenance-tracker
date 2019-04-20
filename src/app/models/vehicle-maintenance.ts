@@ -6,5 +6,6 @@ export class VehicleMaintenance {
     make: string;
     model: string;
     name: string;
+    mileage: number;
     maintenance: Maintenance[];
   }

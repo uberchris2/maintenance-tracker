@@ -13,6 +13,7 @@ import { addMonths } from 'date-fns';
 export class VehicleComponent implements OnInit {
 
   vehicleMaintenance: VehicleMaintenance;
+  today = new Date();
 
   constructor(private vehicleService: VehicleService, private route: ActivatedRoute, private maintenanceService: MaintenanceService) { }
 
