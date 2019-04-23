@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VehicleService } from '../services/vehicle.service';
-import { MaintenanceService } from '../services/maintenance.service';
 import { Vehicle } from '../models/vehicle';
 
 @Component({
@@ -25,7 +24,7 @@ export class UpdateVehicleComponent implements OnInit {
 
   submit() {
     this.vehicleService.put(this.vehicle)
-      .subscribe(response => {
+      .subscribe(() => {
         this.router.navigateByUrl(`/vehicle/${this.vehicle.id}`);
       });
   }

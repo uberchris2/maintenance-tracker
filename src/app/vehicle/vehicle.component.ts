@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MaintenanceService } from '../services/maintenance.service';
 import { VehicleMaintenance } from '../models/vehicle-maintenance';
 import { addMonths } from 'date-fns';
+import { ReceiptService } from '../services/receipt.service';
 
 @Component({
   selector: 'app-vehicle',
@@ -15,7 +16,8 @@ export class VehicleComponent implements OnInit {
   vehicleMaintenance: VehicleMaintenance;
   today = new Date();
 
-  constructor(private vehicleService: VehicleService, private route: ActivatedRoute, private maintenanceService: MaintenanceService) { }
+  constructor(private vehicleService: VehicleService, private route: ActivatedRoute, 
+    private maintenanceService: MaintenanceService, private receiptService: ReceiptService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -33,7 +35,7 @@ export class VehicleComponent implements OnInit {
   }
 
   downloadReceipt(name: string) {
-    this.maintenanceService.downloadReceipt(name);
+    this.receiptService.downloadReceipt(name);
   }
 
   private prepareMaintenance(vehicleMaintenance: VehicleMaintenance) {
