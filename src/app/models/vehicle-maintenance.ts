@@ -7,5 +7,6 @@ export class VehicleMaintenance {
     model: string;
     name: string;
     mileage: number;
+    shared: boolean;
     maintenance: Maintenance[];
   }
