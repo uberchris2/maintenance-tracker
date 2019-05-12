@@ -20,6 +20,7 @@ export class RecordMaintenanceComponent implements OnInit {
   uploading = false;
   uploadProgress = 0;
   receipts: Array<string>;
+  previousSuccess = false;
 
   constructor(private route: ActivatedRoute, private vehicleService: VehicleService, 
     private maintenanceService: MaintenanceService, private router: Router,
@@ -47,6 +48,7 @@ export class RecordMaintenanceComponent implements OnInit {
       .subscribe(response => {
         this.maintenance.item = '';
         this.maintenance.notes = '';
+        this.previousSuccess = true;
       });
   }
 
@@ -76,5 +78,9 @@ export class RecordMaintenanceComponent implements OnInit {
 
   removeReceipt() {
     this.maintenance.receipt = null;
+  }
+
+  dismissSuccess() {
+    this.previousSuccess = false;
   }
 }
