@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'updateVehicle/:vehicleId', component: UpdateVehicleComponent, canActivate: [MsalGuard] },
   { path: 'privacyPolicy', component: PrivacyPolicyComponent },
   { path: 'error', component: ErrorComponent },
-  { path: 'feedback', component: FeedbackComponent, canActivate: [MsalGuard] },
+  { path: 'feedback', component: FeedbackComponent },
   { path: 'share/:vehicleId', component: ShareComponent },
   { path: '**', redirectTo: '/error' },
 ];
