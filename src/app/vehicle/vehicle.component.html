@@ -11,7 +11,7 @@
 
 <p>
   Current mileage:
-  <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}">{{vehicleMaintenance?.mileage}} &nbsp;<fa-icon icon="pen"></fa-icon></a>
+  <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}">{{vehicleMaintenance?.mileage | number}} &nbsp;<fa-icon icon="pen"></fa-icon></a>
 </p>
 
 <p *ngIf="vehicleMaintenance?.shared">
