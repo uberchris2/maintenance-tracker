@@ -8,5 +8,6 @@ export class VehicleMaintenance {
     name: string;
     mileage: number;
     shared: boolean;
+    userId: string;
     maintenance: Maintenance[];
   }

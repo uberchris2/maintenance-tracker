@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { UploadAuthorization } from '../models/upload-authorization';
 import { UploadStatus, UploadStatusType } from '../models/upload-status';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -31,13 +32,20 @@ export class ReceiptService {
     }));
   }
 
-  downloadReceipt(name: string) {
+  download(name: string) {
     return this.http.get<UploadAuthorization>(`api/authorizeReceipt?name=${name}`).subscribe(authorization => {
       window.open(authorization.url, '_blank');
     });
   }
 
-  getReceipts() {
+  downloadShared(name: string, userId: string, vehicleId: string) {
+    return this.http.get<UploadAuthorization>(`${environment.publicApiEndpoint}api/authorizeReceipt?name=${name}&userId=${userId}&vehicleId=${vehicleId}`)
+    .subscribe(authorization => {
+      window.open(authorization.url, '_blank');
+    });
+  }
+
+  getAll() {
     return this.http.get<Array<string>>('api/receipts');
   }
 }

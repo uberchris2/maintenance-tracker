@@ -32,7 +32,7 @@ export class RecordMaintenanceComponent implements OnInit {
         this.maintenance.vehicleId = vehicle.id;
       });
     });
-    this.receiptService.getReceipts().subscribe(receipts => this.receipts = receipts);
+    this.receiptService.getAll().subscribe(receipts => this.receipts = receipts);
   }
 
   add() {

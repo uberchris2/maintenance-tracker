@@ -35,7 +35,7 @@ export class VehicleComponent implements OnInit {
   }
 
   downloadReceipt(name: string) {
-    this.receiptService.downloadReceipt(name);
+    this.receiptService.download(name);
   }
 
   private prepareMaintenance(vehicleMaintenance: VehicleMaintenance) {
