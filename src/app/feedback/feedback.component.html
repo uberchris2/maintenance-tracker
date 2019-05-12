@@ -7,6 +7,15 @@
 </div>
 
 <form *ngIf="!submitted">
+<div class="form-group">
+    <label for="emailInput">Email</label>
+    <input type="emailInput" class="form-control form-control-lg" [class.is-invalid]="emailInput.invalid && (emailInput.dirty || emailInput.touched)" 
+    id="emailInput" name="emailInput" [(ngModel)]="feedback.email" required email #emailInput="ngModel" placeholder="something@somewhere.com">
+    <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="invalid-feedback">
+      <div *ngIf="emailInput.errors.required">Please enter your email address.</div>
+      <div *ngIf="emailInput.errors.email">Please enter a valid email address.</div>
+    </div>
+  </div>
   <div class="form-group">
     <label for="message">Message</label>
     <textarea class="form-control form-control-lg" [class.is-invalid]="messageArea.invalid && (messageArea.dirty || messageArea.touched)" 
@@ -16,7 +25,7 @@
         <div *ngIf="messageArea.errors.maxlength">Please keep your feedback somewhat brief.</div>
       </div>
   </div>
-  <button (click)="submit()" class="btn btn-primary" [disabled]="messageArea.invalid">Submit</button>
+  <button (click)="submit()" class="btn btn-primary" [disabled]="messageArea.invalid || emailInput.invalid">Submit</button>
   <a routerLink="/home" class="btn">Cancel</a>
 </form>
 
