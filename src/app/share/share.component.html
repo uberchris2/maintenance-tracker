@@ -1,38 +1,43 @@
 <div class="page-header" id="banner">
-    <div class="row">
-      <div class="col">
-        <h1>
-          <a routerLink="/home">Home</a> > {{vehicleMaintenance?.name}} 
-        </h1>
-      </div>
+  <div class="row">
+    <div class="col">
+      <h1>
+        <a routerLink="/home">Home</a> > {{vehicleMaintenance?.name}} 
+      </h1>
     </div>
   </div>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Mileage</th>
-        <th>Maintenance</th>
-        <th class="fit">
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let maintenance of vehicleMaintenance?.maintenance">
-        <td>{{maintenance.date | date}}</td>
-        <td>{{maintenance.mileage | number}}</td>
-        <td>{{maintenance.item}}</td>
-        <td class="fit">
-          <div class="btn-group">
-            <button class="btn btn-secondary" [disabled]="!maintenance.receipt" (click)="downloadReceipt(maintenance.receipt)" title="Download receipt">
-              <fa-icon icon="receipt"></fa-icon>
-            </button>
-            <button class="btn btn-secondary" placement="bottom" [ngbPopover]="maintenance.notes" popoverTitle="Notes" [autoClose]="'outside'" [disabled]="!maintenance.notes" title="View notes">
-              <fa-icon icon="sticky-note"></fa-icon>
-            </button>
-          </div>
-        </td>
-      </tr>
-      <td *ngIf="vehicleMaintenance?.maintenance.length == 0" colspan="4">There is currently no recorded maintenance for this vehicle.</td>
-    </tbody>
-  </table>
+</div>
+
+<p>
+  Last recorded mileage: {{vehicleMaintenance?.mileage}}
+</p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Mileage</th>
+      <th>Maintenance</th>
+      <th class="fit">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let maintenance of vehicleMaintenance?.maintenance">
+      <td>{{maintenance.date | date}}</td>
+      <td>{{maintenance.mileage | number}}</td>
+      <td>{{maintenance.item}}</td>
+      <td class="fit">
+        <div class="btn-group">
+          <button class="btn btn-secondary" [disabled]="!maintenance.receipt" (click)="downloadReceipt(maintenance.receipt)" title="Download receipt">
+            <fa-icon icon="receipt"></fa-icon>
+          </button>
+          <button class="btn btn-secondary" placement="bottom" [ngbPopover]="maintenance.notes" popoverTitle="Notes" [autoClose]="'outside'" [disabled]="!maintenance.notes" title="View notes">
+            <fa-icon icon="sticky-note"></fa-icon>
+          </button>
+        </div>
+      </td>
+    </tr>
+    <td *ngIf="vehicleMaintenance?.maintenance.length == 0" colspan="4">There is currently no recorded maintenance for this vehicle.</td>
+  </tbody>
+</table>
