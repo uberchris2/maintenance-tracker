@@ -19,6 +19,12 @@
     <label for="mileage">Mileage</label>
     <input type="number" class="form-control form-control-lg" id="mileage" name="mileage" [(ngModel)]="vehicle.mileage" placeholder="123456">
   </div>
+  <div class="form-group">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" id="shared" name="shared" [(ngModel)]="vehicle.shared" >
+      <label class="custom-control-label" for="shared">Share this vehicle's maintenance</label>
+    </div>
+  </div>
   <button class="btn btn-primary" (click)="submit()" [disabled]="nameField.invalid">Submit</button>
   <a class="btn" routerLink="/vehicle/{{vehicle.id}}">Cancel</a>
 </form>
@@ -31,6 +37,12 @@
   <div class="form-group">
     <label for="mileage">Mileage</label>
     <input type="number" class="form-control form-control-lg" id="mileage" name="mileage" placeholder="123456">
+  </div>
+  <div class="form-group">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" id="shared" name="shared">
+      <label class="custom-control-label" for="shared">Share this vehicle's maintenance</label>
+    </div>
   </div>
   <button class="btn btn-primary">Submit</button>
   <a class="btn">Cancel</a>

@@ -11,9 +11,11 @@ export class Interceptor implements HttpInterceptor {
     constructor(private spinner: NgxSpinnerService, private router: Router) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         this.spinner.show();
-        request = request.clone({
-            url: `${environment.apiEndpoint}${request.url}`
-        });
+        if (!request.url.startsWith("http")) {
+            request = request.clone({
+                url: `${environment.apiEndpoint}${request.url}`
+            });
+        }
         return next.handle(request).pipe(
             catchError(() => {
                 this.router.navigateByUrl('/error');

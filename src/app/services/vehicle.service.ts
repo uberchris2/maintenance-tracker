@@ -4,6 +4,7 @@ import { Vehicle } from '../models/vehicle';
 import { Observable } from 'rxjs';
 import { DefaultHttpOptions } from '../default-http-options';
 import { VehicleMaintenance } from '../models/vehicle-maintenance';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class VehicleService {
 
   getWithMaintenance(id: string): Observable<VehicleMaintenance> {
     return this.http.get<VehicleMaintenance>(`api/vehiclemaintenance/${id}`);
+  }
+
+  getWithMaintenanceShared(id: string): Observable<VehicleMaintenance> {
+    return this.http.get<VehicleMaintenance>(`${environment.publicApiEndpoint}api/vehiclemaintenance/${id}`);
   }
 
   put(vehicle: Vehicle) {

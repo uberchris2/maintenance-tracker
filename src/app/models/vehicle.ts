@@ -5,4 +5,5 @@ export class Vehicle {
     model: string;
     name: string;
     mileage: number;
+    shared: boolean;
   }

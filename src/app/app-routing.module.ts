@@ -10,6 +10,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { ErrorComponent } from './error/error.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { UpdateVehicleComponent } from './update-vehicle/update-vehicle.component';
+import { ShareComponent } from './share/share.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'privacyPolicy', component: PrivacyPolicyComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'feedback', component: FeedbackComponent, canActivate: [MsalGuard] },
+  { path: 'share/:vehicleId', component: ShareComponent },
   { path: '**', redirectTo: '/error' },
 ];
 

@@ -26,6 +26,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faReceipt, faEdit, faTrash, faPlus, faStickyNote, faSignOutAlt, faShare, faPen } from '@fortawesome/free-solid-svg-icons';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { UpdateVehicleComponent } from './update-vehicle/update-vehicle.component';
+import { ShareComponent } from './share/share.component';
 // export function loggerCallback(logLevel, message, piiEnabled) {
 //   console.log("client logging" + message);
 // }
@@ -59,7 +60,8 @@ export function getMsalConfig() {
     PrivacyPolicyComponent,
     ErrorComponent,
     FeedbackComponent,
-    UpdateVehicleComponent
+    UpdateVehicleComponent,
+    ShareComponent
   ],
   imports: [
     BrowserModule,

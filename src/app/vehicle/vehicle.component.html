@@ -1,14 +1,24 @@
 <div class="page-header" id="banner">
   <div class="row">
     <div class="col">
-      <h1><a routerLink="/fleet">Fleet</a> > {{vehicleMaintenance?.name}} 
+      <h1>
+        <a routerLink="/fleet">Fleet</a> > {{vehicleMaintenance?.name}} 
         <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}"><span style="font-size: 0.7em;"><fa-icon icon="pen"></fa-icon></span></a>
       </h1>
     </div>
   </div>
 </div>
 
-<p>Current mileage: <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}">{{vehicleMaintenance?.mileage}} <fa-icon icon="pen"></fa-icon></a></p>
+<p>
+  Current mileage:
+  <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}">{{vehicleMaintenance?.mileage}} &nbsp;<fa-icon icon="pen"></fa-icon></a>
+</p>
+
+<p *ngIf="vehicleMaintenance?.shared">
+  Shared at <a routerLink="/share/{{vehicleMaintenance?.id}}">https://wrench.cafe/share/{{vehicleMaintenance?.id}}</a>
+  &nbsp;
+  <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}"><fa-icon icon="pen"></fa-icon></a>
+</p>
 
 <a routerLink="/recordMaintenance/{{vehicleMaintenance?.id}}">
     <button class="btn btn-primary" title="Add a new maintenance record for this vehicle">

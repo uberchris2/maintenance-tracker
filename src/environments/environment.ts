@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiEndpoint: 'http://localhost:7071/',
+  publicApiEndpoint: 'http://localhost:7071/',
   origin: 'http://localhost:4200/'
 };
 

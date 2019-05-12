@@ -12,7 +12,7 @@
       <button class="btn btn-secondary" (click)="delete($event)" title="Delete this vehicle">
         <fa-icon icon="trash"></fa-icon>
       </button>
-      <button class="btn btn-secondary" disabled  title="Share maintenance for this vehicle">
+      <button class="btn btn-secondary" routerLink="/updateVehicle/{{vehicle.id}}" title="Share maintenance for this vehicle">
         <fa-icon icon="share"></fa-icon>
       </button>
     </div>
