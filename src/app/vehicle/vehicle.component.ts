@@ -5,6 +5,8 @@ import { MaintenanceService } from '../services/maintenance.service';
 import { VehicleMaintenance } from '../models/vehicle-maintenance';
 import { addMonths } from 'date-fns';
 import { ReceiptService } from '../services/receipt.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
 
 @Component({
   selector: 'app-vehicle',
@@ -17,7 +19,8 @@ export class VehicleComponent implements OnInit {
   today = new Date();
 
   constructor(private vehicleService: VehicleService, private route: ActivatedRoute, 
-    private maintenanceService: MaintenanceService, private receiptService: ReceiptService) { }
+    private maintenanceService: MaintenanceService, private receiptService: ReceiptService, 
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -29,9 +32,11 @@ export class VehicleComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.maintenanceService.delete(id).subscribe(() => {
-      this.vehicleMaintenance.maintenance = this.vehicleMaintenance.maintenance.filter(m => m.id !== id);
-    });
+    this.modalService.open(ConfirmDeleteModalComponent).result.then((response) => {
+      this.maintenanceService.delete(id).subscribe(() => {
+        this.vehicleMaintenance.maintenance = this.vehicleMaintenance.maintenance.filter(m => m.id !== id);
+      });
+    }, (dismissal) => {});
   }
 
   downloadReceipt(name: string) {

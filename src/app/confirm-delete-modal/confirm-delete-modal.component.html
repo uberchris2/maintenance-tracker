@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h4 class="modal-title">Confirm delete</h4>
+  <button type="button" class="close" (click)="activeModal.dismiss()">
+    <span>&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>Are you sure you want to delete this?</p>
+  <p><i>Deleting records is permanent.</i></p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn" (click)="activeModal.dismiss()">Cancel</button>
+  <button type="button" class="btn btn-warning" (click)="activeModal.close()">Delete</button>
+</div>

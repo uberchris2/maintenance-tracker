@@ -28,6 +28,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { UpdateVehicleComponent } from './update-vehicle/update-vehicle.component';
 import { ShareComponent } from './share/share.component';
 import { OverwriteReceiptModalComponent } from './overwrite-receipt-modal/overwrite-receipt-modal.component';
+import { ConfirmDeleteModalComponent } from './confirm-delete-modal/confirm-delete-modal.component';
 // export function loggerCallback(logLevel, message, piiEnabled) {
 //   console.log("client logging" + message);
 // }
@@ -63,7 +64,8 @@ export function getMsalConfig() {
     FeedbackComponent,
     UpdateVehicleComponent,
     ShareComponent,
-    OverwriteReceiptModalComponent
+    OverwriteReceiptModalComponent,
+    ConfirmDeleteModalComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,10 @@ export function getMsalConfig() {
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [OverwriteReceiptModalComponent]
+  entryComponents: [
+    OverwriteReceiptModalComponent,
+    ConfirmDeleteModalComponent
+  ]
 })
 export class AppModule {
   constructor() {
