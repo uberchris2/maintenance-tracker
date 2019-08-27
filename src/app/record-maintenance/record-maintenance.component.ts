@@ -8,6 +8,8 @@ import { UploadStatus, UploadStatusType } from '../models/upload-status';
 import { ReceiptService } from '../services/receipt.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OverwriteReceiptModalComponent } from '../overwrite-receipt-modal/overwrite-receipt-modal.component';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-record-maintenance',
@@ -23,6 +25,18 @@ export class RecordMaintenanceComponent implements OnInit {
   uploadProgress = 0;
   receipts: Array<string>;
   previousSuccess = false;
+
+  defaultItemOptions = ['Engine oil', 'Air filter', 'Fuel filter', 'Tires replaced', 'Tires rotated', 
+  'Cabin air filter', 'Spark plugs', 'Ignition coils', 'Brake fluid', 'Brake pads', 'Brake pads and rotors', 
+  'Power steering fluid', 'Transmission fluid', 'Timing belt', 'Coolant', 'Windshield wipers', 'Battery', 
+  'Alternator', 'Valve adjustment'];
+  maintenanceItemTypeahead = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(10),
+      distinctUntilChanged(),
+      map(term => term.length < 1 ? []
+        : this.defaultItemOptions.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+    )
 
   constructor(private route: ActivatedRoute, private vehicleService: VehicleService, 
     private maintenanceService: MaintenanceService, private router: Router,
