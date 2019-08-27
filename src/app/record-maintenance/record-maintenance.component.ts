@@ -6,6 +6,8 @@ import { VehicleService } from '../services/vehicle.service';
 import { MaintenanceService } from '../services/maintenance.service';
 import { UploadStatus, UploadStatusType } from '../models/upload-status';
 import { ReceiptService } from '../services/receipt.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OverwriteReceiptModalComponent } from '../overwrite-receipt-modal/overwrite-receipt-modal.component';
 
 @Component({
   selector: 'app-record-maintenance',
@@ -24,7 +26,7 @@ export class RecordMaintenanceComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private vehicleService: VehicleService, 
     private maintenanceService: MaintenanceService, private router: Router,
-    private receiptService: ReceiptService) { }
+    private receiptService: ReceiptService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -60,16 +62,26 @@ export class RecordMaintenanceComponent implements OnInit {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       const file: File = fileList[0];
-      this.uploading = true;
-      this.uploadProgress = 0;
-      this.receiptService.uploadReceipt(file).subscribe((x: UploadStatus) => {
-        this.uploadProgress = x.percentComplete;
-        if (x.type === UploadStatusType.Completion) {
-          this.uploading = false;
-          this.maintenance.receipt = file.name;
-        }
-      });
+      if (this.receipts.includes(file.name)) {
+        this.modalService.open(OverwriteReceiptModalComponent).result.then((response) => {
+          this.uploadReceipt(file);
+        }, (dismissal) => {});
+      } else {
+        this.uploadReceipt(file);
+      }
     }
+  }
+
+  private uploadReceipt(file) {
+    this.uploading = true;
+    this.uploadProgress = 0;
+    this.receiptService.uploadReceipt(file).subscribe((x: UploadStatus) => {
+      this.uploadProgress = x.percentComplete;
+      if (x.type === UploadStatusType.Completion) {
+        this.uploading = false;
+        this.maintenance.receipt = file.name;
+      }
+    });
   }
 
   existingReceiptSelected(receipt: string) {

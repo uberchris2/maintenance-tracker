@@ -27,6 +27,7 @@ import { faReceipt, faEdit, faTrash, faPlus, faStickyNote, faSignOutAlt, faShare
 import { FeedbackComponent } from './feedback/feedback.component';
 import { UpdateVehicleComponent } from './update-vehicle/update-vehicle.component';
 import { ShareComponent } from './share/share.component';
+import { OverwriteReceiptModalComponent } from './overwrite-receipt-modal/overwrite-receipt-modal.component';
 // export function loggerCallback(logLevel, message, piiEnabled) {
 //   console.log("client logging" + message);
 // }
@@ -61,7 +62,8 @@ export function getMsalConfig() {
     ErrorComponent,
     FeedbackComponent,
     UpdateVehicleComponent,
-    ShareComponent
+    ShareComponent,
+    OverwriteReceiptModalComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,8 @@ export function getMsalConfig() {
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [OverwriteReceiptModalComponent]
 })
 export class AppModule {
   constructor() {

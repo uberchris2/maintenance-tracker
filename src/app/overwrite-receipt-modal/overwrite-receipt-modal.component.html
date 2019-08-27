@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h4 class="modal-title">Duplicate receipt name</h4>
+  <button type="button" class="close" (click)="activeModal.dismiss()">
+    <span>&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>This receipt has already been uploaded. Would you like to overwrite it?</p>
+  <p><i>The new version of the receipt will be applied to all maintenance records sharing this receipt.</i></p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn" (click)="activeModal.dismiss()">Cancel</button>
+  <button type="button" class="btn btn-warning" (click)="activeModal.close()">Overwrite</button>
+</div>
