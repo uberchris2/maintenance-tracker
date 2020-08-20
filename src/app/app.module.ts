@@ -29,6 +29,7 @@ import { UpdateVehicleComponent } from './update-vehicle/update-vehicle.componen
 import { ShareComponent } from './share/share.component';
 import { OverwriteReceiptModalComponent } from './overwrite-receipt-modal/overwrite-receipt-modal.component';
 import { ConfirmDeleteModalComponent } from './confirm-delete-modal/confirm-delete-modal.component';
+import { DateInterceptor } from './date-interceptor';
 // export function loggerCallback(logLevel, message, piiEnabled) {
 //   console.log("client logging" + message);
 // }
@@ -83,7 +84,8 @@ export function getMsalConfig() {
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   entryComponents: [

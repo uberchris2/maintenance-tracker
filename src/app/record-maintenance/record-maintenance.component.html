@@ -39,7 +39,7 @@
     <div class="form-group">
       <label for="date">Date*</label>
       <input type="date" class="form-control form-control-lg" [class.is-invalid]="date.invalid && (date.dirty || date.touched)" 
-        id="date" name="date" [(ngModel)]="maintenance.date" required #date="ngModel" placeholder="2/4/92">
+        id="date" name="date" [ngModel]="maintenance.date | date:'yyyy-MM-dd'" (ngModelChange)="maintenance.date=$event" required #date="ngModel" placeholder="2/4/92">
       <div *ngIf="date.invalid && (date.dirty || date.touched)" class="invalid-feedback">
         <div *ngIf="date.errors.required">Please enter the date when the maintenance was performed.</div>
       </div>

@@ -59,9 +59,9 @@
           <button class="btn btn-secondary" placement="bottom" [ngbPopover]="maintenance.notes" popoverTitle="Notes" [autoClose]="'outside'" [disabled]="!maintenance.notes" title="View notes">
             <fa-icon icon="sticky-note"></fa-icon>
           </button>
-          <button class="btn btn-secondary" disabled title="Edit this maintenance record">
+          <a [routerLink]="'/updateMaintenance/' + vehicleMaintenance?.id + '/' + maintenance.id" class="btn btn-secondary" title="Edit this maintenance record">
             <fa-icon icon="edit"></fa-icon>
-          </button>
+          </a>
           <button class="btn btn-secondary" (click)="delete(maintenance.id)" title="Delete this maintenance record">
             <fa-icon icon="trash"></fa-icon>
           </button>

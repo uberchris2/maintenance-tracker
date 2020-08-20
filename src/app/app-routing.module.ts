@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'vehicle/:id', component: VehicleComponent, canActivate: [MsalGuard] },
   { path: 'recordMaintenance/:vehicleId', component: RecordMaintenanceComponent, canActivate: [MsalGuard] },
   { path: 'updateVehicle/:vehicleId', component: UpdateVehicleComponent, canActivate: [MsalGuard] },
+  { path: 'updateMaintenance/:vehicleId/:maintenanceId', component: RecordMaintenanceComponent, canActivate: [MsalGuard] },
   { path: 'privacyPolicy', component: PrivacyPolicyComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'feedback', component: FeedbackComponent },

@@ -48,19 +48,24 @@ export class RecordMaintenanceComponent implements OnInit {
         this.vehicle = vehicle;
         this.maintenance.vehicleId = vehicle.id;
       });
+      if ('maintenanceId' in params) {
+        this.maintenanceService.get(params.maintenanceId).subscribe(maintenance => {
+          this.maintenance = maintenance;
+        })
+      }
     });
     this.receiptService.getAll().subscribe(receipts => this.receipts = receipts);
   }
 
   add() {
-    this.maintenanceService.post(this.maintenance)
+    this.maintenanceService.put(this.maintenance)
       .subscribe(response => {
         this.router.navigateByUrl(`/vehicle/${this.vehicle.id}`);
       });
   }
 
   addAndContinue() {
-    this.maintenanceService.post(this.maintenance)
+    this.maintenanceService.put(this.maintenance)
       .subscribe(response => {
         this.maintenance.item = '';
         this.maintenance.notes = '';
