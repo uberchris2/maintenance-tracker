@@ -7,6 +7,7 @@ import { addMonths } from 'date-fns';
 import { ReceiptService } from '../services/receipt.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
+import { faPen, faPlus, faReceipt, faStickyNote, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-vehicle',
@@ -17,6 +18,12 @@ export class VehicleComponent implements OnInit {
 
   vehicleMaintenance: VehicleMaintenance;
   today = new Date();
+  faPen = faPen;
+  faPlus = faPlus;
+  faReceipt = faReceipt;
+  faStickyNote = faStickyNote;
+  faEdit = faEdit;
+  faTrash = faTrash;
 
   constructor(private vehicleService: VehicleService, private route: ActivatedRoute, 
     private maintenanceService: MaintenanceService, private receiptService: ReceiptService, 

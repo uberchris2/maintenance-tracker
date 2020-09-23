@@ -3,6 +3,7 @@ import { VehicleMaintenance } from '../models/vehicle-maintenance';
 import { VehicleService } from '../services/vehicle.service';
 import { ActivatedRoute } from '@angular/router';
 import { ReceiptService } from '../services/receipt.service';
+import { faReceipt, faStickyNote } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-share',
@@ -12,6 +13,8 @@ import { ReceiptService } from '../services/receipt.service';
 export class ShareComponent implements OnInit {
 
   vehicleMaintenance: VehicleMaintenance;
+  faReceipt = faReceipt;
+  faStickyNote = faStickyNote;
   
   constructor(private vehicleService: VehicleService, private route: ActivatedRoute, private receiptService: ReceiptService) { }
 

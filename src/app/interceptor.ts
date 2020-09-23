@@ -8,8 +8,12 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
+
+    callCount = 0;
+
     constructor(private spinner: NgxSpinnerService, private router: Router) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        this.callCount++;
         this.spinner.show();
         if (!request.url.startsWith("http")) {
             request = request.clone({
@@ -21,6 +25,10 @@ export class Interceptor implements HttpInterceptor {
                 this.router.navigateByUrl('/error');
                 return EMPTY;
             }),
-            finalize(() => this.spinner.hide()));
+            finalize(() => {
+                this.callCount--;
+                if (this.callCount == 0)
+                    this.spinner.hide();
+            }));
     }
 }

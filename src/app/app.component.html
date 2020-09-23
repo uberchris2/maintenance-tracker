@@ -21,7 +21,7 @@
       </li>
     </ul>
     <button class="btn btn-secondary" type="submit" *ngIf="loggedIn" (click)="logout()">
-      <fa-icon icon="sign-out-alt"></fa-icon>
+      <fa-icon [icon]="faSignOutAlt"></fa-icon>
     </button>
   </div>
 </nav>

@@ -4,16 +4,16 @@
     <p class="card-text">Last reported mileage is <a routerLink="/updateVehicle/{{vehicle.id}}">{{vehicle.mileage}}</a>.</p>
     <div class="btn-group">
       <button class="btn btn-secondary" routerLink="/recordMaintenance/{{vehicle.id}}" title="Record maintenance for this vehicle">
-        <fa-icon icon="plus"></fa-icon>
+        <fa-icon [icon]="faPlus"></fa-icon>
       </button>
       <button class="btn btn-secondary" routerLink="/updateVehicle/{{vehicle.id}}" title="Edit this vehicle">
-        <fa-icon icon="edit"></fa-icon>
+        <fa-icon [icon]="faEdit"></fa-icon>
       </button>
       <button class="btn btn-secondary" (click)="delete($event)" title="Delete this vehicle">
-        <fa-icon icon="trash"></fa-icon>
+        <fa-icon [icon]="faTrash"></fa-icon>
       </button>
       <button class="btn btn-secondary" routerLink="/updateVehicle/{{vehicle.id}}" title="Share maintenance for this vehicle">
-        <fa-icon icon="share"></fa-icon>
+        <fa-icon [icon]="faShare"></fa-icon>
       </button>
     </div>
   </div>

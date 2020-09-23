@@ -17,7 +17,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
   styleUrls: ['./record-maintenance.component.css']
 })
 export class RecordMaintenanceComponent implements OnInit {
-  @ViewChild('receiptInput') receiptInput;
+  @ViewChild('receiptInput', { static: true }) receiptInput;
 
   vehicle: Vehicle;
   maintenance = new Maintenance();

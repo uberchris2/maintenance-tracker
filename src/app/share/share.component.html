@@ -30,10 +30,10 @@
       <td class="fit">
         <div class="btn-group">
           <button class="btn btn-secondary" [disabled]="!maintenance.receipt" (click)="downloadReceipt(maintenance.receipt)" title="Download receipt">
-            <fa-icon icon="receipt"></fa-icon>
+            <fa-icon [icon]="faReceipt"></fa-icon>
           </button>
           <button class="btn btn-secondary" placement="bottom" [ngbPopover]="maintenance.notes" popoverTitle="Notes" [autoClose]="'outside'" [disabled]="!maintenance.notes" title="View notes">
-            <fa-icon icon="sticky-note"></fa-icon>
+            <fa-icon [icon]="faStickyNote"></fa-icon>
           </button>
         </div>
       </td>

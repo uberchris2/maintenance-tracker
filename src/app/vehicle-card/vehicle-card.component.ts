@@ -3,6 +3,7 @@ import { Vehicle } from '../models/vehicle';
 import { VehicleService } from '../services/vehicle.service';
 import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { faPlus, faEdit, faTrash, faShare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-vehicle-card',
@@ -13,6 +14,10 @@ export class VehicleCardComponent implements OnInit {
 
   @Input() vehicle: Vehicle;
   deleted = false;
+  faPlus = faPlus;
+  faEdit = faEdit;
+  faTrash = faTrash;
+  faShare = faShare;
 
   constructor(private vehicleService: VehicleService, private modalService: NgbModal) { }
 

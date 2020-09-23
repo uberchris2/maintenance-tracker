@@ -18,36 +18,37 @@ import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
-import { LogLevel } from 'msal';
+import { Configuration, LogLevel } from 'msal';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ErrorComponent } from './error/error.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faReceipt, faEdit, faTrash, faPlus, faStickyNote, faSignOutAlt, faShare, faPen } from '@fortawesome/free-solid-svg-icons';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { UpdateVehicleComponent } from './update-vehicle/update-vehicle.component';
 import { ShareComponent } from './share/share.component';
 import { OverwriteReceiptModalComponent } from './overwrite-receipt-modal/overwrite-receipt-modal.component';
 import { ConfirmDeleteModalComponent } from './confirm-delete-modal/confirm-delete-modal.component';
 import { DateInterceptor } from './date-interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // export function loggerCallback(logLevel, message, piiEnabled) {
 //   console.log("client logging" + message);
 // }
 
 
-export function getMsalConfig() {
+export function getMsalConfig(): Configuration {
   return {
-    clientID: '4a74cf5a-08f1-43a6-be67-b30dbe68e4ff',
-    authority: 'https://maintenancetracker.b2clogin.com/tfp/maintenancetracker.onmicrosoft.com/B2C_1_sign_up_sign_in/',
-    validateAuthority: false,
-    redirectUri: environment.origin,
-    // cacheLocation: 'localStorage',
-    postLogoutRedirectUri: environment.origin,
-    navigateToLoginRequestUrl: true,
-    popUp: false,
-    // logger: loggerCallback,
-    // level: LogLevel.Info,
-    // piiLoggingEnabled: true
+    auth: {
+      clientId: '4a74cf5a-08f1-43a6-be67-b30dbe68e4ff',
+      authority: 'https://maintenancetracker.b2clogin.com/tfp/maintenancetracker.onmicrosoft.com/B2C_1_sign_up_sign_in/',
+      validateAuthority: false,
+      // redirectUri: environment.origin,
+      // cacheLocation: 'localStorage',
+      // postLogoutRedirectUri: environment.origin,
+      // navigateToLoginRequestUrl: true,
+      // popUp: false,
+      // logger: loggerCallback,
+      // level: LogLevel.Info,
+      // piiLoggingEnabled: true
+    }
   };
 }
 
@@ -80,7 +81,8 @@ export function getMsalConfig() {
     NgbProgressbarModule,
     NgbCollapseModule,
     NgbDropdownModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
@@ -95,6 +97,5 @@ export function getMsalConfig() {
 })
 export class AppModule {
   constructor() {
-    library.add(faReceipt, faStickyNote, faEdit, faTrash, faPlus, faSignOutAlt, faShare, faPen);
   }
 }

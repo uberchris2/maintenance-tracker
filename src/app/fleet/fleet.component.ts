@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Vehicle } from '../models/vehicle';
 import { VehicleService } from '../services/vehicle.service';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-fleet',
@@ -9,6 +10,7 @@ import { VehicleService } from '../services/vehicle.service';
 })
 export class FleetComponent implements OnInit {
   vehicles: Vehicle[];
+  faPlus = faPlus;
 
   constructor(private vehicleService: VehicleService) {  }
 
