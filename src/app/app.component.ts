@@ -20,15 +20,16 @@ export class AppComponent implements OnInit {
     private broadcastService: BroadcastService) { }
 
   ngOnInit(): void {
-    //  This is to avoid reload during acquireTokenSilent() because of hidden iframe
-    this.isIframe = window !== window.parent && !window.opener;
-    
     this.checkoutAccount();
     this.broadcastService.subscribe('msal:loginSuccess', () => {
       this.checkoutAccount();
     });
+    this.broadcastService.subscribe('msal:acquireTokenFailure', () => {
+      this.authService.loginRedirect();
+    });
     this.authService.handleRedirectCallback((authError, response) => {
       if (authError) {
+        this.checkoutAccount();
         console.error('Redirect Error: ', authError.errorMessage);
         return;
       }

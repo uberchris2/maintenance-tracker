@@ -48,7 +48,10 @@ export function getMsalConfig(): Configuration {
       // logger: loggerCallback,
       // level: LogLevel.Info,
       // piiLoggingEnabled: true
-    }
+    },
+    cache: {
+        cacheLocation : 'localStorage',
+    },
   };
 }
 
@@ -74,7 +77,11 @@ export function getMsalConfig(): Configuration {
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    MsalModule.forRoot(getMsalConfig()),
+    MsalModule.forRoot(getMsalConfig(), {
+      protectedResourceMap: [
+        [environment.apiEndpoint, ['4a74cf5a-08f1-43a6-be67-b30dbe68e4ff']]
+      ],
+    }),
     FormsModule,
     NgxSpinnerModule,
     NgbPopoverModule,
