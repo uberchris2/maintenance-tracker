@@ -24,8 +24,15 @@ export class AppComponent implements OnInit {
     this.broadcastService.subscribe('msal:loginSuccess', () => {
       this.checkoutAccount();
     });
-    this.broadcastService.subscribe('msal:acquireTokenFailure', () => {
+    this.broadcastService.subscribe('msal:acquireTokenFailure', e => {
+      console.error('Token error: ', e);
       this.authService.loginRedirect();
+    });
+    this.broadcastService.subscribe('msal:loginFailure', e => {
+      console.error('Login error: ', e);
+    });
+    this.broadcastService.subscribe('msal:ssoFailure', e => {
+      console.error('SSO error: ', e);
     });
     this.authService.handleRedirectCallback((authError, response) => {
       if (authError) {
