@@ -25,7 +25,10 @@ const routes: Routes = [
   { path: 'error', component: ErrorComponent },
   { path: 'feedback', component: FeedbackComponent },
   { path: 'share/:vehicleId', component: ShareComponent },
-  { path: '**', redirectTo: '/error' },
+  // { path: '**', redirectTo: '/error' },
+  { path: 'code', component: HomeComponent }, //needed for hash routing
+  { path: 'state', component: HomeComponent }, //needed for hash routing
+
 ];
 
 @NgModule({

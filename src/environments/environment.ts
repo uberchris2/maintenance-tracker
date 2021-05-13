@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://localhost:7071/',
-  publicApiEndpoint: 'http://localhost:7071/',
+  apiEndpoint: 'https://maintenance-tracker-api.azurewebsites.net/',
+  publicApiEndpoint: 'https://maintenance-tracker-api-public.azurewebsites.net/',
   origin: 'http://localhost:4200/'
 };
 

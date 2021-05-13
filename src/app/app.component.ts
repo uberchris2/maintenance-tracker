@@ -1,46 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { BroadcastService, MsalService } from '@azure/msal-angular';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
+import { InteractionStatus } from '@azure/msal-browser';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'maintenance-ui';
-  loggedIn: boolean;
-  isIframe: boolean;
+  loggedIn = false;
+  // isIframe: boolean;
   currentUrl: string;
   navbarCollapsed = true;
   faSignOutAlt = faSignOutAlt;
+  private readonly destroying$ = new Subject<void>();
 
-  constructor(private authService: MsalService, private router: Router,
-    private broadcastService: BroadcastService) { }
+  constructor(private msalBroadcastService: MsalBroadcastService, private authService: MsalService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.checkoutAccount();
-    this.broadcastService.subscribe('msal:loginSuccess', () => {
-      this.checkoutAccount();
-    });
-    this.broadcastService.subscribe('msal:acquireTokenFailure', e => {
-      console.error('Token error: ', e);
-      this.authService.loginRedirect();
-    });
-    this.broadcastService.subscribe('msal:loginFailure', e => {
-      console.error('Login error: ', e);
-    });
-    this.broadcastService.subscribe('msal:ssoFailure', e => {
-      console.error('SSO error: ', e);
-    });
-    this.authService.handleRedirectCallback((authError, response) => {
-      if (authError) {
-        this.checkoutAccount();
-        console.error('Redirect Error: ', authError.errorMessage);
-        return;
-      }
-    });
+    this.setLoginDisplay();
+    this.msalBroadcastService.inProgress$.pipe(
+      filter((status: InteractionStatus) => status === InteractionStatus.None),
+      takeUntil(this.destroying$)
+    ).subscribe(() => this.setLoginDisplay());
+
+    // this.msalBroadcastService.msalSubject$.pipe(
+    //   filter((msg: EventMessage) => msg.eventType === EventType.LOGIN_FAILURE),
+    //   takeUntil(this.destroying$)
+    // ).subscribe((result: EventMessage) => this.router.navigate(['unauthorized', result?.error?.message]));
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -50,8 +43,13 @@ export class AppComponent implements OnInit {
     });
   }
 
-  private checkoutAccount() {
-    this.loggedIn = !!this.authService.getAccount();
+  ngOnDestroy() {
+    this.destroying$.next(null);
+    this.destroying$.complete();
+  }
+
+  private setLoginDisplay() {
+    this.loggedIn = this.authService.instance.getAllAccounts().length > 0;
   }
 
   logout() {
