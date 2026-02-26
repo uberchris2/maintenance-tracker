@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(python3 -c \"import json,sys; p=json.load\\(sys.stdin\\); print\\(''Angular CLI:'', p.get\\(''devDependencies'',{}\\).get\\(''@angular/cli'',''n/a''\\)\\); print\\(''Angular core:'', p.get\\(''dependencies'',{}\\).get\\(''@angular/core'',''n/a''\\)\\)\")",
+      "Bash(git add -A)"
+    ]
+  }
+}
