@@ -29,6 +29,9 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit(): void {
+    this.authService.handleRedirectObservable().subscribe({
+      next: () => this.setLoginDisplay()
+    });
     this.setLoginDisplay();
     this.msalBroadcastService.inProgress$.pipe(
       filter((status: InteractionStatus) => status === InteractionStatus.None),
