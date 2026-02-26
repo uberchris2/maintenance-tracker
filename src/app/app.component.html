@@ -13,10 +13,10 @@
   </button>
   <div class="collapse navbar-collapse" [ngbCollapse]="navbarCollapsed">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" [class.active]="currentUrl == '/home' || currentUrl == '/'">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link" routerLink="/home">Home</a>
       </li>
-      <li class="nav-item" [class.active]="currentUrl == '/fleet'">
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/fleet">Fleet</a>
       </li>
     </ul>
