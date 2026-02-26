@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/vehicle';
-import { NgIf } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-update-vehicle',
     templateUrl: './update-vehicle.component.html',
     styleUrls: ['./update-vehicle.component.css'],
-    imports: [RouterLink, NgIf, FormsModule]
+    imports: [RouterLink, FormsModule]
 })
 export class UpdateVehicleComponent implements OnInit {
 

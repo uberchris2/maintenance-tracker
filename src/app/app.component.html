@@ -3,7 +3,7 @@
   size="medium"
   color="#fff"
   type="ball-clip-rotate">
- <p style="font-size: 20px; color: white">Loading...</p>
+  <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -20,9 +20,11 @@
         <a class="nav-link" routerLink="/fleet">Fleet</a>
       </li>
     </ul>
-    <button class="btn btn-secondary" type="submit" *ngIf="loggedIn" (click)="logout()">
-      <fa-icon [icon]="faSignOutAlt"></fa-icon>
-    </button>
+    @if (loggedIn) {
+      <button class="btn btn-secondary" type="submit" (click)="logout()">
+        <fa-icon [icon]="faSignOutAlt"></fa-icon>
+      </button>
+    }
   </div>
 </nav>
 

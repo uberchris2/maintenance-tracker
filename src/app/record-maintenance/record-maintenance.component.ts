@@ -11,13 +11,13 @@ import { OverwriteReceiptModalComponent } from '../overwrite-receipt-modal/overw
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-record-maintenance',
     templateUrl: './record-maintenance.component.html',
     styleUrls: ['./record-maintenance.component.css'],
-    imports: [RouterLink, FormsModule, NgIf, NgbTypeahead, NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgFor, NgbDropdownButtonItem, NgbDropdownItem, NgbProgressbar, DatePipe]
+    imports: [RouterLink, FormsModule, NgbTypeahead, NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgbDropdownButtonItem, NgbDropdownItem, NgbProgressbar, DatePipe]
 })
 export class RecordMaintenanceComponent implements OnInit {
   @ViewChild('receiptInput', { static: true }) receiptInput;

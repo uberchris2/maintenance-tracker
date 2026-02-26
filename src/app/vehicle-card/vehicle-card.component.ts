@@ -4,7 +4,7 @@ import { VehicleService } from '../services/vehicle.service';
 import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { faPlus, faEdit, faTrash, faShare } from '@fortawesome/free-solid-svg-icons';
-import { NgIf } from '@angular/common';
+
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
@@ -12,7 +12,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
     selector: 'app-vehicle-card',
     templateUrl: './vehicle-card.component.html',
     styleUrls: ['./vehicle-card.component.css'],
-    imports: [NgIf, RouterLink, FaIconComponent]
+    imports: [RouterLink, FaIconComponent]
 })
 export class VehicleCardComponent implements OnInit {
 

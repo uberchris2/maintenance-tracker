@@ -7,14 +7,14 @@ import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { NgxSpinnerComponent } from 'ngx-spinner';
 import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
-import { NgIf } from '@angular/common';
+
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    imports: [NgxSpinnerComponent, RouterLink, NgbCollapse, NgIf, FaIconComponent, RouterOutlet]
+    imports: [NgxSpinnerComponent, RouterLink, NgbCollapse, FaIconComponent, RouterOutlet]
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'maintenance-ui';

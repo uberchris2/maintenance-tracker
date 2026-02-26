@@ -10,28 +10,38 @@
   <div class="form-group">
     <label for="year">Year</label>
     <select class="form-control form-control-lg" id="year" name="year" (change)="yearSelected()" [(ngModel)]="year">
-      <option *ngFor="let year of years" [value]="year">{{year}}</option>
+      @for (year of years; track year) {
+        <option [value]="year">{{year}}</option>
+      }
     </select>
   </div>
   <div class="form-group">
     <label for="make">Make</label>
     <select class="form-control form-control-lg" id="make" name="make" (change)="makeSelected()" [(ngModel)]="make" [disabled]="!makes">
-      <option *ngFor="let make of makes" [ngValue]="make">{{make.make_display}}</option>
+      @for (make of makes; track make) {
+        <option [ngValue]="make">{{make.make_display}}</option>
+      }
     </select>
   </div>
   <div class="form-group">
     <label for="model">Model</label>
     <select class="form-control form-control-lg" id="model" name="model" (change)="modelSelected()" [(ngModel)]="model" [disabled]="!models">
-      <option *ngFor="let model of models" [value]="model">{{model}}</option>
+      @for (model of models; track model) {
+        <option [value]="model">{{model}}</option>
+      }
     </select>
   </div>
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control form-control-lg" [class.is-invalid]="nameField.invalid && (nameField.dirty || nameField.touched)" 
-    id="name" name="name" [(ngModel)]="name" [disabled]="!model" required #nameField="ngModel">
-    <div *ngIf="nameField.invalid && (nameField.dirty || nameField.touched)" class="invalid-feedback">
-      <div *ngIf="nameField.errors.required">Please enter a name for the vehicle.</div>
-    </div>
+    <input type="text" class="form-control form-control-lg" [class.is-invalid]="nameField.invalid && (nameField.dirty || nameField.touched)"
+      id="name" name="name" [(ngModel)]="name" [disabled]="!model" required #nameField="ngModel">
+    @if (nameField.invalid && (nameField.dirty || nameField.touched)) {
+      <div class="invalid-feedback">
+        @if (nameField.errors.required) {
+          <div>Please enter a name for the vehicle.</div>
+        }
+      </div>
+    }
   </div>
   <div class="form-group">
     <label for="mileage">Mileage</label>

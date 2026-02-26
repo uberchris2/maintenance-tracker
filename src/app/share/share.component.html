@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
       <h1>
-        <a routerLink="/home">Home</a> > {{vehicleMaintenance?.name}} 
+        <a routerLink="/home">Home</a> > {{vehicleMaintenance?.name}}
       </h1>
     </div>
   </div>
@@ -23,21 +23,25 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let maintenance of vehicleMaintenance?.maintenance">
-      <td>{{maintenance.date | date}}</td>
-      <td>{{maintenance.mileage | number}}</td>
-      <td>{{maintenance.item}}</td>
-      <td class="fit">
-        <div class="btn-group">
-          <button class="btn btn-secondary" [disabled]="!maintenance.receipt" (click)="downloadReceipt(maintenance.receipt)" title="Download receipt">
-            <fa-icon [icon]="faReceipt"></fa-icon>
-          </button>
-          <button class="btn btn-secondary" placement="bottom" [ngbPopover]="maintenance.notes" popoverTitle="Notes" [autoClose]="'outside'" [disabled]="!maintenance.notes" title="View notes">
-            <fa-icon [icon]="faStickyNote"></fa-icon>
-          </button>
-        </div>
-      </td>
-    </tr>
-    <td *ngIf="vehicleMaintenance?.maintenance.length == 0" colspan="4">There is currently no recorded maintenance for this vehicle.</td>
+    @for (maintenance of vehicleMaintenance?.maintenance; track maintenance) {
+      <tr>
+        <td>{{maintenance.date | date}}</td>
+        <td>{{maintenance.mileage | number}}</td>
+        <td>{{maintenance.item}}</td>
+        <td class="fit">
+          <div class="btn-group">
+            <button class="btn btn-secondary" [disabled]="!maintenance.receipt" (click)="downloadReceipt(maintenance.receipt)" title="Download receipt">
+              <fa-icon [icon]="faReceipt"></fa-icon>
+            </button>
+            <button class="btn btn-secondary" placement="bottom" [ngbPopover]="maintenance.notes" popoverTitle="Notes" [autoClose]="'outside'" [disabled]="!maintenance.notes" title="View notes">
+              <fa-icon [icon]="faStickyNote"></fa-icon>
+            </button>
+          </div>
+        </td>
+      </tr>
+    }
+    @if (vehicleMaintenance?.maintenance.length == 0) {
+      <td colspan="4">There is currently no recorded maintenance for this vehicle.</td>
+    }
   </tbody>
 </table>

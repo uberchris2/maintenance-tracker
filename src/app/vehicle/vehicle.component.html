@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
       <h1>
-        <a routerLink="/fleet">Fleet</a> > {{vehicleMaintenance?.name}} 
+        <a routerLink="/fleet">Fleet</a> > {{vehicleMaintenance?.name}}
         <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}"><span style="font-size: 0.7em;"><fa-icon [icon]="faPen"></fa-icon></span></a>
       </h1>
     </div>
@@ -14,23 +14,27 @@
   <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}">{{vehicleMaintenance?.mileage | number}} &nbsp;<fa-icon [icon]="faPen"></fa-icon></a>
 </p>
 
-<p *ngIf="vehicleMaintenance?.shared">
-  Shared at <a routerLink="/share/{{vehicleMaintenance?.id}}">https://wrench.cafe/share/{{vehicleMaintenance?.id}}</a>
-  &nbsp;
-  <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}"><fa-icon [icon]="faPen"></fa-icon></a>
-</p>
+@if (vehicleMaintenance?.shared) {
+  <p>
+    Shared at <a routerLink="/share/{{vehicleMaintenance?.id}}">https://wrench.cafe/share/{{vehicleMaintenance?.id}}</a>
+    &nbsp;
+    <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}"><fa-icon [icon]="faPen"></fa-icon></a>
+  </p>
+}
 
-<p *ngIf="!vehicleMaintenance?.shared">
-  Currently not shared
-  &nbsp;
-  <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}"><fa-icon [icon]="faPen"></fa-icon></a>
-</p>
+@if (!vehicleMaintenance?.shared) {
+  <p>
+    Currently not shared
+    &nbsp;
+    <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}"><fa-icon [icon]="faPen"></fa-icon></a>
+  </p>
+}
 
 <a routerLink="/recordMaintenance/{{vehicleMaintenance?.id}}">
-    <button class="btn btn-primary" title="Add a new maintenance record for this vehicle">
-      <fa-icon [icon]="faPlus"></fa-icon>
-    </button>
-  </a>
+  <button class="btn btn-primary" title="Add a new maintenance record for this vehicle">
+    <fa-icon [icon]="faPlus"></fa-icon>
+  </button>
+</a>
 
 <table class="table table-hover">
   <thead>
@@ -45,30 +49,38 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let maintenance of vehicleMaintenance?.maintenance">
-      <td>{{maintenance.date | date}}</td>
-      <td>{{maintenance.mileage | number}}</td>
-      <td>{{maintenance.item}}</td>
-      <td>{{maintenance.dueDate | date}} <span class="badge badge-warning" *ngIf="today > maintenance.dueDate">Due</span></td>
-      <td>{{maintenance.dueMileage | number}} <span class="badge badge-warning" *ngIf="vehicleMaintenance.mileage > maintenance.dueMileage">Due</span></td>
-      <td class="fit">
-        <div class="btn-group">
-          <button class="btn btn-secondary" [disabled]="!maintenance.receipt" (click)="downloadReceipt(maintenance.receipt)" title="Download receipt">
-            <fa-icon [icon]="faReceipt"></fa-icon>
-          </button>
-          <button class="btn btn-secondary" placement="bottom" [ngbPopover]="maintenance.notes" popoverTitle="Notes" [autoClose]="'outside'" [disabled]="!maintenance.notes" title="View notes">
-            <fa-icon [icon]="faStickyNote"></fa-icon>
-          </button>
-          <a [routerLink]="'/updateMaintenance/' + vehicleMaintenance?.id + '/' + maintenance.id" class="btn btn-secondary" title="Edit this maintenance record">
-            <fa-icon [icon]="faEdit"></fa-icon>
-          </a>
-          <button class="btn btn-secondary" (click)="delete(maintenance.id)" title="Delete this maintenance record">
-            <fa-icon [icon]="faTrash"></fa-icon>
-          </button>
-        </div>
-      </td>
-    </tr>
-    <td *ngIf="vehicleMaintenance?.maintenance.length == 0" colspan="6">There is currently no recorded maintenance for this vehicle. Click one of the plus (+) buttons to add some!</td>
+    @for (maintenance of vehicleMaintenance?.maintenance; track maintenance) {
+      <tr>
+        <td>{{maintenance.date | date}}</td>
+        <td>{{maintenance.mileage | number}}</td>
+        <td>{{maintenance.item}}</td>
+        <td>{{maintenance.dueDate | date}} @if (today > maintenance.dueDate) {
+          <span class="badge badge-warning">Due</span>
+        }</td>
+        <td>{{maintenance.dueMileage | number}} @if (vehicleMaintenance.mileage > maintenance.dueMileage) {
+          <span class="badge badge-warning">Due</span>
+        }</td>
+        <td class="fit">
+          <div class="btn-group">
+            <button class="btn btn-secondary" [disabled]="!maintenance.receipt" (click)="downloadReceipt(maintenance.receipt)" title="Download receipt">
+              <fa-icon [icon]="faReceipt"></fa-icon>
+            </button>
+            <button class="btn btn-secondary" placement="bottom" [ngbPopover]="maintenance.notes" popoverTitle="Notes" [autoClose]="'outside'" [disabled]="!maintenance.notes" title="View notes">
+              <fa-icon [icon]="faStickyNote"></fa-icon>
+            </button>
+            <a [routerLink]="'/updateMaintenance/' + vehicleMaintenance?.id + '/' + maintenance.id" class="btn btn-secondary" title="Edit this maintenance record">
+              <fa-icon [icon]="faEdit"></fa-icon>
+            </a>
+            <button class="btn btn-secondary" (click)="delete(maintenance.id)" title="Delete this maintenance record">
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+          </div>
+        </td>
+      </tr>
+    }
+    @if (vehicleMaintenance?.maintenance.length == 0) {
+      <td colspan="6">There is currently no recorded maintenance for this vehicle. Click one of the plus (+) buttons to add some!</td>
+    }
   </tbody>
 </table>
 

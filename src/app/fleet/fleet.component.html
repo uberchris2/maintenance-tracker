@@ -7,7 +7,9 @@
 </div>
 
 <div class="card-columns">
-  <app-vehicle-card *ngFor="let vehicle of vehicles" [vehicle]="vehicle"></app-vehicle-card>
+  @for (vehicle of vehicles; track vehicle) {
+    <app-vehicle-card [vehicle]="vehicle"></app-vehicle-card>
+  }
   <a routerLink="/addVehicle">
     <div class="card text-white bg-primary mb-3">
       <div class="card-body">

@@ -9,13 +9,13 @@ import { NgbModal, NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
 import { faPen, faPlus, faReceipt, faStickyNote, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { NgIf, NgFor, DecimalPipe, DatePipe } from '@angular/common';
+import { DecimalPipe, DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-vehicle',
     templateUrl: './vehicle.component.html',
     styleUrls: ['./vehicle.component.css'],
-    imports: [RouterLink, FaIconComponent, NgIf, NgFor, NgbPopover, DecimalPipe, DatePipe]
+    imports: [RouterLink, FaIconComponent, NgbPopover, DecimalPipe, DatePipe]
 })
 export class VehicleComponent implements OnInit {
 
