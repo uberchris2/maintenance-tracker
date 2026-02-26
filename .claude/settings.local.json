@@ -4,7 +4,12 @@
       "Bash(node --version)",
       "Bash(npm --version)",
       "Bash(python3 -c \"import json,sys; p=json.load\\(sys.stdin\\); print\\(''Angular CLI:'', p.get\\(''devDependencies'',{}\\).get\\(''@angular/cli'',''n/a''\\)\\); print\\(''Angular core:'', p.get\\(''dependencies'',{}\\).get\\(''@angular/core'',''n/a''\\)\\)\")",
-      "Bash(git add -A)"
+      "Bash(git add -A)",
+      "Bash(git commit:*)",
+      "Bash(node node_modules/.bin/ng version)",
+      "Bash(npx @angular/cli@11 version)",
+      "Bash(npx @angular/cli@11 update @angular/core@11 @angular/cli@11 --force --allow-dirty)",
+      "Bash(npm install --legacy-peer-deps)"
     ]
   }
 }
