@@ -97,12 +97,13 @@
       <div class="input-group">
         <select class="form-control form-control-lg" id="intervalMonths" name="intervalMonths" [ngModel]="maintenance.intervalMonths" (ngModelChange)="maintenance.intervalMonths = $event ?? undefined">
           <option [ngValue]="undefined">Select time...</option>
-          <option [ngValue]="1">1 month</option>
           <option [ngValue]="3">3 months</option>
           <option [ngValue]="6">6 months</option>
           <option [ngValue]="9">9 months</option>
           <option [ngValue]="12">1 year</option>
           <option [ngValue]="24">2 years</option>
+          <option [ngValue]="36">3 years</option>
+          <option [ngValue]="60">5 years</option>
         </select>
         <div class="input-group-prepend input-group-append">
           <div class="input-group-text">or</div>
