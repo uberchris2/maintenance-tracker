@@ -5,9 +5,10 @@ import { Vehicle } from '../models/vehicle';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-vehicle',
-  templateUrl: './add-vehicle.component.html',
-  styleUrls: ['./add-vehicle.component.css']
+    selector: 'app-add-vehicle',
+    templateUrl: './add-vehicle.component.html',
+    styleUrls: ['./add-vehicle.component.css'],
+    standalone: false
 })
 export class AddVehicleComponent implements OnInit {
 

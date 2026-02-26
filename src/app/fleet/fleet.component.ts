@@ -4,9 +4,10 @@ import { VehicleService } from '../services/vehicle.service';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-fleet',
-  templateUrl: './fleet.component.html',
-  styleUrls: ['./fleet.component.css']
+    selector: 'app-fleet',
+    templateUrl: './fleet.component.html',
+    styleUrls: ['./fleet.component.css'],
+    standalone: false
 })
 export class FleetComponent implements OnInit {
   vehicles: Vehicle[];

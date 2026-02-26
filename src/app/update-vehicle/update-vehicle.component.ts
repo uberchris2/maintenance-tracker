@@ -4,9 +4,10 @@ import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/vehicle';
 
 @Component({
-  selector: 'app-update-vehicle',
-  templateUrl: './update-vehicle.component.html',
-  styleUrls: ['./update-vehicle.component.css']
+    selector: 'app-update-vehicle',
+    templateUrl: './update-vehicle.component.html',
+    styleUrls: ['./update-vehicle.component.css'],
+    standalone: false
 })
 export class UpdateVehicleComponent implements OnInit {
 

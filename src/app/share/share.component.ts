@@ -6,9 +6,10 @@ import { ReceiptService } from '../services/receipt.service';
 import { faReceipt, faStickyNote } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-share',
-  templateUrl: './share.component.html',
-  styleUrls: ['./share.component.css']
+    selector: 'app-share',
+    templateUrl: './share.component.html',
+    styleUrls: ['./share.component.css'],
+    standalone: false
 })
 export class ShareComponent implements OnInit {
 

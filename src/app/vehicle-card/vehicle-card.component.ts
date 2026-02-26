@@ -6,9 +6,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { faPlus, faEdit, faTrash, faShare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-vehicle-card',
-  templateUrl: './vehicle-card.component.html',
-  styleUrls: ['./vehicle-card.component.css']
+    selector: 'app-vehicle-card',
+    templateUrl: './vehicle-card.component.html',
+    styleUrls: ['./vehicle-card.component.css'],
+    standalone: false
 })
 export class VehicleCardComponent implements OnInit {
 

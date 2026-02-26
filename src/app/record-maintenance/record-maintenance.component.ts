@@ -12,9 +12,10 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-record-maintenance',
-  templateUrl: './record-maintenance.component.html',
-  styleUrls: ['./record-maintenance.component.css']
+    selector: 'app-record-maintenance',
+    templateUrl: './record-maintenance.component.html',
+    styleUrls: ['./record-maintenance.component.css'],
+    standalone: false
 })
 export class RecordMaintenanceComponent implements OnInit {
   @ViewChild('receiptInput', { static: true }) receiptInput;

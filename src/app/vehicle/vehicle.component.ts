@@ -10,9 +10,10 @@ import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-del
 import { faPen, faPlus, faReceipt, faStickyNote, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-vehicle',
-  templateUrl: './vehicle.component.html',
-  styleUrls: ['./vehicle.component.css']
+    selector: 'app-vehicle',
+    templateUrl: './vehicle.component.html',
+    styleUrls: ['./vehicle.component.css'],
+    standalone: false
 })
 export class VehicleComponent implements OnInit {
 
