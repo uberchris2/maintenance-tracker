@@ -9,7 +9,8 @@
       "Bash(node node_modules/.bin/ng version)",
       "Bash(npx @angular/cli@11 version)",
       "Bash(npx @angular/cli@11 update @angular/core@11 @angular/cli@11 --force --allow-dirty)",
-      "Bash(npm install --legacy-peer-deps)"
+      "Bash(npm install --legacy-peer-deps)",
+      "Bash(npx @angular/cli@12 update @angular/core@12 @angular/cli@12 --force --allow-dirty)"
     ]
   }
 }
