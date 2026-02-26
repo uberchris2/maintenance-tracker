@@ -18,6 +18,7 @@ export class AddVehicleComponent {
   model = '';
   name = '';
   mileage: number | undefined;
+  vin = '';
 
   private vehicleService = inject(VehicleService);
   private router = inject(Router);
@@ -33,7 +34,8 @@ export class AddVehicleComponent {
       model: this.model,
       name: this.name,
       mileage: this.mileage!,
-      shared: false
+      shared: false,
+      vin: this.vin || undefined
     };
     this.vehicleService.put(newVehicle)
       .subscribe(response => {

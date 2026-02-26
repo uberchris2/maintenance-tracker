@@ -14,6 +14,14 @@
   <a routerLink="/update-vehicle/{{vehicleMaintenance?.id}}">{{vehicleMaintenance?.mileage | number}} &nbsp;<fa-icon [icon]="faPen"></fa-icon></a>
 </p>
 
+@if (vehicleMaintenance?.vin) {
+  <p>
+    VIN: {{vehicleMaintenance?.vin}}
+    &nbsp;
+    <a routerLink="/update-vehicle/{{vehicleMaintenance?.id}}"><fa-icon [icon]="faPen"></fa-icon></a>
+  </p>
+}
+
 @if (vehicleMaintenance?.shared) {
   <p>
     Shared at <a routerLink="/share/{{vehicleMaintenance?.id}}">https://wrench.cafe/share/{{vehicleMaintenance?.id}}</a>

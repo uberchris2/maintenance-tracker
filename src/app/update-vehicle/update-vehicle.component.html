@@ -30,7 +30,20 @@
         <label class="custom-control-label" for="shared">Share this vehicle's maintenance</label>
       </div>
     </div>
-    <button class="btn btn-primary" (click)="submit()" [disabled]="nameField.invalid">Submit</button>
+    <div class="form-group">
+      <label for="vin">VIN <span class="text-muted">(optional)</span></label>
+      <input type="text" class="form-control form-control-lg" [class.is-invalid]="vinField.invalid && (vinField.dirty || vinField.touched)"
+        id="vin" name="vin" [(ngModel)]="vehicle.vin" placeholder="1HGBH41JXMN109186" maxlength="17"
+        pattern="[A-HJ-NPR-Z0-9]{17}" #vinField="ngModel">
+      @if (vinField.invalid && (vinField.dirty || vinField.touched)) {
+        <div class="invalid-feedback">
+          @if (vinField.errors?.['pattern']) {
+            <div>VIN must be exactly 17 alphanumeric characters (no I, O, or Q).</div>
+          }
+        </div>
+      }
+    </div>
+    <button class="btn btn-primary" (click)="submit()" [disabled]="nameField.invalid || vinField.invalid">Submit</button>
     <a class="btn" routerLink="/vehicle/{{vehicle.id}}">Cancel</a>
   </form>
 }

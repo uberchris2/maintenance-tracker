@@ -6,4 +6,5 @@ export interface Vehicle {
   name: string;
   mileage: number;
   shared: boolean;
+  vin?: string;
 }

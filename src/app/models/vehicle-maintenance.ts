@@ -8,6 +8,7 @@ export interface VehicleMaintenance {
   name: string;
   mileage: number;
   shared: boolean;
+  vin?: string;
   userId: string;
   maintenance: Maintenance[];
 }
