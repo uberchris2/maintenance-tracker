@@ -27,6 +27,7 @@
               "src/styles.css"
             ],
             "scripts": [],
+            "allowedCommonJsDependencies": ["events"],
             "aot": false,
             "vendorChunk": true,
             "extractLicenses": false,
