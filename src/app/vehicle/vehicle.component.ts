@@ -52,7 +52,7 @@ export class VehicleComponent implements OnInit {
   }
 
   downloadReceipt(name: string) {
-    this.receiptService.download(name);
+    this.receiptService.download(name).subscribe(authorization => window.open(authorization.url, '_blank'));
   }
 
   private prepareMaintenance(vehicleMaintenance: VehicleMaintenance) {

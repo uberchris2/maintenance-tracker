@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AnonymousCredential, BlobServiceClient, BlockBlobClient, BlockBlobParallelUploadOptions, BlockBlobUploadOptions } from '@azure/storage-blob';
+import { AnonymousCredential, BlockBlobClient, BlockBlobParallelUploadOptions } from '@azure/storage-blob';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { UploadAuthorization } from '../models/upload-authorization';
@@ -14,9 +14,9 @@ export class ReceiptService {
 
   private http = inject(HttpClient);
 
-  uploadReceipt(file: File) {
+  uploadReceipt(file: File): Observable<UploadStatus> {
     return this.http.get<UploadAuthorization>(`api/authorizeReceipt?name=${file.name}`).pipe(switchMap(authorization => {
-      return new Observable(observer => {
+      return new Observable<UploadStatus>(observer => {
         const blockBlobClient = new BlockBlobClient(authorization.url, new AnonymousCredential());
         const progressCallback = e => {
           const status = new UploadStatus(UploadStatusType.Progress, e.loadedBytes / (file.size + 1) * 100);
@@ -31,17 +31,12 @@ export class ReceiptService {
   }));
 }
 
-download(name: string) {
-  return this.http.get<UploadAuthorization>(`api/authorizeReceipt?name=${name}`).subscribe(authorization => {
-    window.open(authorization.url, '_blank');
-  });
+download(name: string): Observable<UploadAuthorization> {
+  return this.http.get<UploadAuthorization>(`api/authorizeReceipt?name=${name}`);
 }
 
-downloadShared(name: string, userId: string, vehicleId: string) {
-  return this.http.get<UploadAuthorization>(`${environment.publicApiEndpoint}api/authorizeReceipt?name=${name}&userId=${userId}&vehicleId=${vehicleId}`)
-    .subscribe(authorization => {
-      window.open(authorization.url, '_blank');
-    });
+downloadShared(name: string, userId: string, vehicleId: string): Observable<UploadAuthorization> {
+  return this.http.get<UploadAuthorization>(`${environment.publicApiEndpoint}api/authorizeReceipt?name=${name}&userId=${userId}&vehicleId=${vehicleId}`);
 }
 
 getAll() {

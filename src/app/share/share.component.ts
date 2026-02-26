@@ -33,7 +33,8 @@ export class ShareComponent implements OnInit {
   }
 
   downloadReceipt(name: string) {
-    this.receiptService.downloadShared(name, this.vehicleMaintenance!.userId, this.vehicleMaintenance!.id);
+    this.receiptService.downloadShared(name, this.vehicleMaintenance!.userId, this.vehicleMaintenance!.id)
+      .subscribe(authorization => window.open(authorization.url, '_blank'));
   }
 
 }
