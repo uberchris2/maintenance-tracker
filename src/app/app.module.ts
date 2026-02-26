@@ -76,53 +76,49 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FleetComponent,
-    VehicleCardComponent,
-    AddVehicleComponent,
-    VehicleComponent,
-    RecordMaintenanceComponent,
-    HomeComponent,
-    PrivacyPolicyComponent,
-    ErrorComponent,
-    FeedbackComponent,
-    UpdateVehicleComponent,
-    ShareComponent,
-    OverwriteReceiptModalComponent,
-    ConfirmDeleteModalComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    HttpClientModule,
-    MsalModule,
-    FormsModule,
-    NgxSpinnerModule,
-    NgbPopoverModule,
-    NgbProgressbarModule,
-    NgbCollapseModule,
-    NgbDropdownModule,
-    FontAwesomeModule,
-    BrowserAnimationsModule,
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
-    { provide: MSAL_INSTANCE, useFactory: MSALInstanceFactory },
-    { provide: MSAL_GUARD_CONFIG, useFactory: MSALGuardConfigFactory },
-    { provide: MSAL_INTERCEPTOR_CONFIG, useFactory: MSALInterceptorConfigFactory },
-    MsalService,
-    MsalGuard,
-    MsalBroadcastService
-  ],
-  bootstrap: [AppComponent, MsalRedirectComponent],
-  entryComponents: [
-    OverwriteReceiptModalComponent,
-    ConfirmDeleteModalComponent
-  ]
+    declarations: [
+        AppComponent,
+        FleetComponent,
+        VehicleCardComponent,
+        AddVehicleComponent,
+        VehicleComponent,
+        RecordMaintenanceComponent,
+        HomeComponent,
+        PrivacyPolicyComponent,
+        ErrorComponent,
+        FeedbackComponent,
+        UpdateVehicleComponent,
+        ShareComponent,
+        OverwriteReceiptModalComponent,
+        ConfirmDeleteModalComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        HttpClientModule,
+        MsalModule,
+        FormsModule,
+        NgxSpinnerModule,
+        NgbPopoverModule,
+        NgbProgressbarModule,
+        NgbCollapseModule,
+        NgbDropdownModule,
+        FontAwesomeModule,
+        BrowserAnimationsModule,
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
+        { provide: MSAL_INSTANCE, useFactory: MSALInstanceFactory },
+        { provide: MSAL_GUARD_CONFIG, useFactory: MSALGuardConfigFactory },
+        { provide: MSAL_INTERCEPTOR_CONFIG, useFactory: MSALInterceptorConfigFactory },
+        MsalService,
+        MsalGuard,
+        MsalBroadcastService
+    ],
+    bootstrap: [AppComponent, MsalRedirectComponent]
 })
 export class AppModule {
   constructor() {
