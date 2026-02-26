@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AnonymousCredential, BlobServiceClient, BlockBlobClient, BlockBlobParallelUploadOptions, BlockBlobUploadOptions } from '@azure/storage-blob';
 import { Observable } from 'rxjs';
@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ReceiptService {
 
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
 
   uploadReceipt(file: File) {
     return this.http.get<UploadAuthorization>(`api/authorizeReceipt?name=${file.name}`).pipe(switchMap(authorization => {

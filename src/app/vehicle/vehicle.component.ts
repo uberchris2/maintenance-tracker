@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { VehicleService } from '../services/vehicle.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MaintenanceService } from '../services/maintenance.service';
@@ -14,7 +14,7 @@ import { DecimalPipe, DatePipe } from '@angular/common';
 @Component({
     selector: 'app-vehicle',
     templateUrl: './vehicle.component.html',
-    styleUrls: ['./vehicle.component.css'],
+    styleUrl: './vehicle.component.css',
     imports: [RouterLink, FaIconComponent, NgbPopover, DecimalPipe, DatePipe]
 })
 export class VehicleComponent implements OnInit {
@@ -28,9 +28,11 @@ export class VehicleComponent implements OnInit {
   faEdit = faEdit;
   faTrash = faTrash;
 
-  constructor(private vehicleService: VehicleService, private route: ActivatedRoute, 
-    private maintenanceService: MaintenanceService, private receiptService: ReceiptService, 
-    private modalService: NgbModal) { }
+  private vehicleService = inject(VehicleService);
+  private route = inject(ActivatedRoute);
+  private maintenanceService = inject(MaintenanceService);
+  private receiptService = inject(ReceiptService);
+  private modalService = inject(NgbModal);
 
   ngOnInit() {
     this.route.params.subscribe(params => {

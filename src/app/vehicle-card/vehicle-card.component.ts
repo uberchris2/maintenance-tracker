@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Vehicle } from '../models/vehicle';
 import { VehicleService } from '../services/vehicle.service';
 import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
@@ -11,10 +11,13 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 @Component({
     selector: 'app-vehicle-card',
     templateUrl: './vehicle-card.component.html',
-    styleUrls: ['./vehicle-card.component.css'],
+    styleUrl: './vehicle-card.component.css',
     imports: [RouterLink, FaIconComponent]
 })
-export class VehicleCardComponent implements OnInit {
+export class VehicleCardComponent {
+
+  private vehicleService = inject(VehicleService);
+  private modalService = inject(NgbModal);
 
   @Input({ required: true }) vehicle!: Vehicle;
   deleted = false;
@@ -22,11 +25,6 @@ export class VehicleCardComponent implements OnInit {
   faEdit = faEdit;
   faTrash = faTrash;
   faShare = faShare;
-
-  constructor(private vehicleService: VehicleService, private modalService: NgbModal) { }
-
-  ngOnInit() {
-  }
 
   delete(event) {
     event.stopPropagation();

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { Maintenance } from '../models/maintenance';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Vehicle } from '../models/vehicle';
@@ -16,7 +16,7 @@ import { DatePipe } from '@angular/common';
 @Component({
     selector: 'app-record-maintenance',
     templateUrl: './record-maintenance.component.html',
-    styleUrls: ['./record-maintenance.component.css'],
+    styleUrl: './record-maintenance.component.css',
     imports: [RouterLink, FormsModule, NgbTypeahead, NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgbDropdownButtonItem, NgbDropdownItem, NgbProgressbar, DatePipe]
 })
 export class RecordMaintenanceComponent implements OnInit {
@@ -41,9 +41,12 @@ export class RecordMaintenanceComponent implements OnInit {
         : this.defaultItemOptions.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
 
-  constructor(private route: ActivatedRoute, private vehicleService: VehicleService, 
-    private maintenanceService: MaintenanceService, private router: Router,
-    private receiptService: ReceiptService, private modalService: NgbModal) { }
+  private route = inject(ActivatedRoute);
+  private vehicleService = inject(VehicleService);
+  private maintenanceService = inject(MaintenanceService);
+  private router = inject(Router);
+  private receiptService = inject(ReceiptService);
+  private modalService = inject(NgbModal);
 
   ngOnInit() {
     this.route.params.subscribe(params => {

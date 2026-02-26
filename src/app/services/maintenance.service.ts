@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Maintenance } from '../models/maintenance';
 import { Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class MaintenanceService {
 
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
 
   put(maintenance: Maintenance) {
     return this.http.put<Maintenance>('api/maintenance', maintenance);

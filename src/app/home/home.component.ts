@@ -1,17 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css'],
+    styleUrl: './home.component.css',
     imports: [RouterLink]
 })
-export class HomeComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class HomeComponent {
 
 }

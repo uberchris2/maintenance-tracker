@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { VehicleMaintenance } from '../models/vehicle-maintenance';
 import { VehicleService } from '../services/vehicle.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -11,7 +11,7 @@ import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'app-share',
     templateUrl: './share.component.html',
-    styleUrls: ['./share.component.css'],
+    styleUrl: './share.component.css',
     imports: [RouterLink, FaIconComponent, NgbPopover, DecimalPipe, DatePipe]
 })
 export class ShareComponent implements OnInit {
@@ -20,7 +20,9 @@ export class ShareComponent implements OnInit {
   faReceipt = faReceipt;
   faStickyNote = faStickyNote;
   
-  constructor(private vehicleService: VehicleService, private route: ActivatedRoute, private receiptService: ReceiptService) { }
+  private vehicleService = inject(VehicleService);
+  private route = inject(ActivatedRoute);
+  private receiptService = inject(ReceiptService);
 
   ngOnInit() {
     this.route.params.subscribe(params => {

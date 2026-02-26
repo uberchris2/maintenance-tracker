@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Feedback } from '../models/feedback';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class FeedbackService {
 
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
 
   post(feedback: Feedback) {
     return this.http.post<Feedback>(`${environment.publicApiEndpoint}api/feedback`, feedback);

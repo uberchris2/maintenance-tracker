@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { YearMakeModelService, Make } from '../services/year-make-model.service';
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/vehicle';
@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
     selector: 'app-add-vehicle',
     templateUrl: './add-vehicle.component.html',
-    styleUrls: ['./add-vehicle.component.css'],
+    styleUrl: './add-vehicle.component.css',
     imports: [RouterLink, FormsModule]
 })
 export class AddVehicleComponent implements OnInit {
@@ -24,7 +24,9 @@ export class AddVehicleComponent implements OnInit {
   name = '';
   mileage: number | undefined;
 
-  constructor(private yearMakeModelService: YearMakeModelService, private vehicleService: VehicleService, private router: Router) { }
+  private yearMakeModelService = inject(YearMakeModelService);
+  private vehicleService = inject(VehicleService);
+  private router = inject(Router);
 
   ngOnInit() {
     this.yearMakeModelService.getYears().subscribe(years => this.years = years);

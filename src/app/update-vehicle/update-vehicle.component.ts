@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/vehicle';
@@ -8,14 +8,16 @@ import { FormsModule } from '@angular/forms';
 @Component({
     selector: 'app-update-vehicle',
     templateUrl: './update-vehicle.component.html',
-    styleUrls: ['./update-vehicle.component.css'],
+    styleUrl: './update-vehicle.component.css',
     imports: [RouterLink, FormsModule]
 })
 export class UpdateVehicleComponent implements OnInit {
 
   vehicle: Vehicle | undefined;
 
-  constructor(private route: ActivatedRoute, private vehicleService: VehicleService, private router: Router) { }
+  private route = inject(ActivatedRoute);
+  private vehicleService = inject(VehicleService);
+  private router = inject(Router);
 
   ngOnInit() {
     this.route.params.subscribe(params => {

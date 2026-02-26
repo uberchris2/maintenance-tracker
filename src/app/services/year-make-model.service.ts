@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class YearMakeModelService {
 
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
 
   getYears(): Observable<number[]> {
     return this.http.get<{ Years: { max_year: number; min_year: number } }>('yearmakemodel/year')

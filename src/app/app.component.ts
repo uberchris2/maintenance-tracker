@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Router, NavigationEnd, RouterLink, RouterOutlet } from '@angular/router';
 import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
 import { InteractionStatus } from '@azure/msal-browser';
@@ -13,7 +13,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+    styleUrl: './app.component.css',
     imports: [NgxSpinnerComponent, RouterLink, NgbCollapse, FaIconComponent, RouterOutlet]
 })
 export class AppComponent implements OnInit, OnDestroy {
@@ -25,8 +25,9 @@ export class AppComponent implements OnInit, OnDestroy {
   faSignOutAlt = faSignOutAlt;
   private readonly destroying$ = new Subject<void>();
 
-  constructor(private msalBroadcastService: MsalBroadcastService, private authService: MsalService,
-    private router: Router) { }
+  private msalBroadcastService = inject(MsalBroadcastService);
+  private authService = inject(MsalService);
+  private router = inject(Router);
 
   ngOnInit(): void {
     this.authService.handleRedirectObservable().subscribe({
