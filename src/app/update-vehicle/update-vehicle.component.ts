@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class UpdateVehicleComponent implements OnInit {
 
-  vehicle: Vehicle;
+  vehicle: Vehicle | undefined;
 
   constructor(private route: ActivatedRoute, private vehicleService: VehicleService, private router: Router) { }
 
@@ -26,9 +26,9 @@ export class UpdateVehicleComponent implements OnInit {
   }
 
   submit() {
-    this.vehicleService.put(this.vehicle)
+    this.vehicleService.put(this.vehicle!)
       .subscribe(() => {
-        this.router.navigateByUrl(`/vehicle/${this.vehicle.id}`);
+        this.router.navigateByUrl(`/vehicle/${this.vehicle!.id}`);
       });
   }
 

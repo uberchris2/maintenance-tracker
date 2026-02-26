@@ -7,7 +7,6 @@
     "declaration": false,
     "module": "es2022",
     "moduleResolution": "bundler",
-    "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
     "typeRoots": [
@@ -17,6 +16,7 @@
       "es2022",
       "dom"
     ],
-    "useDefineForClassFields": false
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true
   }
 }

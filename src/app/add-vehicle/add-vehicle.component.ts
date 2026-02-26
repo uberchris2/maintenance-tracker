@@ -14,15 +14,15 @@ import { FormsModule } from '@angular/forms';
 })
 export class AddVehicleComponent implements OnInit {
 
-  years: number[];
-  makes: Make[];
-  models: string[];
+  years: number[] | undefined;
+  makes: Make[] | undefined;
+  models: string[] | undefined;
 
-  year: number;
-  make: Make;
-  model: string;
+  year: number | undefined;
+  make: Make | undefined;
+  model: string | undefined;
   name = '';
-  mileage: number;
+  mileage: number | undefined;
 
   constructor(private yearMakeModelService: YearMakeModelService, private vehicleService: VehicleService, private router: Router) { }
 
@@ -31,10 +31,10 @@ export class AddVehicleComponent implements OnInit {
   }
 
   yearSelected() {
-    this.makes = null;
-    this.models = null;
-    this.make = null;
-    this.model = null;
+    this.makes = undefined;
+    this.models = undefined;
+    this.make = undefined;
+    this.model = undefined;
     this.name = '';
     if (this.year) {
       this.yearMakeModelService.getMakes(this.year).subscribe(makes => this.makes = makes);
@@ -42,29 +42,31 @@ export class AddVehicleComponent implements OnInit {
   }
 
   makeSelected() {
-    this.models = null;
-    this.model = null;
+    this.models = undefined;
+    this.model = undefined;
     this.name = '';
     if (this.make) {
-      this.yearMakeModelService.getModels(this.year, this.make.make_id).subscribe(models => this.models = models);
+      this.yearMakeModelService.getModels(this.year!, this.make.make_id).subscribe(models => this.models = models);
     }
   }
 
   modelSelected() {
     if (this.model) {
-      this.name = `${this.year} ${this.make.make_display} ${this.model}`;
+      this.name = `${this.year} ${this.make!.make_display} ${this.model}`;
     } else {
       this.name = '';
     }
   }
 
   add() {
-    const newVehicle = new Vehicle();
-    newVehicle.year = this.year;
-    newVehicle.make = this.make.make_display;
-    newVehicle.model = this.model;
-    newVehicle.name = this.name;
-    newVehicle.mileage = this.mileage;
+    const newVehicle: Vehicle = {
+      year: this.year!,
+      make: this.make!.make_display,
+      model: this.model!,
+      name: this.name,
+      mileage: this.mileage!,
+      shared: false
+    };
     this.vehicleService.put(newVehicle)
       .subscribe(response => {
         this.router.navigateByUrl('/fleet');

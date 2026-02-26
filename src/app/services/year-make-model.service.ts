@@ -11,10 +11,10 @@ export class YearMakeModelService {
   constructor(private http: HttpClient) { }
 
   getYears(): Observable<number[]> {
-    return this.http.get('yearmakemodel/year')
+    return this.http.get<{ Years: { max_year: number; min_year: number } }>('yearmakemodel/year')
       .pipe(map(
-        (response: any) => {
-          const list = [];
+        (response) => {
+          const list: number[] = [];
           for (let i = response.Years.max_year; i >= response.Years.min_year; i--) {
             list.push(i);
           }
@@ -23,23 +23,23 @@ export class YearMakeModelService {
   }
 
   getMakes(year: number): Observable<Make[]> {
-    return this.http.get(`yearmakemodel/make?year=${year}`)
+    return this.http.get<{ Makes: Make[] }>(`yearmakemodel/make?year=${year}`)
       .pipe(map(
-        (response: any) => {
+        (response) => {
           return response.Makes;
         }));
   }
 
   getModels(year: number, make_id: string): Observable<string[]> {
-    return this.http.get(`yearmakemodel/model?year=${year}&make=${make_id}`)
+    return this.http.get<{ Models: { model_name: string }[] }>(`yearmakemodel/model?year=${year}&make=${make_id}`)
       .pipe(map(
-        (response: any) => {
+        (response) => {
           return response.Models.map(model => model.model_name);
         }));
   }
 }
 
-export class Make {
+export interface Make {
   make_id: string;
   make_display: string;
 }

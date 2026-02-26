@@ -19,7 +19,7 @@ import { DecimalPipe, DatePipe } from '@angular/common';
 })
 export class VehicleComponent implements OnInit {
 
-  vehicleMaintenance: VehicleMaintenance;
+  vehicleMaintenance: VehicleMaintenance | undefined;
   today = new Date();
   faPen = faPen;
   faPlus = faPlus;
@@ -44,7 +44,7 @@ export class VehicleComponent implements OnInit {
   delete(id: string) {
     this.modalService.open(ConfirmDeleteModalComponent).result.then((response) => {
       this.maintenanceService.delete(id).subscribe(() => {
-        this.vehicleMaintenance.maintenance = this.vehicleMaintenance.maintenance.filter(m => m.id !== id);
+        this.vehicleMaintenance!.maintenance = this.vehicleMaintenance!.maintenance.filter(m => m.id !== id);
       });
     }, (dismissal) => {});
   }
@@ -55,7 +55,7 @@ export class VehicleComponent implements OnInit {
 
   private prepareMaintenance(vehicleMaintenance: VehicleMaintenance) {
     //this function relies on the server sorting by most recent
-    var completedItems = [];
+    const completedItems: string[] = [];
     for (let m of vehicleMaintenance.maintenance) {
       if (!completedItems.includes(m.item)) {
         completedItems.push(m.item);

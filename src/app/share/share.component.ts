@@ -16,7 +16,7 @@ import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ShareComponent implements OnInit {
 
-  vehicleMaintenance: VehicleMaintenance;
+  vehicleMaintenance: VehicleMaintenance | undefined;
   faReceipt = faReceipt;
   faStickyNote = faStickyNote;
   
@@ -31,7 +31,7 @@ export class ShareComponent implements OnInit {
   }
 
   downloadReceipt(name: string) {
-    this.receiptService.downloadShared(name, this.vehicleMaintenance.userId, this.vehicleMaintenance.id);
+    this.receiptService.downloadShared(name, this.vehicleMaintenance!.userId, this.vehicleMaintenance!.id);
   }
 
 }

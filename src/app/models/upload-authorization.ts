@@ -1,3 +1,3 @@
-export class UploadAuthorization {
+export interface UploadAuthorization {
   url: string;
 }

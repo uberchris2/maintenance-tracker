@@ -14,7 +14,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
     imports: [VehicleCardComponent, RouterLink, FaIconComponent]
 })
 export class FleetComponent implements OnInit {
-  vehicles: Vehicle[];
+  vehicles: Vehicle[] | undefined;
   faPlus = faPlus;
 
   constructor(private vehicleService: VehicleService) {  }

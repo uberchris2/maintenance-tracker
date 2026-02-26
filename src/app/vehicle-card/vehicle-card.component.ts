@@ -16,7 +16,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 })
 export class VehicleCardComponent implements OnInit {
 
-  @Input() vehicle: Vehicle;
+  @Input({ required: true }) vehicle!: Vehicle;
   deleted = false;
   faPlus = faPlus;
   faEdit = faEdit;
@@ -31,7 +31,7 @@ export class VehicleCardComponent implements OnInit {
   delete(event) {
     event.stopPropagation();
     this.modalService.open(ConfirmDeleteModalComponent).result.then((response) => {
-      this.vehicleService.delete(this.vehicle.id).subscribe(() => this.deleted = true);
+      this.vehicleService.delete(this.vehicle.id!).subscribe(() => this.deleted = true);
     }, (dismissal) => {});
   }
 

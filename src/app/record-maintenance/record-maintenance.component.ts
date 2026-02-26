@@ -22,11 +22,11 @@ import { DatePipe } from '@angular/common';
 export class RecordMaintenanceComponent implements OnInit {
   @ViewChild('receiptInput', { static: true }) receiptInput;
 
-  vehicle: Vehicle;
-  maintenance = new Maintenance();
+  vehicle: Vehicle | undefined;
+  maintenance: Maintenance = { id: '', vehicleId: '', userId: '', item: '', mileage: 0, date: new Date(), notes: '', receipt: '', intervalMonths: 0, intervalMileage: 0, dueDate: undefined, dueMileage: undefined };
   uploading = false;
   uploadProgress = 0;
-  receipts: Array<string>;
+  receipts: Array<string> | undefined;
   previousSuccess = false;
 
   defaultItemOptions = ['Engine oil', 'Air filter', 'Fuel filter', 'Tires replaced', 'Tires rotated', 
@@ -49,7 +49,7 @@ export class RecordMaintenanceComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.vehicleService.get(params['vehicleId']).subscribe(vehicle => {
         this.vehicle = vehicle;
-        this.maintenance.vehicleId = vehicle.id;
+        this.maintenance.vehicleId = vehicle.id!;
       });
       if ('maintenanceId' in params) {
         this.maintenanceService.get(params.maintenanceId).subscribe(maintenance => {
@@ -63,7 +63,7 @@ export class RecordMaintenanceComponent implements OnInit {
   add() {
     this.maintenanceService.put(this.maintenance)
       .subscribe(response => {
-        this.router.navigateByUrl(`/vehicle/${this.vehicle.id}`);
+        this.router.navigateByUrl(`/vehicle/${this.vehicle!.id}`);
       });
   }
 
@@ -84,7 +84,7 @@ export class RecordMaintenanceComponent implements OnInit {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       const file: File = fileList[0];
-      if (this.receipts.includes(file.name)) {
+      if (this.receipts?.includes(file.name)) {
         this.modalService.open(OverwriteReceiptModalComponent).result.then((response) => {
           this.uploadReceipt(file);
         }, (dismissal) => {});
@@ -111,7 +111,7 @@ export class RecordMaintenanceComponent implements OnInit {
   }
 
   removeReceipt() {
-    this.maintenance.receipt = null;
+    this.maintenance.receipt = '';
   }
 
   dismissSuccess() {

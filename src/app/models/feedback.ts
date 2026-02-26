@@ -1,4 +1,4 @@
-export class Feedback {
+export interface Feedback {
   message: string;
   email: string;
 }

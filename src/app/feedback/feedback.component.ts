@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class FeedbackComponent implements OnInit {
 
-  feedback = new Feedback();
+  feedback: Feedback = { message: '', email: '' };
   submitted = false;
 
   constructor(private feedbackService: FeedbackService) { }

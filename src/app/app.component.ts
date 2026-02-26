@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'maintenance-ui';
   loggedIn = false;
   // isIframe: boolean;
-  currentUrl: string;
+  currentUrl: string = '';
   navbarCollapsed = true;
   faSignOutAlt = faSignOutAlt;
   private readonly destroying$ = new Subject<void>();
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.destroying$.next(null);
+    this.destroying$.next();
     this.destroying$.complete();
   }
 

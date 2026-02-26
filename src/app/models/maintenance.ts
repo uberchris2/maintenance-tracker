@@ -1,4 +1,4 @@
-export class Maintenance {
+export interface Maintenance {
   id: string;
   vehicleId: string;
   userId: string;
@@ -10,6 +10,6 @@ export class Maintenance {
   intervalMonths: number;
   intervalMileage: number;
   //only used for view
-  dueDate: Date;
-  dueMileage: number;
+  dueDate?: Date;
+  dueMileage?: number;
 }
