@@ -6,35 +6,47 @@
   </div>
 </div>
 
-<form>
+<form #vehicleForm="ngForm">
   <div class="form-group">
     <label for="year">Year</label>
-    <select class="form-control form-control-lg" id="year" name="year" (change)="yearSelected()" [(ngModel)]="year">
-      @for (year of years; track year) {
-        <option [value]="year">{{year}}</option>
-      }
-    </select>
+    <input type="number" class="form-control form-control-lg" [class.is-invalid]="yearField.invalid && (yearField.dirty || yearField.touched)"
+      id="year" name="year" [(ngModel)]="year" (ngModelChange)="updateName()" placeholder="2024" required #yearField="ngModel">
+    @if (yearField.invalid && (yearField.dirty || yearField.touched)) {
+      <div class="invalid-feedback">
+        @if (yearField.errors.required) {
+          <div>Please enter a year.</div>
+        }
+      </div>
+    }
   </div>
   <div class="form-group">
     <label for="make">Make</label>
-    <select class="form-control form-control-lg" id="make" name="make" (change)="makeSelected()" [(ngModel)]="make" [disabled]="!makes">
-      @for (make of makes; track make) {
-        <option [ngValue]="make">{{make.make_display}}</option>
-      }
-    </select>
+    <input type="text" class="form-control form-control-lg" [class.is-invalid]="makeField.invalid && (makeField.dirty || makeField.touched)"
+      id="make" name="make" [(ngModel)]="make" (ngModelChange)="updateName()" placeholder="Toyota" required #makeField="ngModel">
+    @if (makeField.invalid && (makeField.dirty || makeField.touched)) {
+      <div class="invalid-feedback">
+        @if (makeField.errors.required) {
+          <div>Please enter a make.</div>
+        }
+      </div>
+    }
   </div>
   <div class="form-group">
     <label for="model">Model</label>
-    <select class="form-control form-control-lg" id="model" name="model" (change)="modelSelected()" [(ngModel)]="model" [disabled]="!models">
-      @for (model of models; track model) {
-        <option [value]="model">{{model}}</option>
-      }
-    </select>
+    <input type="text" class="form-control form-control-lg" [class.is-invalid]="modelField.invalid && (modelField.dirty || modelField.touched)"
+      id="model" name="model" [(ngModel)]="model" (ngModelChange)="updateName()" placeholder="Camry" required #modelField="ngModel">
+    @if (modelField.invalid && (modelField.dirty || modelField.touched)) {
+      <div class="invalid-feedback">
+        @if (modelField.errors.required) {
+          <div>Please enter a model.</div>
+        }
+      </div>
+    }
   </div>
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control form-control-lg" [class.is-invalid]="nameField.invalid && (nameField.dirty || nameField.touched)"
-      id="name" name="name" [(ngModel)]="name" [disabled]="!model" required #nameField="ngModel">
+      id="name" name="name" [(ngModel)]="name" required #nameField="ngModel">
     @if (nameField.invalid && (nameField.dirty || nameField.touched)) {
       <div class="invalid-feedback">
         @if (nameField.errors.required) {
@@ -45,8 +57,16 @@
   </div>
   <div class="form-group">
     <label for="mileage">Mileage</label>
-    <input type="number" class="form-control form-control-lg" id="mileage" name="mileage" [(ngModel)]="mileage" placeholder="123456">
+    <input type="number" class="form-control form-control-lg" [class.is-invalid]="mileageField.invalid && (mileageField.dirty || mileageField.touched)"
+      id="mileage" name="mileage" [(ngModel)]="mileage" placeholder="123456" required #mileageField="ngModel">
+    @if (mileageField.invalid && (mileageField.dirty || mileageField.touched)) {
+      <div class="invalid-feedback">
+        @if (mileageField.errors.required) {
+          <div>Please enter the current mileage.</div>
+        }
+      </div>
+    }
   </div>
-  <button class="btn btn-primary" (click)="add()" [disabled]="name == ''">Submit</button>
+  <button class="btn btn-primary" (click)="add()" [disabled]="vehicleForm.invalid">Submit</button>
   <a class="btn" routerLink="/fleet">Cancel</a>
 </form>
