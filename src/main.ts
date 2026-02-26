@@ -1,16 +1,13 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, withHashLocation } from '@angular/router';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app-routing.module';
-import { NgbModule, NgbPopoverModule, NgbProgressbarModule, NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { Interceptor } from './app/interceptor';
-import { DateInterceptor } from './app/date-interceptor';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
+import { apiInterceptor } from './app/interceptor';
+import { dateInterceptor } from './app/date-interceptor';
 import {
   MsalModule, MsalInterceptor, MsalGuardConfiguration, MsalInterceptorConfiguration,
   MSAL_INSTANCE, MSAL_GUARD_CONFIG, MSAL_INTERCEPTOR_CONFIG, MsalService, MsalGuard, MsalBroadcastService
@@ -51,24 +48,18 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   };
 }
 
-if (environment.production) {
-  enableProdMode();
-}
-
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes, withHashLocation()),
-    importProvidersFrom(NgbModule, MsalModule, FormsModule, NgxSpinnerModule, NgbPopoverModule, NgbProgressbarModule, NgbCollapseModule, NgbDropdownModule, FontAwesomeModule),
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
+    importProvidersFrom(MsalModule, NgxSpinnerModule),
     { provide: MSAL_INSTANCE, useFactory: MSALInstanceFactory },
     { provide: MSAL_GUARD_CONFIG, useFactory: MSALGuardConfigFactory },
     { provide: MSAL_INTERCEPTOR_CONFIG, useFactory: MSALInterceptorConfigFactory },
     MsalService,
     MsalGuard,
     MsalBroadcastService,
-    provideHttpClient(withInterceptorsFromDi()),
+    { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
+    provideHttpClient(withInterceptors([apiInterceptor, dateInterceptor]), withInterceptorsFromDi()),
     provideAnimations()
   ]
 }).catch(err => console.error(err));

@@ -1,34 +1,32 @@
-import { HttpRequest, HttpInterceptor, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, EMPTY } from 'rxjs';
+import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { EMPTY } from 'rxjs';
 import { environment } from '../environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-@Injectable()
-export class Interceptor implements HttpInterceptor {
+let callCount = 0;
 
-    callCount = 0;
+export const apiInterceptor: HttpInterceptorFn = (req, next) => {
+    const spinner = inject(NgxSpinnerService);
+    const router = inject(Router);
 
-    constructor(private spinner: NgxSpinnerService, private router: Router) { }
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        this.callCount++;
-        this.spinner.show();
-        if (!request.url.startsWith("http")) {
-            request = request.clone({
-                url: `${environment.apiEndpoint}${request.url}`
-            });
-        }
-        return next.handle(request).pipe(
-            catchError(() => {
-                this.router.navigateByUrl('/error');
-                return EMPTY;
-            }),
-            finalize(() => {
-                this.callCount--;
-                if (this.callCount == 0)
-                    this.spinner.hide();
-            }));
+    callCount++;
+    spinner.show();
+    if (!req.url.startsWith('http')) {
+        req = req.clone({
+            url: `${environment.apiEndpoint}${req.url}`
+        });
     }
-}
+    return next(req).pipe(
+        catchError(() => {
+            router.navigateByUrl('/error');
+            return EMPTY;
+        }),
+        finalize(() => {
+            callCount--;
+            if (callCount === 0)
+                spinner.hide();
+        }));
+};

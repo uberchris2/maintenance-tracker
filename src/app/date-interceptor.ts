@@ -1,52 +1,35 @@
-import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
-@Injectable()
-export class DateInterceptor implements HttpInterceptor {
-  iso8601 = /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/;
+const iso8601 = /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?([+-]\d\d:\d\d|Z)?$/;
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(
-        tap((event: HttpEvent<any>) => {
-            if (event instanceof HttpResponse) {
-                const body = event.body;
-                this.convertToDate(body);
-            }
-        }, (err: any) => {
-            if (err instanceof HttpErrorResponse) {
-                if (err.status === 401) {
-                }
-            }
-        }),
-    );
+function isIso8601(value: unknown): boolean {
+  if (value === null || value === undefined) {
+    return false;
+  }
+  return iso8601.test(value as string);
 }
 
-  convertToDate(body) {
-    if (body === null || body === undefined) {
-      return body;
+function convertToDate(body: unknown): void {
+  if (body === null || body === undefined || typeof body !== 'object') {
+    return;
+  }
+  for (const key of Object.keys(body as object)) {
+    const value = (body as Record<string, unknown>)[key];
+    if (isIso8601(value)) {
+      (body as Record<string, unknown>)[key] = new Date(value as string);
+    } else if (typeof value === 'object') {
+      convertToDate(value);
     }
+  }
+}
 
-    if (typeof body !== 'object') {
-      return body;
-    }
-
-    for (const key of Object.keys(body)) {
-      const value = body[key];
-      if (this.isIso8601(value)) {
-        body[key] = new Date(value);
-      } else if (typeof value === 'object') {
-        this.convertToDate(value);
+export const dateInterceptor: HttpInterceptorFn = (req, next) => {
+  return next(req).pipe(
+    tap((event) => {
+      if (event instanceof HttpResponse) {
+        convertToDate(event.body);
       }
-    }
-  }
-
-  isIso8601(value) {
-    if (value === null || value === undefined) {
-      return false;
-    }
-
-    return this.iso8601.test(value);
-  }
-}
+    })
+  );
+};
