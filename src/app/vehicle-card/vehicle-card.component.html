@@ -2,18 +2,18 @@
   <div class="card text-white bg-primary mb-3 vehicle-card" routerLink="/vehicle/{{vehicle.id}}">
     <div class="card-body">
       <h5 class="card-title">{{vehicle.name}}</h5>
-      <p class="card-text">Last reported mileage is <a routerLink="/updateVehicle/{{vehicle.id}}">{{vehicle.mileage}}</a>.</p>
+      <p class="card-text">Last reported mileage is <a routerLink="/update-vehicle/{{vehicle.id}}">{{vehicle.mileage}}</a>.</p>
       <div class="btn-group">
-        <button class="btn btn-secondary" routerLink="/recordMaintenance/{{vehicle.id}}" title="Record maintenance for this vehicle">
+        <button class="btn btn-secondary" routerLink="/record-maintenance/{{vehicle.id}}" title="Record maintenance for this vehicle">
           <fa-icon [icon]="faPlus"></fa-icon>
         </button>
-        <button class="btn btn-secondary" routerLink="/updateVehicle/{{vehicle.id}}" title="Edit this vehicle">
+        <button class="btn btn-secondary" routerLink="/update-vehicle/{{vehicle.id}}" title="Edit this vehicle">
           <fa-icon [icon]="faEdit"></fa-icon>
         </button>
         <button class="btn btn-secondary" (click)="delete($event)" title="Delete this vehicle">
           <fa-icon [icon]="faTrash"></fa-icon>
         </button>
-        <button class="btn btn-secondary" routerLink="/updateVehicle/{{vehicle.id}}" title="Share maintenance for this vehicle">
+        <button class="btn btn-secondary" routerLink="/update-vehicle/{{vehicle.id}}" title="Share maintenance for this vehicle">
           <fa-icon [icon]="faShare"></fa-icon>
         </button>
       </div>

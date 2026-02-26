@@ -15,16 +15,15 @@ export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'fleet', component: FleetComponent, canActivate: [MsalGuard] },
-  { path: 'addVehicle', component: AddVehicleComponent, canActivate: [MsalGuard] },
+  { path: 'add-vehicle', component: AddVehicleComponent, canActivate: [MsalGuard] },
   { path: 'vehicle/:id', component: VehicleComponent, canActivate: [MsalGuard] },
-  { path: 'recordMaintenance/:vehicleId', component: RecordMaintenanceComponent, canActivate: [MsalGuard] },
-  { path: 'updateVehicle/:vehicleId', component: UpdateVehicleComponent, canActivate: [MsalGuard] },
-  { path: 'updateMaintenance/:vehicleId/:maintenanceId', component: RecordMaintenanceComponent, canActivate: [MsalGuard] },
-  { path: 'privacyPolicy', component: PrivacyPolicyComponent },
+  { path: 'record-maintenance/:vehicleId', component: RecordMaintenanceComponent, canActivate: [MsalGuard] },
+  { path: 'update-vehicle/:vehicleId', component: UpdateVehicleComponent, canActivate: [MsalGuard] },
+  { path: 'update-maintenance/:vehicleId/:maintenanceId', component: RecordMaintenanceComponent, canActivate: [MsalGuard] },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'feedback', component: FeedbackComponent },
   { path: 'share/:vehicleId', component: ShareComponent },
-  // { path: '**', redirectTo: '/error' },
   { path: 'code', component: HomeComponent }, // needed for hash routing
   { path: 'state', component: HomeComponent }, // needed for hash routing
 ];

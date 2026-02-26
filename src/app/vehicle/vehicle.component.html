@@ -3,7 +3,7 @@
     <div class="col">
       <h1>
         <a routerLink="/fleet">Fleet</a> > {{vehicleMaintenance?.name}}
-        <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}"><span style="font-size: 0.7em;"><fa-icon [icon]="faPen"></fa-icon></span></a>
+        <a routerLink="/update-vehicle/{{vehicleMaintenance?.id}}"><span style="font-size: 0.7em;"><fa-icon [icon]="faPen"></fa-icon></span></a>
       </h1>
     </div>
   </div>
@@ -11,14 +11,14 @@
 
 <p>
   Current mileage:
-  <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}">{{vehicleMaintenance?.mileage | number}} &nbsp;<fa-icon [icon]="faPen"></fa-icon></a>
+  <a routerLink="/update-vehicle/{{vehicleMaintenance?.id}}">{{vehicleMaintenance?.mileage | number}} &nbsp;<fa-icon [icon]="faPen"></fa-icon></a>
 </p>
 
 @if (vehicleMaintenance?.shared) {
   <p>
     Shared at <a routerLink="/share/{{vehicleMaintenance?.id}}">https://wrench.cafe/share/{{vehicleMaintenance?.id}}</a>
     &nbsp;
-    <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}"><fa-icon [icon]="faPen"></fa-icon></a>
+    <a routerLink="/update-vehicle/{{vehicleMaintenance?.id}}"><fa-icon [icon]="faPen"></fa-icon></a>
   </p>
 }
 
@@ -26,11 +26,11 @@
   <p>
     Currently not shared
     &nbsp;
-    <a routerLink="/updateVehicle/{{vehicleMaintenance?.id}}"><fa-icon [icon]="faPen"></fa-icon></a>
+    <a routerLink="/update-vehicle/{{vehicleMaintenance?.id}}"><fa-icon [icon]="faPen"></fa-icon></a>
   </p>
 }
 
-<a routerLink="/recordMaintenance/{{vehicleMaintenance?.id}}">
+<a routerLink="/record-maintenance/{{vehicleMaintenance?.id}}">
   <button class="btn btn-primary" title="Add a new maintenance record for this vehicle">
     <fa-icon [icon]="faPlus"></fa-icon>
   </button>
@@ -68,7 +68,7 @@
             <button class="btn btn-secondary" placement="bottom" [ngbPopover]="maintenance.notes" popoverTitle="Notes" [autoClose]="'outside'" [disabled]="!maintenance.notes" title="View notes">
               <fa-icon [icon]="faStickyNote"></fa-icon>
             </button>
-            <a [routerLink]="'/updateMaintenance/' + vehicleMaintenance?.id + '/' + maintenance.id" class="btn btn-secondary" title="Edit this maintenance record">
+            <a [routerLink]="'/update-maintenance/' + vehicleMaintenance?.id + '/' + maintenance.id" class="btn btn-secondary" title="Edit this maintenance record">
               <fa-icon [icon]="faEdit"></fa-icon>
             </a>
             <button class="btn btn-secondary" (click)="delete(maintenance.id)" title="Delete this maintenance record">
@@ -84,7 +84,7 @@
   </tbody>
 </table>
 
-<a routerLink="/recordMaintenance/{{vehicleMaintenance?.id}}">
+<a routerLink="/record-maintenance/{{vehicleMaintenance?.id}}">
   <button class="btn btn-primary" title="Add a new maintenance record for this vehicle">
     <fa-icon [icon]="faPlus"></fa-icon>
   </button>
