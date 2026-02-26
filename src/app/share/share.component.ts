@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { VehicleMaintenance } from '../models/vehicle-maintenance';
 import { VehicleService } from '../services/vehicle.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ReceiptService } from '../services/receipt.service';
 import { faReceipt, faStickyNote } from '@fortawesome/free-solid-svg-icons';
+import { NgFor, NgIf, DecimalPipe, DatePipe } from '@angular/common';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-share',
     templateUrl: './share.component.html',
     styleUrls: ['./share.component.css'],
-    standalone: false
+    imports: [RouterLink, NgFor, FaIconComponent, NgbPopover, NgIf, DecimalPipe, DatePipe]
 })
 export class ShareComponent implements OnInit {
 

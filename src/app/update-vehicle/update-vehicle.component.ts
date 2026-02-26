@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/vehicle';
+import { NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-update-vehicle',
     templateUrl: './update-vehicle.component.html',
     styleUrls: ['./update-vehicle.component.css'],
-    standalone: false
+    imports: [RouterLink, NgIf, FormsModule]
 })
 export class UpdateVehicleComponent implements OnInit {
 

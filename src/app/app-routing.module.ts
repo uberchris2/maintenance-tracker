@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { FleetComponent } from './fleet/fleet.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
@@ -12,7 +11,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { UpdateVehicleComponent } from './update-vehicle/update-vehicle.component';
 import { ShareComponent } from './share/share.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'fleet', component: FleetComponent, canActivate: [MsalGuard] },
@@ -26,13 +25,6 @@ const routes: Routes = [
   { path: 'feedback', component: FeedbackComponent },
   { path: 'share/:vehicleId', component: ShareComponent },
   // { path: '**', redirectTo: '/error' },
-  { path: 'code', component: HomeComponent }, //needed for hash routing
-  { path: 'state', component: HomeComponent }, //needed for hash routing
-
+  { path: 'code', component: HomeComponent }, // needed for hash routing
+  { path: 'state', component: HomeComponent }, // needed for hash routing
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }

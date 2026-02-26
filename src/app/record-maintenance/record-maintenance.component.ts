@@ -1,21 +1,23 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Maintenance } from '../models/maintenance';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Vehicle } from '../models/vehicle';
 import { VehicleService } from '../services/vehicle.service';
 import { MaintenanceService } from '../services/maintenance.service';
 import { UploadStatus, UploadStatusType } from '../models/upload-status';
 import { ReceiptService } from '../services/receipt.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbTypeahead, NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgbDropdownButtonItem, NgbDropdownItem, NgbProgressbar } from '@ng-bootstrap/ng-bootstrap';
 import { OverwriteReceiptModalComponent } from '../overwrite-receipt-modal/overwrite-receipt-modal.component';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { FormsModule } from '@angular/forms';
+import { NgIf, NgFor, DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-record-maintenance',
     templateUrl: './record-maintenance.component.html',
     styleUrls: ['./record-maintenance.component.css'],
-    standalone: false
+    imports: [RouterLink, FormsModule, NgIf, NgbTypeahead, NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgFor, NgbDropdownButtonItem, NgbDropdownItem, NgbProgressbar, DatePipe]
 })
 export class RecordMaintenanceComponent implements OnInit {
   @ViewChild('receiptInput', { static: true }) receiptInput;

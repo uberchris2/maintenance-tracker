@@ -1,16 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterLink, RouterOutlet } from '@angular/router';
 import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
 import { InteractionStatus } from '@azure/msal-browser';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { NgxSpinnerComponent } from 'ngx-spinner';
+import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
+import { NgIf } from '@angular/common';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    standalone: false
+    imports: [NgxSpinnerComponent, RouterLink, NgbCollapse, NgIf, FaIconComponent, RouterOutlet]
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'maintenance-ui';

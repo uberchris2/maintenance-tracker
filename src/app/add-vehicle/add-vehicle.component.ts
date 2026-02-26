@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { YearMakeModelService, Make } from '../services/year-make-model.service';
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/vehicle';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-add-vehicle',
     templateUrl: './add-vehicle.component.html',
     styleUrls: ['./add-vehicle.component.css'],
-    standalone: false
+    imports: [RouterLink, FormsModule, NgFor, NgIf]
 })
 export class AddVehicleComponent implements OnInit {
 

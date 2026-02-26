@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { VehicleService } from '../services/vehicle.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MaintenanceService } from '../services/maintenance.service';
 import { VehicleMaintenance } from '../models/vehicle-maintenance';
 import { addMonths } from 'date-fns';
 import { ReceiptService } from '../services/receipt.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
 import { faPen, faPlus, faReceipt, faStickyNote, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { NgIf, NgFor, DecimalPipe, DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-vehicle',
     templateUrl: './vehicle.component.html',
     styleUrls: ['./vehicle.component.css'],
-    standalone: false
+    imports: [RouterLink, FaIconComponent, NgIf, NgFor, NgbPopover, DecimalPipe, DatePipe]
 })
 export class VehicleComponent implements OnInit {
 
