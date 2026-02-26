@@ -65,7 +65,7 @@ export class VehicleComponent implements OnInit {
           m.dueDate = addMonths(m.date, m.intervalMonths);
         }
         if (m.intervalMileage) {
-          m.dueMileage = m.mileage + m.intervalMileage;
+          m.dueMileage = m.mileage! + m.intervalMileage;
         }
       }
     }

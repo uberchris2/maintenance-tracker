@@ -95,20 +95,20 @@
     <div class="form-group">
       <label for="interval">Interval</label>
       <div class="input-group">
-        <select class="form-control form-control-lg" id="intervalMonths" name="intervalMonths" [(ngModel)]="maintenance.intervalMonths">
-          <option value="undefined">Select time...</option>
-          <option [value]="1">1 month</option>
-          <option [value]="3">3 months</option>
-          <option [value]="6">6 months</option>
-          <option [value]="9">9 months</option>
-          <option [value]="12">1 year</option>
-          <option [value]="24">2 years</option>
+        <select class="form-control form-control-lg" id="intervalMonths" name="intervalMonths" [ngModel]="maintenance.intervalMonths" (ngModelChange)="maintenance.intervalMonths = $event ?? undefined">
+          <option [ngValue]="undefined">Select time...</option>
+          <option [ngValue]="1">1 month</option>
+          <option [ngValue]="3">3 months</option>
+          <option [ngValue]="6">6 months</option>
+          <option [ngValue]="9">9 months</option>
+          <option [ngValue]="12">1 year</option>
+          <option [ngValue]="24">2 years</option>
         </select>
         <div class="input-group-prepend input-group-append">
           <div class="input-group-text">or</div>
         </div>
         <input type="number" class="form-control form-control-lg" [class.is-invalid]="intervalMileage.invalid && (intervalMileage.dirty || intervalMileage.touched)"
-          id="intervalMileage" name="intervalMileage" [(ngModel)]="maintenance.intervalMileage" #intervalMileage="ngModel" placeholder="10000">
+          id="intervalMileage" name="intervalMileage" [ngModel]="maintenance.intervalMileage" (ngModelChange)="maintenance.intervalMileage = $event ?? undefined" #intervalMileage="ngModel" placeholder="10000">
         <div class="input-group-append">
           <div class="input-group-text">miles</div>
         </div>

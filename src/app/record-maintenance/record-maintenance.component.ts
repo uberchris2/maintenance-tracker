@@ -23,7 +23,7 @@ export class RecordMaintenanceComponent implements OnInit {
   @ViewChild('receiptInput', { static: true }) receiptInput!: ElementRef<HTMLInputElement>;
 
   vehicle: Vehicle | undefined;
-  maintenance: Maintenance = { item: '', mileage: 0, date: new Date(), notes: '', receipt: '', intervalMonths: 0, intervalMileage: 0 };
+  maintenance: Maintenance = { item: '', date: new Date(), notes: '', receipt: '' };
   uploading = false;
   uploadProgress = 0;
   receipts: Array<string> | undefined;
@@ -56,6 +56,8 @@ export class RecordMaintenanceComponent implements OnInit {
       });
       if ('maintenanceId' in params) {
         this.maintenanceService.get(params.maintenanceId).subscribe(maintenance => {
+          maintenance.intervalMonths = maintenance.intervalMonths || undefined;
+          maintenance.intervalMileage = maintenance.intervalMileage || undefined;
           this.maintenance = maintenance;
         })
       }
