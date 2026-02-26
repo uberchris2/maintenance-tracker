@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { Maintenance } from '../models/maintenance';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Vehicle } from '../models/vehicle';
@@ -20,7 +20,7 @@ import { DatePipe } from '@angular/common';
     imports: [RouterLink, FormsModule, NgbTypeahead, NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgbDropdownButtonItem, NgbDropdownItem, NgbProgressbar, DatePipe]
 })
 export class RecordMaintenanceComponent implements OnInit {
-  @ViewChild('receiptInput', { static: true }) receiptInput;
+  @ViewChild('receiptInput', { static: true }) receiptInput!: ElementRef<HTMLInputElement>;
 
   vehicle: Vehicle | undefined;
   maintenance: Maintenance = { id: '', vehicleId: '', userId: '', item: '', mileage: 0, date: new Date(), notes: '', receipt: '', intervalMonths: 0, intervalMileage: 0, dueDate: undefined, dueMileage: undefined };

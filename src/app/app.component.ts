@@ -20,7 +20,6 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'maintenance-ui';
   loggedIn = false;
-  // isIframe: boolean;
   navbarCollapsed = true;
   faSignOutAlt = faSignOutAlt;
   private readonly destroying$ = new Subject<void>();
@@ -38,11 +37,6 @@ export class AppComponent implements OnInit, OnDestroy {
       filter((status: InteractionStatus) => status === InteractionStatus.None),
       takeUntil(this.destroying$)
     ).subscribe(() => this.setLoginDisplay());
-
-    // this.msalBroadcastService.msalSubject$.pipe(
-    //   filter((msg: EventMessage) => msg.eventType === EventType.LOGIN_FAILURE),
-    //   takeUntil(this.destroying$)
-    // ).subscribe((result: EventMessage) => this.router.navigate(['unauthorized', result?.error?.message]));
 
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
