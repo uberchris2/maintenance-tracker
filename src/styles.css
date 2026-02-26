@@ -4,6 +4,13 @@
     margin-bottom: 1.5em;
 }
 
+/* ng-bootstrap 18 hardcodes z-index:1055 on the backdrop (Bootstrap 5 value),
+   but our Bootstrap 4 theme sets .modal { z-index:1050 }. Override so the
+   modal window stacks above the backdrop. */
+ngb-modal-window {
+    z-index: 1056 !important;
+}
+
 @media screen and (max-width: 768px) {
     h1{
         font-size: 48px !important;

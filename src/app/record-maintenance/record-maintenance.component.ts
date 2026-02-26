@@ -23,7 +23,7 @@ export class RecordMaintenanceComponent implements OnInit {
   @ViewChild('receiptInput', { static: true }) receiptInput!: ElementRef<HTMLInputElement>;
 
   vehicle: Vehicle | undefined;
-  maintenance: Maintenance = { id: '', vehicleId: '', userId: '', item: '', mileage: 0, date: new Date(), notes: '', receipt: '', intervalMonths: 0, intervalMileage: 0, dueDate: undefined, dueMileage: undefined };
+  maintenance: Maintenance = { item: '', mileage: 0, date: new Date(), notes: '', receipt: '', intervalMonths: 0, intervalMileage: 0 };
   uploading = false;
   uploadProgress = 0;
   receipts: Array<string> | undefined;
