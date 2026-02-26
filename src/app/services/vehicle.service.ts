@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Vehicle } from '../models/vehicle';
 import { Observable } from 'rxjs';
-import { DefaultHttpOptions } from '../default-http-options';
 import { VehicleMaintenance } from '../models/vehicle-maintenance';
 import { environment } from 'src/environments/environment';
 
@@ -30,7 +29,7 @@ export class VehicleService {
   }
 
   put(vehicle: Vehicle) {
-    return this.http.put<Vehicle>('api/vehicles', vehicle, DefaultHttpOptions);
+    return this.http.put<Vehicle>('api/vehicles', vehicle);
   }
 
   delete(id: string) {

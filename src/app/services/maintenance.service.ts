@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Maintenance } from '../models/maintenance';
-import { DefaultHttpOptions } from '../default-http-options';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,7 +11,7 @@ export class MaintenanceService {
   constructor(private http: HttpClient) { }
 
   put(maintenance: Maintenance) {
-    return this.http.put<Maintenance>('api/maintenance', maintenance, DefaultHttpOptions);
+    return this.http.put<Maintenance>('api/maintenance', maintenance);
   }
 
   delete(id: string) {
