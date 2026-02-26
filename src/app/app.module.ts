@@ -10,7 +10,7 @@ import { VehicleCardComponent } from './vehicle-card/vehicle-card.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { RecordMaintenanceComponent } from './record-maintenance/record-maintenance.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { Interceptor } from './interceptor';
 import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -75,8 +75,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   };
 }
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         FleetComponent,
         VehicleCardComponent,
@@ -92,11 +91,9 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
         OverwriteReceiptModalComponent,
         ConfirmDeleteModalComponent
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [AppComponent, MsalRedirectComponent], imports: [BrowserModule,
         AppRoutingModule,
         NgbModule,
-        HttpClientModule,
         MsalModule,
         FormsModule,
         NgxSpinnerModule,
@@ -105,9 +102,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
         NgbCollapseModule,
         NgbDropdownModule,
         FontAwesomeModule,
-        BrowserAnimationsModule,
-    ],
-    providers: [
+        BrowserAnimationsModule], providers: [
         { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
@@ -116,10 +111,9 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
         { provide: MSAL_INTERCEPTOR_CONFIG, useFactory: MSALInterceptorConfigFactory },
         MsalService,
         MsalGuard,
-        MsalBroadcastService
-    ],
-    bootstrap: [AppComponent, MsalRedirectComponent]
-})
+        MsalBroadcastService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {
   constructor() {
   }
