@@ -24,7 +24,8 @@
             ],
             "styles": [
               "src/bootstrap-cyborg.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/ngx-spinner/animations/ball-clip-rotate.css"
             ],
             "scripts": [],
             "allowedCommonJsDependencies": ["events"]
