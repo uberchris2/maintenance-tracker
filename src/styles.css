@@ -11,6 +11,18 @@ ngb-modal-window {
     z-index: 1056 !important;
 }
 
+/* ng-bootstrap typeahead ARIA live region — screen-reader only, must not be visible */
+#ngb-live {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
 @media screen and (max-width: 768px) {
     h1{
         font-size: 48px !important;
