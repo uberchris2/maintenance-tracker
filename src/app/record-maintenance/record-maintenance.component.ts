@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { Maintenance } from '../models/maintenance';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Vehicle } from '../models/vehicle';
+import { VehicleMaintenance } from '../models/vehicle-maintenance';
 import { VehicleService } from '../services/vehicle.service';
 import { MaintenanceService } from '../services/maintenance.service';
 import { UploadStatus, UploadStatusType } from '../models/upload-status';
@@ -22,23 +22,24 @@ import { DatePipe } from '@angular/common';
 export class RecordMaintenanceComponent implements OnInit {
   @ViewChild('receiptInput', { static: true }) receiptInput!: ElementRef<HTMLInputElement>;
 
-  vehicle: Vehicle | undefined;
+  vehicle: VehicleMaintenance | undefined;
   maintenance: Maintenance = { item: '', date: new Date(), notes: '', receipt: '' };
   uploading = false;
   uploadProgress = 0;
   receipts: Array<string> | undefined;
   previousSuccess = false;
 
-  defaultItemOptions = ['Engine oil', 'Air filter', 'Fuel filter', 'Tires replaced', 'Tires rotated', 
-  'Cabin air filter', 'Spark plugs', 'Ignition coils', 'Brake fluid', 'Brake pads', 'Brake pads and rotors', 
-  'Power steering fluid', 'Transmission fluid', 'Timing belt', 'Coolant', 'Windshield wipers', 'Battery', 
+  private defaultItemOptions = ['Engine oil', 'Air filter', 'Fuel filter', 'Tires replaced', 'Tires rotated',
+  'Cabin air filter', 'Spark plugs', 'Ignition coils', 'Brake fluid', 'Brake pads', 'Brake pads and rotors',
+  'Power steering fluid', 'Transmission fluid', 'Timing belt', 'Coolant', 'Windshield wipers', 'Battery',
   'Alternator', 'Valve adjustment'];
+  itemOptions: string[] = this.defaultItemOptions;
   maintenanceItemTypeahead = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(10),
       distinctUntilChanged(),
       map(term => term.length < 1 ? []
-        : this.defaultItemOptions.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+        : this.itemOptions.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
 
   private route = inject(ActivatedRoute);
@@ -50,9 +51,13 @@ export class RecordMaintenanceComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.vehicleService.get(params['vehicleId']).subscribe(vehicle => {
-        this.vehicle = vehicle;
-        this.maintenance.vehicleId = vehicle.id!;
+      this.vehicleService.getWithMaintenance(params['vehicleId']).subscribe(vm => {
+        this.vehicle = vm;
+        this.maintenance.vehicleId = vm.id;
+        const previousItems = [...new Set(vm.maintenance.map(m => m.item))];
+        const defaultLower = new Set(this.defaultItemOptions.map(i => i.toLowerCase()));
+        const uniquePrevious = previousItems.filter(i => !defaultLower.has(i.toLowerCase()));
+        this.itemOptions = [...uniquePrevious, ...this.defaultItemOptions];
       });
       if ('maintenanceId' in params) {
         this.maintenanceService.get(params.maintenanceId).subscribe(maintenance => {
